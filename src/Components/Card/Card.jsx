@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Card1.module.css";
 import { useSelector } from "react-redux";
+import listing1 from "../../images/listing-01.jpg";
 import { Link } from "react-router-dom";
-
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import StarIcon from "@mui/icons-material/Star";
 const Card = () => {
   // const dispatch = useDispatch();
   const { cardData } = useSelector((state) => state.setCardData);
+  const [value, setValue] = useState(3);
+  const [hover, setHover] = useState(5);
 
+  const labels = {
+    0.5: "Useless",
+    1: "Useless+",
+    1.5: "Poor",
+    2: "Poor+",
+    2.5: "Ok",
+    3: "Ok+",
+    3.5: "Good",
+    4: "Good+",
+    4.5: "Excellent",
+    5: "Excellent+",
+  };
+
+  function getLabelText(value) {
+    return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
+  }
   // const [card, setCard] = useState({
   //   name: "",
   //   rating: "",
@@ -38,7 +59,7 @@ const Card = () => {
   // };
 
   return (
-    <section style={{ backgroundColor: "#000" }}>
+    <section style={{ backgroundColor: "#fff" }}>
       <div className="container py-5">
         <div className="row justify-content-center mb-3">
           <div className="col-md-12 col-xl-10">
@@ -48,7 +69,8 @@ const Card = () => {
                   <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                     <div className="bg-image hover-zoom ripple rounded ripple-surface">
                       <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+                        src={listing1}
+                        // src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
                         className="w-100"
                       />
                       <a href="#!">
@@ -65,14 +87,53 @@ const Card = () => {
                   </div>
                   <div className="col-md-6 col-lg-6 col-xl-6">
                     <h5>{cardData.name}</h5>
+                    <Box
+                      sx={{
+                        width: 200,
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Rating
+                        name="hover-feedback"
+                        value={value}
+                        precision={0.5}
+                        getLabelText={getLabelText}
+                        onChange={(event, newValue) => {
+                          setValue(newValue);
+                        }}
+                        onChangeActive={(event, newHover) => {
+                          setHover(newHover);
+                        }}
+                        emptyIcon={
+                          <StarIcon
+                            style={{ opacity: 0.55 }}
+                            fontSize="inherit"
+                          />
+                        }
+                      />
+                      {value !== null && (
+                        <Box sx={{ ml: 2 }}>
+                          {labels[hover !== -1 ? hover : value]}
+                        </Box>
+                      )}
+                    </Box>
                     <div className="d-flex flex-row">
-                      <div className="text-danger mb-1 me-2">
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                      </div>
-                      <span>{cardData.rating}</span>
+                      <Link
+                        to="/contact"
+                        className="text-primary fs-7 fw-bold my-0 mx-1"
+                      >
+                        location
+                      </Link>
+                      <Link
+                        to="/"
+                        className="text-primary fs-7 fw-bold my-0 mx-1"
+                      >
+                        show on map
+                      </Link>
+                      <Link to="/" className="fs-7 fw-light my-0 mx-1">
+                        12.5km form center
+                      </Link>
                     </div>
                     <div className="mt-1 mb-0 text-muted small">
                       <span>{cardData.attr1}</span>
@@ -94,33 +155,41 @@ const Card = () => {
                         <br />
                       </span>
                     </div>
-                    <p className="text-truncate mb-4 mb-md-0">
+                    <small className="text-success d-block fs-7 fw-bold">
+                      Free cancellation - no prepayment needed
+                    </small>
+                    <small className="fs-7 text-muted">
+                      You can cancel later, so lock in this great price today.
+                    </small>
+                    <p className="mb-4 text-truncate mb-md-0">
                       {cardData.description}
                     </p>
                   </div>
                   <div
                     className={`col-md-6 col-lg-3 col-xl-3 ${style.border_sm_start_none} border-start`}
                   >
-                    <div className="d-flex flex-row align-items-center mb-1">
-                      <h4 className="mb-1 me-1">{cardData.price}</h4>
-                      <span className="text-danger">
-                        <s>{cardData.previousPrice}</s>
-                      </span>
-                    </div>
-                    <h6 className="text-success">Staring From</h6>
-                    <div className="d-flex flex-column mt-4">
-                      <button
-                        className="btn btn-primary btn-sm text-uppercase"
-                        type="button"
-                      >
-                        Details
-                      </button>
-                      <button
-                        className="btn btn-outline-primary btn-sm mt-2"
-                        type="button"
-                      >
-                        BOOK NOW
-                      </button>
+                    <div className="d-flex flex-column">
+                      <small className="fs-7 text-end fw-light text-muted">
+                        2 nights,10 adults,3 childer
+                      </small>
+                      <div className="d-flex ms-auto flex-row align-items-center">
+                        <h4 className="fw-bold mx-1 fs-4">{cardData.price}$</h4>
+                        <span className="text-danger">
+                          <s>{cardData.previousPrice}$</s>
+                        </span>
+                      </div>
+                      <small className="text-muted text-end fs-7 fw-light">
+                        +120$ Tax and charges
+                      </small>
+
+                      <div className="d-flex flex-column mt-4">
+                        <button
+                          className="btn mt-auto btn-outline-primary text-uppercase btn-md mt-2"
+                          type="button"
+                        >
+                          See Availability
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
