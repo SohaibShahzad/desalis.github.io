@@ -12,11 +12,27 @@ import MailIcon from "@mui/icons-material/Mail";
 import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
+import RemoveIcon from "@mui/icons-material/Remove";
 import Avatar from "@mui/material/Avatar";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openOptions, setOpenOptions] = useState(false);
+  const [options, setOptions] = useState({
+    adult: 1,
+    children: 0,
+    room: 1,
+  });
+
+  const handleOption = (name, operation) => {
+    setOptions((prev) => {
+      return {
+        ...prev,
+        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+      };
+    });
+  };
   const { user } = useSelector((state) => state.user);
   const data = [
     {
@@ -42,7 +58,7 @@ const Navbar = () => {
   ];
 
   const [destination, setDestination] = useState("");
-  const [options, setOptions] = useState(0);
+  // const [options, setOptions] = useState(0);
 
   useEffect(() => {
     $(window).scroll(() => {
@@ -211,15 +227,77 @@ const Navbar = () => {
                   <div className="col-lg-3 align-self-center position-relative">
                     <fieldset className="d-flex align-items-center">
                       <PersonIcon className=" me-2" />
-                      <input
-                        name="persons"
-                        className={style.form_select}
-                        type="number"
-                        placeholder="Enter number of persons"
-                        id={style.chooseCategory}
-                        required
-                        onChange={(e) => setOptions(e.target.value)}
-                      />
+                      <span
+                        onClick={() => setOpenOptions(!openOptions)}
+                        className={style.headerSearchText}
+                      >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+                      {openOptions && (
+                        <div className={style.options}>
+                          <div className={style.optionItem}>
+                            <span className={style.optionText}>Adult</span>
+                            <div className={style.optionCounter}>
+                              <button
+                                disabled={options.adult <= 1}
+                                className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                onClick={() => handleOption("adult", "d")}
+                              >
+                                <RemoveIcon />
+                              </button>
+                              <span className={style.optionCounterNumber}>
+                                {options.adult}
+                              </span>
+                              <button
+                                className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                onClick={() => handleOption("adult", "i")}
+                              >
+                                <AddIcon />
+                              </button>
+                            </div>
+                          </div>
+                          <div className={style.optionItem}>
+                            <span className={style.optionText}>Children</span>
+                            <div className={style.optionCounter}>
+                              <button
+                                disabled={options.children <= 0}
+                                className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                onClick={() => handleOption("children", "d")}
+                              >
+                                <RemoveIcon />
+                              </button>
+                              <span className={style.optionCounterNumber}>
+                                {options.children}
+                              </span>
+                              <button
+                                className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                onClick={() => handleOption("children", "i")}
+                              >
+                                <AddIcon />
+                              </button>
+                            </div>
+                          </div>
+                          <div className={style.optionItem}>
+                            <span className={style.optionText}>Room</span>
+                            <div className={style.optionCounter}>
+                              <button
+                                disabled={options.room <= 1}
+                                className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                onClick={() => handleOption("room", "d")}
+                              >
+                                <RemoveIcon />
+                              </button>
+                              <span className={style.optionCounterNumber}>
+                                {options.room}
+                              </span>
+                              <button
+                                className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                onClick={() => handleOption("room", "i")}
+                              >
+                                <AddIcon />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </fieldset>
                   </div>
                   <div className="col-lg-3">
