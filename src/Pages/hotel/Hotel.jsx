@@ -24,14 +24,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const Hotel = () => {
   const location = useLocation();
-  const id = location.pathname.split("/")[2];
+  // const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
 
   // const { data, loading, error } = useFetch(`/hotels/find/${id}`);
   // const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // const { dates, options } = useContext(SearchContext);
 
@@ -114,7 +114,7 @@ const Hotel = () => {
   };
   return (
     <div>
-      <Navbar />
+      <Navbar list={false} />
       {/* <Header type="list" /> */}
       {false ? (
         "loading"
@@ -171,7 +171,10 @@ const Hotel = () => {
               {data.facilities.map((item, i) => {
                 if (i <= 12)
                   return (
-                    <span className="m-2 align-self-stretch text-dark fw-light border border-secondary font_size">
+                    <span
+                      className="m-2 align-self-stretch text-dark fw-light border border-secondary font_size"
+                      key={i}
+                    >
                       {item}
                     </span>
                   );
@@ -240,12 +243,12 @@ const Hotel = () => {
                 <div>
                   <h5>Most popular facilities</h5>
                   <div className="d-flex flex-wrap text-success">
-                    {data.facilities.map((item) => {
+                    {data.facilities.map((item, i) => {
                       return (
-                        <>
+                        <div key={i}>
                           <span className="me-3">{item}</span>
                           <p className="me-3">-</p>
-                        </>
+                        </div>
                       );
                     })}
                   </div>
@@ -306,7 +309,7 @@ const Hotel = () => {
                 </div>
                 <button className="btn btn-primary">
                   Reserve for 13 adults,3 children{" "}
-                  <small classname="fw-light">(for pkr 4,162,112)</small>
+                  <small className="fw-light">(for pkr 4,162,112)</small>
                 </button>
               </div>
             </div>

@@ -5,6 +5,7 @@ import { setContactData } from "./reducer/contactData";
 import { propertySetform } from "./reducer/propertySet";
 import { HotelForm } from "./reducer/HotelReducer";
 import { RoomForm } from "./reducer/RoomReducer";
+import { nav } from "./reducer/nav";
 
 const store = configureStore({
   reducer: {
@@ -13,8 +14,9 @@ const store = configureStore({
     setpropertyData: propertySetform,
     setData: setContactData,
     setCardData: setCard,
-    setHotelData:HotelForm,
-    setRoomData:RoomForm
+    setHotelData: HotelForm,
+    setRoomData: RoomForm,
+    navOpen: nav,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

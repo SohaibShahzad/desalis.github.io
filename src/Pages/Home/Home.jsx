@@ -10,7 +10,7 @@ import style from "./home.module.css";
 const Home = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar list={true} />
       <div className={`${style.homeContainer} container`}>
         <Featured />
         <h1 className={`${style.homeTitle} container`}>
