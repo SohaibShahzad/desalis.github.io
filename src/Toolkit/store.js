@@ -3,6 +3,8 @@ import { userLogin } from "./reducer/userLogin";
 import { setCard } from "./reducer/CardReducer";
 import { setContactData } from "./reducer/contactData";
 import { propertySetform } from "./reducer/propertySet";
+import { HotelForm } from "./reducer/HotelReducer";
+import { RoomForm } from "./reducer/RoomReducer";
 
 const store = configureStore({
   reducer: {
@@ -10,7 +12,9 @@ const store = configureStore({
     user: userLogin,
     setpropertyData: propertySetform,
     setData: setContactData,
-    setCardData: setCard
+    setCardData: setCard,
+    setHotelData:HotelForm,
+    setRoomData:RoomForm
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
