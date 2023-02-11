@@ -168,7 +168,7 @@ const Card = () => {
                   <div
                     className={`col-md-6 col-lg-3 col-xl-3 ${style.border_sm_start_none} border-start`}
                   >
-                    <div className="d-flex flex-column">
+                    <div className="d-flex flex-column h-100 justify-content-end">
                       <small className="fs-7 text-end fw-light text-muted">
                         2 nights,10 adults,3 childer
                       </small>
@@ -183,12 +183,13 @@ const Card = () => {
                       </small>
 
                       <div className="d-flex flex-column mt-4">
-                        <button
-                          className="btn mt-auto btn-outline-primary text-uppercase btn-md mt-2"
+                        <Link
+                          to="/"
+                          className="btn btn-outline-primary text-uppercase btn-md mt-2"
                           type="button"
                         >
                           See Availability
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
