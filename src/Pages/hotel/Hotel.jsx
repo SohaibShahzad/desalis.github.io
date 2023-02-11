@@ -178,6 +178,7 @@ const Hotel = () => {
                       {item}
                     </span>
                   );
+                return null;
               })}
             </div>
 

@@ -59,8 +59,8 @@ const Card = () => {
   // };
 
   return (
-    <section style={{ backgroundColor: "#fff" }}>
-      <div className="container py-5">
+    // <section style={{ backgroundColor: "#fff" }}>
+      <div className="container">
         <div className="row justify-content-center mb-3">
           <div className="col-md-12 col-xl-10">
             <div className="card shadow-0 border rounded-3">
@@ -377,7 +377,7 @@ const Card = () => {
           </div>
         </div> */}
       </div>
-    </section>
+    // </section>
   );
 };
 

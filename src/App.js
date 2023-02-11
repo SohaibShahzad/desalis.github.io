@@ -9,31 +9,20 @@ import Hotel from "./Pages/hotel/Hotel";
 import Room from "./Components/roomForm/Room";
 import Signin from "./Pages/Signin/Signin";
 import Signup from "./Pages/Signup/Signup";
+import Map from "./Components/Map/Map";
+import List from "./Pages/list/List";
 
 function App() {
-  // const location = window.location.pathname;
-  // console.log("app")
-  // const dispatch = useDispatch();
-  // if (location === "/") {
-  //   dispatch({
-  //     type: "sethoteldata",
-  //     payload: true,
-  //   });
-  // } else {
-  //   dispatch({
-  //     type: "sethoteldata",
-  //     payload: false,
-  //   });
-  // }
-
   return (
     <>
-      <Routes>
+      {/* <Map /> */}
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/hotel" element={<Hotel />} />
-      </Routes>
+      </Routes> */}
+      {/* <List /> */}
       {/* <Home /> */}
       {/* <Hotel /> */}
       {/* <Card /> */}
