@@ -5,10 +5,10 @@ import Contact from "./Pages/Contact/Contact";
 import Home from "./Pages/Home/Home";
 import Listing from "./Pages/Property Listing/Listing";
 import { Route, Routes } from "react-router-dom";
-import Hotel from './Components/hotelForm/Hotel';
-import Room from './Components/roomForm/Room';
-import Signin from "./Components/Signin/Signin";
-import Signup from "./Components/Signup/Signup";
+import Hotel from "./Pages/hotel/Hotel";
+import Room from "./Components/roomForm/Room";
+import Signin from "./Pages/Signin/Signin";
+import Signup from "./Pages/Signup/Signup";
 function App() {
   return (
     <>
@@ -17,11 +17,14 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
       </Routes> */}
-      <Card />
+      {/* <Hotel /> */}
+      {/* <Card /> */}
       {/* <Contact /> */}
       {/* <Listing /> */}
       {/* <Hotel /> */}
       {/* <Room /> */}
+      {/* <Signup /> */}
+      {/* <Signin /> */}
     </>
   );
 }
