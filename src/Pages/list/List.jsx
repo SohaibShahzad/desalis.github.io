@@ -50,11 +50,11 @@ const List = () => {
   };
 
   return (
-    <div>
+    <div className="w-100">
       <Navbar list={false} />
-      <div className={style.listContainer}>
-        <div className={style.listWrapper}>
-          <div className={style.listSearch}>
+      <div className={`${style.listContainer}`}>
+        <div className={`row justify-content-around ${style.listWrapper}`}>
+          <div className={`col-3 ${style.listSearch}`}>
             <h1 className={style.lsTitle}>Search</h1>
             <div className={style.lsItem}>
               <label>Destination</label>
@@ -124,7 +124,7 @@ const List = () => {
             </div>
             <button onClick={handleClick}>Search</button>
           </div>
-          <div className={`w-100 ${style.listResult}`}>
+          <div className={`col-8 ${style.listResult}`}>
             {loading ? (
               "Loading please wait"
             ) : (

@@ -1,5 +1,11 @@
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
   .border-sm-start-none {
     border-left: none !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .hide992 {
+    display: none;
   }
 }
