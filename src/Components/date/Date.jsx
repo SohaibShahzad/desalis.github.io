@@ -8,8 +8,7 @@ import moment from "moment/moment";
 const Dates = () => {
   dayjs.extend(customParseFormat);
   const { RangePicker } = DatePicker;
-  const [date, setDate] = useState([moment(),moment()]);
-  console.log(date);
+  const [date, setDate] = useState([moment(), moment()]);
   const disabledDate = (current) => {
     return current && current < dayjs().endOf("day");
   };

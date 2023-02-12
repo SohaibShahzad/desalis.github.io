@@ -20,12 +20,7 @@
   object-fit: cover;
 }
 
-.pListTitles {
-  position: absolute;
-  z-index: 500;
-  top: 2;
-  left: 2;
-}
+
 
 .pListTitles > h1 {
   font-size: 18px;
@@ -45,16 +40,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  /* .pListImg {
-    height: 100px;
-  }
-  .pListTitles > h1 {
-    font-size: 14px;
-  }
-  
-  .pListTitles > h2 {
-    font-size: 10px;;
-  } */
   .pListImg {
     height: 400px !important;
   }

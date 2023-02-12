@@ -1,113 +1,143 @@
 import React from "react";
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import style from "./signup.module.css";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const Signup = () => {
-  const [active, setActive] = useState(true);
+function Copyright(props) {
   return (
-    <>
-      <section>
-        <div
-          className={`${style.container} ${
-            active ? style.right_panel_active : ""
-          }`}
-          id="container"
-        >
-          <div className={`${style.form_container} ${style.sign_up_container}`}>
-            <form action="#">
-              <h1>Sign Up</h1>
-              <div className={style.social_container}>
-                <Link to="/" target="_blank" className={style.social}>
-                  <i className="fab fa-github"></i>
-                </Link>
-                <Link to="/" target="_blank" className={style.social}>
-                  <i className="fab fa-codepen"></i>
-                </Link>
-                <Link to="/" target="_blank" className={style.social}>
-                  <i className="fab fa-google"></i>
-                </Link>
-              </div>
-              <span>Or use your Email for registration</span>
-              <label>
-                <input type="text" placeholder="Name" autoComplete="off" />
-              </label>
-              <label>
-                <input type="email" placeholder="Email" autoComplete="off" />
-              </label>
-              <label>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  autoComplete="off"
-                />
-              </label>
-              <button style={{ marginTop: "9px" }}>Sign Up</button>
-            </form>
-          </div>
-          <div className={`${style.form_container} ${style.sign_in_container}`}>
-            <form action="#">
-              <h1>Sign in</h1>
-              <div className={style.social_container}>
-                <Link to="/" target="_blank" className={style.social}>
-                  <i className="fab fa-github"></i>
-                </Link>
-                <Link to="/" target="_blank" className={style.social}>
-                  <i className="fab fa-codepen"></i>
-                </Link>
-                <Link to="/" target="_blank" className={style.social}>
-                  <i className="fab fa-google"></i>
-                </Link>
-              </div>
-              <span> Or sign in using E-Mail Address</span>
-              <label>
-                <input type="email" placeholder="Email" autoComplete="off" />
-              </label>
-              <label>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  autoComplete="off"
-                />
-              </label>
-              <Link to="/">Forgot your password?</Link>
-              <button>Sign In</button>
-            </form>
-          </div>
-          <div className={style.overlay_container}>
-            <div className={style.overlay}>
-              <div className={`${style.overlay_panel} ${style.overlay_left}`}>
-                <h1>Log in</h1>
-                <p>Sign in here if you already have an account </p>
-                <button
-                  className={`${style.ghost} mt-5`}
-                  onClick={(e) => {
-                    setActive(false);
-                  }}
-                  id="signIn"
-                >
-                  Sign In
-                </button>
-              </div>
-              <div className={`${style.overlay_panel} ${style.overlay_right}`}>
-                <h1>Create, Account!</h1>
-                <p>Sign up if you still don't have an account ... </p>
-                <button
-                  className={style.ghost}
-                  onClick={(e) => {
-                    setActive(true);
-                  }}
-                  id="signUp"
-                >
-                  Sign Up
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
   );
-};
+}
 
-export default Signup;
+const theme = createTheme();
+
+export default function SignUp() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href="#" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 5 }} />
+      </Container>
+    </ThemeProvider>
+  );
+}

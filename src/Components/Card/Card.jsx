@@ -59,145 +59,274 @@ const Card = () => {
   // };
 
   return (
-    <section style={{ backgroundColor: "#fff" }}>
-      <div className="container py-5">
-        <div className="row justify-content-center mb-3">
-          <div className="col-md-12 col-xl-10">
-            <div className="card shadow-0 border rounded-3">
-              <div className="card-body">
-                <div className="row">
-                  <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                    <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                      <img
-                        src={listing1}
-                        // src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
-                        className="w-100"
-                      />
-                      <a href="#!">
-                        <div className="hover-overlay">
-                          <div
-                            className="mask"
-                            style={{
-                              backgroundColor: "rgba(253, 253, 253, 0.15)",
-                            }}
-                          ></div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="col-md-6 col-lg-6 col-xl-6">
-                    <h5>{cardData.name}</h5>
-                    <Box
-                      sx={{
-                        width: 200,
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Rating
-                        name="hover-feedback"
-                        value={value}
-                        precision={0.5}
-                        getLabelText={getLabelText}
-                        onChange={(event, newValue) => {
-                          setValue(newValue);
-                        }}
-                        onChangeActive={(event, newHover) => {
-                          setHover(newHover);
-                        }}
-                        emptyIcon={
-                          <StarIcon
-                            style={{ opacity: 0.55 }}
-                            fontSize="inherit"
-                          />
-                        }
-                      />
-                      {value !== null && (
-                        <Box sx={{ ml: 2 }}>
-                          {labels[hover !== -1 ? hover : value]}
-                        </Box>
-                      )}
-                    </Box>
-                    <div className="d-flex flex-row">
-                      <Link
-                        to="/contact"
-                        className="text-primary fs-7 fw-bold my-0 mx-1"
-                      >
-                        location
-                      </Link>
-                      <Link
-                        to="/"
-                        className="text-primary fs-7 fw-bold my-0 mx-1"
-                      >
-                        show on map
-                      </Link>
-                      <Link to="/" className="fs-7 fw-light my-0 mx-1">
-                        12.5km form center
-                      </Link>
-                    </div>
-                    <div className="mt-1 mb-0 text-muted small">
-                      <span>{cardData.attr1}</span>
-                      <span className="text-primary"> • </span>
-                      <span>{cardData.attr2}</span>
-                      <span className="text-primary"> • </span>
-                      <span>
-                        {cardData.attr3}
-                        <br />
-                      </span>
-                    </div>
-                    <div className="mb-2 text-muted small">
-                      <span>{cardData.attr4}</span>
-                      <span className="text-primary"> • </span>
-                      <span>{cardData.attr5}</span>
-                      <span className="text-primary"> • </span>
-                      <span>
-                        {cardData.attr6}
-                        <br />
-                      </span>
-                    </div>
-                    <small className="text-success d-block fs-7 fw-bold">
-                      Free cancellation - no prepayment needed
-                    </small>
-                    <small className="fs-7 text-muted">
-                      You can cancel later, so lock in this great price today.
-                    </small>
-                    <p className="mb-4 text-truncate mb-md-0">
-                      {cardData.description}
-                    </p>
-                  </div>
-                  <div
-                    className={`col-md-6 col-lg-3 col-xl-3 ${style.border_sm_start_none} border-start`}
-                  >
-                    <div className="d-flex flex-column">
-                      <small className="fs-7 text-end fw-light text-muted">
-                        2 nights,10 adults,3 childer
-                      </small>
-                      <div className="d-flex ms-auto flex-row align-items-center">
-                        <h4 className="fw-bold mx-1 fs-4">{cardData.price}$</h4>
-                        <span className="text-danger">
-                          <s>{cardData.previousPrice}$</s>
-                        </span>
-                      </div>
-                      <small className="text-muted text-end fs-7 fw-light">
-                        +120$ Tax and charges
-                      </small>
-
-                      <div className="d-flex flex-column mt-4">
-                        <button
-                          className="btn mt-auto btn-outline-primary text-uppercase btn-md mt-2"
-                          type="button"
-                        >
-                          See Availability
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+    <div className="w-100 container border rounded-2 p-1 mb-3">
+      <div className="row">
+        <div className="col-3">
+          <div className="h-100 bg-image hover-zoom ripple rounded ripple-surface">
+            <img
+              src={listing1}
+              // src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+              className="w-100 h-100"
+            />
+            <a href="#!">
+              <div className="hover-overlay">
+                <div
+                  className="mask"
+                  style={{
+                    backgroundColor: "rgba(253, 253, 253, 0.15)",
+                  }}
+                ></div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
-        {/* <div className="row justify-content-center mb-3">
+        <div className="col-6">
+          <h5>{cardData.name}</h5>
+          <Box
+            sx={{
+              width: 200,
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Rating
+              name="hover-feedback"
+              value={value}
+              precision={0.5}
+              getLabelText={getLabelText}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+              onChangeActive={(event, newHover) => {
+                setHover(newHover);
+              }}
+              emptyIcon={
+                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+              }
+            />
+            {value !== null && (
+              <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+            )}
+          </Box>
+          <div className="d-flex flex-row">
+            <Link to="/contact" className="text-primary fs-7 fw-bold my-0 mx-1">
+              location
+            </Link>
+            <Link to="/" className="text-primary fs-7 fw-bold my-0 mx-1">
+              show on map
+            </Link>
+            <Link to="/" className="fs-7 fw-light my-0 mx-1">
+              12.5km form center
+            </Link>
+          </div>
+          <div className="mt-1 mb-0 text-muted small">
+            <span>{cardData.attr1}</span>
+            <span className="text-primary"> • </span>
+            <span>{cardData.attr2}</span>
+            <span className="text-primary"> • </span>
+            <span>
+              {cardData.attr3}
+              <br />
+            </span>
+          </div>
+          <div className="mb-2 text-muted small">
+            <span>{cardData.attr4}</span>
+            <span className="text-primary"> • </span>
+            <span>{cardData.attr5}</span>
+            <span className="text-primary"> • </span>
+            <span>
+              {cardData.attr6}
+              <br />
+            </span>
+          </div>
+          <div className={style.hide992}>
+            <small className="text-success d-block fs-7 fw-bold">
+              Free cancellation - no prepayment needed
+            </small>
+            <small className="fs-7 text-muted">
+              You can cancel later, so lock in this great price today.
+            </small>
+            <p className="mb-4 text-truncate mb-md-0">{cardData.description}</p>
+          </div>
+        </div>
+        <div className={`col-3 border-start ${style.border_sm_start_none}`}>
+          {/* <div
+            className={`col-md-6 col-lg-3 col-xl-3 ${style.border_sm_start_none} border-start`}
+          > */}
+          <div className="d-flex flex-column h-100 justify-content-end">
+            <small className="fs-7 text-end fw-light text-muted">
+              2 nights,10 adults,3 childer
+            </small>
+            <div className="d-flex ms-auto flex-row align-items-center">
+              <h4 className="fw-bold mx-1 fs-4">{cardData.price}$</h4>
+              <span className="text-danger">
+                <s>{cardData.previousPrice}$</s>
+              </span>
+            </div>
+            <small className="text-muted text-end fs-7 fw-light">
+              +120$ Tax and charges
+            </small>
+            <div className="d-flex flex-column mt-4">
+              <Link
+                to="/"
+                className="btn btn-outline-primary text-uppercase btn-md mt-2"
+                type="button"
+              >
+                See Availability
+              </Link>
+            </div>
+          </div>
+          {/* </div> */}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Card;
+
+// <section style={{ backgroundColor: "#fff" }}>
+//   <div className="container">
+//     <div className="row justify-content-center mb-3">
+//       <div className="col-md-12 col-xl-10">
+//         <div className="card shadow-0 border rounded-3">
+//           <div className="card-body">
+//             <div className="row">
+//               <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+//                 <div className="bg-image hover-zoom ripple rounded ripple-surface">
+//                   <img
+//                     src={listing1}
+//                     // src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
+//                     className="w-100"
+//                   />
+//                   <a href="#!">
+//                     <div className="hover-overlay">
+//                       <div
+//                         className="mask"
+//                         style={{
+//                           backgroundColor: "rgba(253, 253, 253, 0.15)",
+//                         }}
+//                       ></div>
+//                     </div>
+//                   </a>
+//                 </div>
+//               </div>
+//               <div className="col-md-6 col-lg-6 col-xl-6">
+//                 <h5>{cardData.name}</h5>
+//                 <Box
+//                   sx={{
+//                     width: 200,
+//                     display: "flex",
+//                     alignItems: "center",
+//                   }}
+//                 >
+//                   <Rating
+//                     name="hover-feedback"
+//                     value={value}
+//                     precision={0.5}
+//                     getLabelText={getLabelText}
+//                     onChange={(event, newValue) => {
+//                       setValue(newValue);
+//                     }}
+//                     onChangeActive={(event, newHover) => {
+//                       setHover(newHover);
+//                     }}
+//                     emptyIcon={
+//                       <StarIcon
+//                         style={{ opacity: 0.55 }}
+//                         fontSize="inherit"
+//                       />
+//                     }
+//                   />
+//                   {value !== null && (
+//                     <Box sx={{ ml: 2 }}>
+//                       {labels[hover !== -1 ? hover : value]}
+//                     </Box>
+//                   )}
+//                 </Box>
+//                 <div className="d-flex flex-row">
+//                   <Link
+//                     to="/contact"
+//                     className="text-primary fs-7 fw-bold my-0 mx-1"
+//                   >
+//                     location
+//                   </Link>
+//                   <Link
+//                     to="/"
+//                     className="text-primary fs-7 fw-bold my-0 mx-1"
+//                   >
+//                     show on map
+//                   </Link>
+//                   <Link to="/" className="fs-7 fw-light my-0 mx-1">
+//                     12.5km form center
+//                   </Link>
+//                 </div>
+//                 <div className="mt-1 mb-0 text-muted small">
+//                   <span>{cardData.attr1}</span>
+//                   <span className="text-primary"> • </span>
+//                   <span>{cardData.attr2}</span>
+//                   <span className="text-primary"> • </span>
+//                   <span>
+//                     {cardData.attr3}
+//                     <br />
+//                   </span>
+//                 </div>
+//                 <div className="mb-2 text-muted small">
+//                   <span>{cardData.attr4}</span>
+//                   <span className="text-primary"> • </span>
+//                   <span>{cardData.attr5}</span>
+//                   <span className="text-primary"> • </span>
+//                   <span>
+//                     {cardData.attr6}
+//                     <br />
+//                   </span>
+//                 </div>
+//                 <small className="text-success d-block fs-7 fw-bold">
+//                   Free cancellation - no prepayment needed
+//                 </small>
+//                 <small className="fs-7 text-muted">
+//                   You can cancel later, so lock in this great price today.
+//                 </small>
+//                 <p className="mb-4 text-truncate mb-md-0">
+//                   {cardData.description}
+//                 </p>
+//               </div>
+//               <div
+//                 className={`col-md-6 col-lg-3 col-xl-3 ${style.border_sm_start_none} border-start`}
+//               >
+//                 <div className="d-flex flex-column h-100 justify-content-end">
+//                   <small className="fs-7 text-end fw-light text-muted">
+//                     2 nights,10 adults,3 childer
+//                   </small>
+//                   <div className="d-flex ms-auto flex-row align-items-center">
+//                     <h4 className="fw-bold mx-1 fs-4">{cardData.price}$</h4>
+//                     <span className="text-danger">
+//                       <s>{cardData.previousPrice}$</s>
+//                     </span>
+//                   </div>
+//                   <small className="text-muted text-end fs-7 fw-light">
+//                     +120$ Tax and charges
+//                   </small>
+
+//                   <div className="d-flex flex-column mt-4">
+//                     <Link
+//                       to="/"
+//                       className="btn btn-outline-primary text-uppercase btn-md mt-2"
+//                       type="button"
+//                     >
+//                       See Availability
+//                     </Link>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+
+{
+  /* <div className="row justify-content-center mb-3">
           <div className="col-md-12 col-xl-10">
             <div className="card shadow-0 border rounded-3">
               <div className="card-body">
@@ -374,10 +503,7 @@ const Card = () => {
               </div>
             </div>
           </div>
-        </div> */}
-      </div>
-    </section>
-  );
-};
-
-export default Card;
+        </div> */
+}
+// </div>
+// </section>
