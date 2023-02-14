@@ -1,26 +1,26 @@
 import style from "./list.module.css";
 import Navbar from "../../Components/Navbar/Navbar";
-// import { useLocation } from "react-router-dom";
-import { useState } from "react";
-import { format } from "date-fns";
+import { useState, useEffect } from "react";
 import Card from "../../Components/Card/Card";
 // import useFetch from "../../hooks/useFetch";
 import Dates from "../../Components/date/Date";
+import { useSelector, useDispatch } from "react-redux";
 
 const List = () => {
-  const [destination, setDestination] = useState("New York");
+  const dispatch = useDispatch();
+  const { city } = useSelector((state) => state.searchCity);
+  const { dates } = useSelector((state) => state.searchDate);
+  const { options } = useSelector((state) => state.searchOption);
+  const [option, setOption] = useState(options);
   const loading = false;
-  // const location = useLocation();
-  // const [destination, setDestination] = useState(location.state.destination);
-  // const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
-  // const [options, setOptions] = useState(location.state.options);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-  // const { data, loading, error, reFetch } = useFetch(
-  //   `/hotels?city=${destination}&min=${min || 0 }&max=${max || 999}`
-  // );
+  useEffect(() => {
+    console.log(option);
+    console.log(options);
+  }, [option]);
 
   const data = [
     {
@@ -58,15 +58,12 @@ const List = () => {
             <h1 className={style.lsTitle}>Search</h1>
             <div className={style.lsItem}>
               <label>Destination</label>
-              <input placeholder={destination} type="text" />
+              <input placeholder={city} type="text" />
             </div>
             <div className={style.lsItem}>
               <label>Check-in Date</label>
               <span onClick={() => setOpenDate(!openDate)}>
-                {/* {`${format(
-                dates[0].startDate,
-                "MM/dd/yyyy"
-              )} to ${format(dates[0].endDate, "MM/dd/yyyy")}`} */}
+                {dates[0] ? `${dates[0]} to ${dates[1]}` : null}
               </span>
               {openDate && <Dates />}
             </div>
@@ -99,7 +96,18 @@ const List = () => {
                     type="number"
                     min={1}
                     className={style.lsOptionInput}
-                    // placeholder={options.adult}
+                    placeholder={options.adult}
+                    onChange={(e) =>
+                      e.target.value < 1 || e.target.value === ""
+                        ? dispatch({
+                            type: "SET_OPTION",
+                            payload: { ...options, adult: 1 },
+                          })
+                        : dispatch({
+                            type: "SET_OPTION",
+                            payload: { ...options, adult: e.target.value },
+                          })
+                    }
                   />
                 </div>
                 <div className={style.lsOptionItem}>
@@ -108,7 +116,18 @@ const List = () => {
                     type="number"
                     min={0}
                     className={style.lsOptionInput}
-                    // placeholder={options.children}
+                    placeholder={options.children}
+                    onChange={(e) =>
+                      e.target.value < 0 || e.target.value === ""
+                        ? dispatch({
+                            type: "SET_OPTION",
+                            payload: { ...options, children: 0 },
+                          })
+                        : dispatch({
+                            type: "SET_OPTION",
+                            payload: { ...options, children: e.target.value },
+                          })
+                    }
                   />
                 </div>
                 <div className={style.lsOptionItem}>
@@ -117,7 +136,18 @@ const List = () => {
                     type="number"
                     min={1}
                     className={style.lsOptionInput}
-                    // placeholder={options.room}
+                    placeholder={options.room}
+                    onChange={(e) =>
+                      e.target.value < 1 || e.target.value === ""
+                        ? dispatch({
+                            type: "SET_OPTION",
+                            payload: { ...options, room: 1 },
+                          })
+                        : dispatch({
+                            type: "SET_OPTION",
+                            payload: { ...options, room: e.target.value },
+                          })
+                    }
                   />
                 </div>
               </div>

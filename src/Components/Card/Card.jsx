@@ -63,12 +63,8 @@ const Card = () => {
       <div className="row">
         <div className="col-md-3 col-xl-3 col-sm-12">
           <div className="h-100 bg-image hover-zoom ripple rounded ripple-surface">
-            <img
-              src={listing1}
-              // src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
-              className="w-100"
-            />
-            <a href="#!">
+            <img src={listing1} className="w-100" />
+            <Link to="/">
               <div className="hover-overlay">
                 <div
                   className="mask"
@@ -77,7 +73,7 @@ const Card = () => {
                   }}
                 ></div>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="col-md-6 col-xl-6 col-sm-12">
@@ -109,15 +105,15 @@ const Card = () => {
             )}
           </Box>
           <div className="d-flex flex-row">
-            <Link to="/contact" className="text-primary fs-7 fw-bold my-0 mx-1">
-              location
+            <Link
+              to="/"
+              className="text-primary fs-7 fw-bold my-0 mx-md-0 mx-1"
+            >
+              Show on map
             </Link>
-            <Link to="/" className="text-primary fs-7 fw-bold my-0 mx-md-0 mx-1">
-              show on map
-            </Link>
-            <Link to="/" className="fs-7 fw-light my-0 mx-1">
+            <div to="/" className="fs-7 fw-light my-0 mx-1">
               12.5km form center
-            </Link>
+            </div>
           </div>
           <div className="mt-1 mb-0 text-muted small">
             <span>{cardData.attr1}</span>
@@ -149,12 +145,11 @@ const Card = () => {
             <p className="mb-4 text-truncate mb-md-0">{cardData.description}</p>
           </div>
         </div>
-        <div className={`col-md-3 col-xl-3 col-sm-12 border-start ${style.border_sm_start_none}`}>
-          {/* <div
-            className={`col-md-6 col-lg-3 col-xl-3 ${style.border_sm_start_none} border-start`}
-          > */}
+        <div
+          className={`col-md-3 col-xl-3 col-sm-12 border-start ${style.border_sm_start_none}`}
+        >
           <div className="d-flex flex-column h-100 justify-content-end">
-            <small className="fs-7 text-end fw-light text-muted">
+            <small className="fs-6 text-end fw-light text-muted">
               2 nights,10 adults,3 childer
             </small>
             <div className="d-flex ms-auto flex-row align-items-center">
@@ -176,7 +171,6 @@ const Card = () => {
               </Link>
             </div>
           </div>
-          {/* </div> */}
         </div>
       </div>
     </div>
