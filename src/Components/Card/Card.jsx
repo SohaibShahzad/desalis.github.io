@@ -61,12 +61,12 @@ const Card = () => {
   return (
     <div className="w-100 container border rounded-2 p-1 mb-3">
       <div className="row">
-        <div className="col-3">
+        <div className="col-md-3 col-xl-3 col-sm-12">
           <div className="h-100 bg-image hover-zoom ripple rounded ripple-surface">
             <img
               src={listing1}
               // src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp"
-              className="w-100 h-100"
+              className="w-100"
             />
             <a href="#!">
               <div className="hover-overlay">
@@ -80,8 +80,8 @@ const Card = () => {
             </a>
           </div>
         </div>
-        <div className="col-6">
-          <h5>{cardData.name}</h5>
+        <div className="col-md-6 col-xl-6 col-sm-12">
+          <h5 className="my-xl-0 my-md-0 my-sm-2">{cardData.name}</h5>
           <Box
             sx={{
               width: 200,
@@ -112,7 +112,7 @@ const Card = () => {
             <Link to="/contact" className="text-primary fs-7 fw-bold my-0 mx-1">
               location
             </Link>
-            <Link to="/" className="text-primary fs-7 fw-bold my-0 mx-1">
+            <Link to="/" className="text-primary fs-7 fw-bold my-0 mx-md-0 mx-1">
               show on map
             </Link>
             <Link to="/" className="fs-7 fw-light my-0 mx-1">
@@ -149,7 +149,7 @@ const Card = () => {
             <p className="mb-4 text-truncate mb-md-0">{cardData.description}</p>
           </div>
         </div>
-        <div className={`col-3 border-start ${style.border_sm_start_none}`}>
+        <div className={`col-md-3 col-xl-3 col-sm-12 border-start ${style.border_sm_start_none}`}>
           {/* <div
             className={`col-md-6 col-lg-3 col-xl-3 ${style.border_sm_start_none} border-start`}
           > */}

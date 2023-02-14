@@ -11,27 +11,25 @@ import Signin from "./Pages/Signin/Signin";
 import Signup from "./Pages/Signup/Signup";
 import Map from "./Components/Map/Map";
 import List from "./Pages/list/List";
+import Roomcard from "./Components/RoomCard/Roomcard";
 
 function App() {
   return (
     <>
       {/* <Map /> */}
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/hotel" element={<Hotel />} />
-      </Routes> */}
-      <List />
-      {/* <Home /> */}
-      {/* <Hotel /> */}
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/listproperty" element={<Listing />} />
+        <Route path="/card" element={<Card />} />
+      </Routes>
+      {/* <List /> */}
       {/* <Card /> */}
-      {/* <Contact /> */}
-      {/* <Listing /> */}
-      {/* <Hotel /> */}
       {/* <Room /> */}
-      {/* <Signup /> */}
-      {/* <Signin /> */}
+      {/* <Roomcard /> */}
     </>
   );
 }

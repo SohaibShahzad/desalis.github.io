@@ -170,7 +170,7 @@ const Navbar = ({ list }) => {
 
                   <li>
                     <div className={style.main_white_button}>
-                      <Link to="/addProperty">
+                      <Link to="/listproperty">
                         <AddIcon /> Add Your Property
                       </Link>
                     </div>
