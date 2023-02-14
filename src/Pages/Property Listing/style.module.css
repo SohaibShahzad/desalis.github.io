@@ -11,14 +11,11 @@ section {
   display: block;
   /* border: 1px solid black; */
   border-radius: 20px;
-  width: 10rem;
-  height: 10rem;
+  width: 4rem;
+  height: 4rem;
   cursor: pointer;
   /* overflow: hidden; */
   /* font-size: large; */
-}
-.labelitem:hover {
-  transform: scale(1.2);
 }
 
 .labelitem span {
@@ -72,20 +69,20 @@ img {
 .upload_btn {
   cursor: pointer;
   display: block;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   border: none;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   width: 10rem;
   height: 3rem;
   color: white;
   background-color: green;
 }
 
-label:hover,
+/* label:hover,
 .upload-btn:hover {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-}
+} */
 
 .error {
   text-align: center;
