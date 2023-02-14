@@ -1,12 +1,9 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./Components/Navbar/Navbar";
-import Card from "./Components/Card/Card";
 import Contact from "./Pages/Contact/Contact";
 import Home from "./Pages/Home/Home";
 import Listing from "./Pages/Property Listing/Listing";
 import Hotel from "./Pages/hotel/Hotel";
-import Room from "./Pages/roomForm/Room";
 import Signin from "./Pages/Signin/Signin";
 import Signup from "./Pages/Signup/Signup";
 // import Map from "./Components/Map/Map";
