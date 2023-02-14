@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const Listing = () => {
+const RoomForm = () => {
   const dispatch = useDispatch();
   const { roomData } = useSelector((state) => state.setRoomData);
 
@@ -171,4 +171,4 @@ const Listing = () => {
   );
 };
 
-export default Listing;
+export default RoomForm;
