@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./style.module.css";
 
@@ -184,55 +186,76 @@ const Listing = () => {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-6 col-sm-12">
+                  <div className="col-md-12 col-sm-12">
                     <div className="mb-3">
                       <label for="formFile" className="text-dark form-label">
-                        Property Thumbnail Picture
+                        Property Pictures
                       </label>
                       <IconButton
-                        color="primary"
+                        color="secondary"
                         aria-label="upload picture"
                         component="label"
                       >
                         <input
                           hidden
-                          onChange={selectsingleimg}
-                          accept="image/*"
+                          onChange={onSelectFile}
+                          accept="image/png , image/jpeg"
                           type="file"
+                          multiple
                         />
-                        <PhotoCamera />
+                        <AddPhotoAlternateIcon />
                       </IconButton>
-                      <label
-                        className={`${style.labelitem} ${
-                          singlefile ? "" : "d-none"
-                        } `}
-                      >
-                        {singlefile && (
-                          <img
-                            className={`${style.labelitem} overflow-hidden `}
-                            src={URL.createObjectURL(singlefile)}
-                            alt=""
-                          />
-                        )}
-                      </label>
-                    </div>
-                  </div>
-                  <div className="col-md-6 col-sm-12">
-                    <div className="mb-3">
-                      <label
-                        for="formFileMultiple"
-                        className="text-dark form-label"
-                      >
-                        Add multiple photos of your property (png,jpey)*
-                      </label>
-                      <input
-                        className="form-control"
-                        type="file"
-                        // onChange={handleMultipleFileChange}
-                        id="formFileMultiple"
-                        accept="image/png, image/jpeg"
-                        multiple
-                      />
+                      <div className={`${style.images}`}>
+                        {selectedImages &&
+                          selectedImages.map((image, index) => {
+                            return (
+                              <div key={image} className={`mx-1`}>
+                                <img
+                                  className=""
+                                  src={image}
+                                  height="70"
+                                  width="60"
+                                  alt="upload"
+                                />
+                                <div className="d-flex  bg-dark flex-row justify-content-between">
+                                  <p className="text-light ms-1">{index + 1}</p>
+
+                                  <IconButton aria-label="delete" size="small">
+                                    <DeleteIcon
+                                      className="text-light me-1"
+                                      onClick={() => deleteHandler(image)}
+                                      fontSize="small"
+                                    />
+                                  </IconButton>
+                                </div>
+                              </div>
+                            );
+                          })}
+                      </div>
+                      <div className="container text-center my-3">
+                        {selectedImages.length > 0 &&
+                          (selectedImages.length > 10 ? (
+                            <p className={`${style.error}`}>
+                              You can't upload more than 10 images! <br />
+                              <span>
+                                please delete{" "}
+                                <b> {selectedImages.length - 10} </b> of them
+                              </span>
+                            </p>
+                          ) : (
+                            <div className="">
+                              <button
+                                className={`btn btn-primary btn-md`}
+                                onClick={() => {
+                                  console.log(selectedImages);
+                                }}
+                              >
+                                UPLOAD {selectedImages.length} IMAGE
+                                {selectedImages.length === 1 ? "" : "S"}
+                              </button>
+                            </div>
+                          ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -260,7 +283,7 @@ const Listing = () => {
               </div>
             </div>
           </div>
-          <section>
+          {/* <section>
             <label className={`${style.labelitem}`}>
               + Add Images
               <br />
@@ -274,44 +297,7 @@ const Listing = () => {
               />
             </label>
             <br />
-
-            {/* <input type="file" multiple /> */}
-
-            {selectedImages.length > 0 &&
-              (selectedImages.length > 10 ? (
-                <p className={`${style.error}`}>
-                  You can't upload more than 10 images! <br />
-                  <span>
-                    please delete <b> {selectedImages.length - 10} </b> of them
-                  </span>
-                </p>
-              ) : (
-                <button
-                  className={`${style.upload_btn}`}
-                  onClick={() => {
-                    console.log(selectedImages);
-                  }}
-                >
-                  UPLOAD {selectedImages.length} IMAGE
-                  {selectedImages.length === 1 ? "" : "S"}
-                </button>
-              ))}
-
-            <div className={`${style.images}`}>
-              {selectedImages &&
-                selectedImages.map((image, index) => {
-                  return (
-                    <div key={image} className={`${style.image}`}>
-                      <img src={image} height="200" alt="upload" />
-                      <button onClick={() => deleteHandler(image)}>
-                        delete image
-                      </button>
-                      <p>{index + 1}</p>
-                    </div>
-                  );
-                })}
-            </div>
-          </section>
+          </section> */}
         </div>
       </div>
     </>

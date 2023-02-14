@@ -107,15 +107,15 @@ const Card = () => {
           <div className="d-flex flex-row">
             <Link
               to="/"
-              className="text-primary fs-7 fw-bold my-0 mx-md-0 mx-1"
+              className="text-primary fs-8 fw-bold my-0 mx-md-0 mx-1"
             >
               Show on map
             </Link>
-            <div to="/" className="fs-7 fw-light my-0 mx-1">
+            <div to="/" className="fs-8 fw-light my-0 mx-1">
               12.5km form center
             </div>
           </div>
-          <div className="mt-1 mb-0 text-muted small">
+          <div className="mt-1 mb-0 text-muted" style={{fontSize:"4px"}}>
             <span>{cardData.attr1}</span>
             <span className="text-primary"> • </span>
             <span>{cardData.attr2}</span>
