@@ -1,5 +1,5 @@
 import style from "./navbar.module.css";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import $ from "jquery";
@@ -34,23 +34,36 @@ const Navbar = ({ list }) => {
   // }
   // const { c } = useSelector((state) => state.navOpen);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [destination, setDestination] = useState("");
+  const dispatch = useDispatch();
   const [openOptions, setOpenOptions] = useState(false);
-  const [options, setOptions] = useState({
+  const { options } = useSelector((state) => state.searchOption);
+  console.log(options);
+  const [option, setOption] = useState({
     adult: 1,
     children: 0,
     room: 1,
   });
+  useEffect(() => {
+    dispatch({
+      type: "SET_OPTION",
+      payload: option,
+    });
+  }, [option]);
 
   const handleOption = (name, operation) => {
-    setOptions((prev) => {
+    setOption((prev) => {
       return {
         ...prev,
         [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
       };
     });
   };
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
+  const handleOnSearch = () => {
+    navigate(`/list`);
+  };
+
   const data = [
     {
       name: "Hotels",
@@ -102,17 +115,17 @@ const Navbar = ({ list }) => {
                 <a href="index.html" className={style.logo}></a>
                 <ul className={style.nav}>
                   <li>
-                    <Link to="/" className="active">
+                    <NavLink to="/" className="active">
                       Hotels
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to="/hotel">Parkings</Link>
+                    <NavLink to="/hotel">Parkings</NavLink>
                   </li>
                   {user ? (
                     <>
                       <li>
-                        <Link to="/">
+                        <NavLink to="/">
                           <span className={style.iconShow}>
                             <Badge
                               color="secondary"
@@ -123,10 +136,10 @@ const Navbar = ({ list }) => {
                             </Badge>
                           </span>
                           <span className={style.iconHide}>Messages</span>
-                        </Link>
+                        </NavLink>
                       </li>
                       <li>
-                        <Link to="/">
+                        <NavLink to="/">
                           <span className={style.iconShow}>
                             <Badge
                               color="secondary"
@@ -137,10 +150,10 @@ const Navbar = ({ list }) => {
                             </Badge>
                           </span>
                           <span className={style.iconHide}>Notifications</span>
-                        </Link>
+                        </NavLink>
                       </li>
                       <li>
-                        <Link to="/">
+                        <NavLink to="/">
                           <span className={style.iconShow}>
                             <Avatar
                               alt="Remy Sharp"
@@ -148,12 +161,12 @@ const Navbar = ({ list }) => {
                             />
                           </span>
                           <span className={style.iconHide}>Profile</span>
-                        </Link>
+                        </NavLink>
                       </li>
                       <li>
-                        <Link to="/">
+                        <NavLink to="/">
                           <LogoutIcon /> Logout
-                        </Link>
+                        </NavLink>
                       </li>
                     </>
                   ) : (
@@ -169,11 +182,11 @@ const Navbar = ({ list }) => {
                   )}
 
                   <li>
-                    <div className={style.main_white_button}>
-                      <Link to="/listproperty">
+                    <span className={style.main_white_button}>
+                      <NavLink to="/listproperty">
                         <AddIcon /> Add Your Property
-                      </Link>
-                    </div>
+                      </NavLink>
+                    </span>
                   </li>
                 </ul>
                 <a
@@ -204,13 +217,7 @@ const Navbar = ({ list }) => {
                 </div>
               </div>
               <div className="col-lg-12">
-                <form
-                  id={style.search_form}
-                  name="gs"
-                  method="submit"
-                  role="search"
-                  action="#"
-                >
+                <div id={style.search_form}>
                   <div className="row position-relative">
                     <div className="col-lg-3 align-self-center">
                       <fieldset className="d-flex align-items-center">
@@ -221,8 +228,13 @@ const Navbar = ({ list }) => {
                           className={style.form_select}
                           placeholder="Enter your city"
                           autoComplete="off"
-                          required
-                          onChange={(e) => setDestination(e.target.value)}
+                          // required
+                          onChange={(e) =>
+                            dispatch({
+                              type: "SET_CITY",
+                              payload: e.target.value,
+                            })
+                          }
                         />
                       </fieldset>
                     </div>
@@ -310,13 +322,17 @@ const Navbar = ({ list }) => {
                     </div>
                     <div className="col-lg-3">
                       <fieldset>
-                        <button className={style.main_button}>
+                        <button
+                          type="submit"
+                          className={style.main_button}
+                          onClick={handleOnSearch}
+                        >
                           <SearchIcon /> Search Now
                         </button>
                       </fieldset>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
               <div className="col-lg-10 offset-lg-1">
                 <ul className={style.categories}>

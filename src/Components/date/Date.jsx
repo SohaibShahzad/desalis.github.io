@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { DatePicker, Space } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import style from "./Date.module.css";
-import moment from "moment/moment";
+import { useDispatch, useSelector } from "react-redux";
 
 const Dates = () => {
   dayjs.extend(customParseFormat);
   const { RangePicker } = DatePicker;
-  const [date, setDate] = useState([moment(), moment()]);
+  const dispatch = useDispatch();
+  // console.log(dates);
+
   const disabledDate = (current) => {
     return current && current < dayjs().endOf("day");
   };
@@ -20,7 +22,10 @@ const Dates = () => {
         popupClassName={style.popup}
         className={style.date}
         onChange={(val) => {
-          setDate(val.map((item) => item.format("DD-MM-YYYY")));
+          dispatch({
+            type: "SET_DATE",
+            payload: val.map((v) => v.format("DD-MM-YYYY")),
+          });
         }}
         required={true}
       />

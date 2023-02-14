@@ -9,7 +9,7 @@ import Hotel from "./Pages/hotel/Hotel";
 import Room from "./Components/roomForm/Room";
 import Signin from "./Pages/Signin/Signin";
 import Signup from "./Pages/Signup/Signup";
-import Map from "./Components/Map/Map";
+// import Map from "./Components/Map/Map";
 import List from "./Pages/list/List";
 import Roomcard from "./Components/RoomCard/Roomcard";
 
@@ -25,6 +25,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/listproperty" element={<Listing />} />
         <Route path="/card" element={<Card />} />
+        <Route path="/list" element={<List />} />
       </Routes>
       {/* <List /> */}
       {/* <Card /> */}

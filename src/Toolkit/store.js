@@ -6,6 +6,9 @@ import { propertySetform } from "./reducer/propertySet";
 import { HotelForm } from "./reducer/HotelReducer";
 import { RoomForm } from "./reducer/RoomReducer";
 import { nav } from "./reducer/nav";
+import { dateReducer } from "./reducer/date_search";
+import { cityReducer } from "./reducer/city_search";
+import { optionReducer } from "./reducer/option_search";
 
 const store = configureStore({
   reducer: {
@@ -17,6 +20,9 @@ const store = configureStore({
     setHotelData: HotelForm,
     setRoomData: RoomForm,
     navOpen: nav,
+    searchDate: dateReducer,
+    searchCity: cityReducer,
+    searchOption: optionReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
