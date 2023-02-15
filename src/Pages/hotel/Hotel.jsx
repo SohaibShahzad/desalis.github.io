@@ -1,6 +1,6 @@
 import "./hotel.css";
 import Navbar from "../../Components/Navbar/Navbar";
-// import Header from "../../Components/header/Header";
+import Roomcard from "../../Components/RoomCard/Roomcard";
 import MailList from "../../Components/mailList/MailList";
 import Footer from "../../Components/footer/Footer";
 import CloseIcon from "@mui/icons-material/Close";
@@ -315,11 +315,24 @@ const Hotel = () => {
               </div>
             </div>
           </div>
-          <MailList />
-          <Footer />
         </div>
       )}
-      {/* {openModal && <Reserve setOpen={setOpenModal} hotelId={id}/>} */}
+      <div className="row justify-content-start">
+        <div className="col-md-4">
+          <Roomcard />
+        </div>
+        <div className="col-md-4">
+          <Roomcard />
+        </div>
+        <div className="col-md-4">
+          <Roomcard />
+        </div>
+        <div className="col-md-4">
+          <Roomcard />
+        </div>
+      </div>
+      <MailList />
+      <Footer />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const Listing = () => {
+const HotelForm = () => {
   const dispatch = useDispatch();
   const { hotelData } = useSelector((state) => state.setHotelData);
 
@@ -270,4 +270,4 @@ const Listing = () => {
   );
 };
 
-export default Listing;
+export default HotelForm;

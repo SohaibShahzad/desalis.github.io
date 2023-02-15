@@ -1,17 +1,15 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./Components/Navbar/Navbar";
-import Card from "./Components/Card/Card";
 import Contact from "./Pages/Contact/Contact";
 import Home from "./Pages/Home/Home";
 import Listing from "./Pages/Property Listing/Listing";
 import Hotel from "./Pages/hotel/Hotel";
-import Room from "./Components/roomForm/Room";
 import Signin from "./Pages/Signin/Signin";
 import Signup from "./Pages/Signup/Signup";
 // import Map from "./Components/Map/Map";
 import List from "./Pages/list/List";
-import Roomcard from "./Components/RoomCard/Roomcard";
+import HotelForm from "./Pages/hotelForm/Hotel";
+import RoomForm from "./Pages/roomForm/Room";
 
 function App() {
   return (
@@ -24,13 +22,11 @@ function App() {
         <Route path="/hotel" element={<Hotel />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/listproperty" element={<Listing />} />
-        <Route path="/card" element={<Card />} />
         <Route path="/list" element={<List />} />
+        <Route path="/singleHotel" element={<Hotel />} />
+        <Route path="/addHotel" element={<HotelForm />} />
+        <Route path="/addRoom" element={<RoomForm />} />
       </Routes>
-      {/* <List /> */}
-      {/* <Card /> */}
-      {/* <Room /> */}
-      {/* <Roomcard /> */}
     </>
   );
 }

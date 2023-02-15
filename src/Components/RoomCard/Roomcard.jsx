@@ -38,7 +38,7 @@ const Roomcard = () => {
   };
 
   return (
-    <div className="card mt-4" style={{ width: "23rem" }}>
+    <div className="card mt-4 mx-auto" style={{ width: "23rem" }}>
       <div
         id="carouselExampleControls"
         class="carousel slide"
