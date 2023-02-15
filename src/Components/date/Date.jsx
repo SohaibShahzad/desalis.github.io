@@ -21,6 +21,7 @@ const Dates = () => {
         disabledDate={disabledDate}
         popupClassName={style.popup}
         className={style.date}
+        placeholder={["Check In", "Check Out"]}
         onChange={(val) => {
           dispatch({
             type: "SET_DATE",
