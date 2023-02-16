@@ -216,7 +216,11 @@ const Navbar = ({ list }) => {
                               onClose={handleClose1}
                               anchorOrigin={{
                                 vertical: "bottom",
-                                horizontal: "left",
+                                horizontal: "center",
+                              }}
+                              transformOrigin={{
+                                vertical: "top",
+                                horizontal: "center",
                               }}
                             >
                               <Typography sx={{ p: 2 }}>
