@@ -188,49 +188,61 @@ const Listing = () => {
                 <div className="row">
                   <div className="col-md-12 col-sm-12">
                     <div className="mb-3">
-                      <label for="formFile" className="text-dark form-label">
-                        Property Pictures
-                      </label>
-                      <IconButton
-                        color="secondary"
-                        aria-label="upload picture"
-                        component="label"
-                      >
-                        <input
-                          hidden
-                          onChange={onSelectFile}
-                          accept="image/png , image/jpeg"
-                          type="file"
-                          multiple
-                        />
-                        <AddPhotoAlternateIcon />
-                      </IconButton>
-                      <div className={`${style.images}`}>
-                        {selectedImages &&
-                          selectedImages.map((image, index) => {
-                            return (
-                              <div key={image} className={`mx-1`}>
-                                <img
-                                  className=""
-                                  src={image}
-                                  height="70"
-                                  width="60"
-                                  alt="upload"
-                                />
-                                <div className="d-flex  bg-dark flex-row justify-content-between">
-                                  <p className="text-light ms-1">{index + 1}</p>
-
-                                  <IconButton aria-label="delete" size="small">
-                                    <DeleteIcon
-                                      className="text-light me-1"
-                                      onClick={() => deleteHandler(image)}
-                                      fontSize="small"
+                      <div className="row">
+                        <label for="formFile" className="text-dark form-label">
+                          Property Pictures
+                        </label>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12 col-sm-4">
+                          <div className={`${style.images}`}>
+                            {selectedImages &&
+                              selectedImages.map((image, index) => {
+                                return (
+                                  <div key={image} className={`mx-1 my-1`}>
+                                    <img
+                                      className=""
+                                      src={image}
+                                      height="50"
+                                      width="50"
+                                      alt="upload"
                                     />
-                                  </IconButton>
-                                </div>
-                              </div>
-                            );
-                          })}
+                                    <div className="d-flex  bg-dark flex-row justify-content-between">
+                                      <p className="text-light ms-1">
+                                        {index + 1}
+                                      </p>
+
+                                      <IconButton
+                                        aria-label="delete"
+                                        size="small"
+                                      >
+                                        <DeleteIcon
+                                          className="text-light me-1"
+                                          onClick={() => deleteHandler(image)}
+                                          fontSize="small"
+                                        />
+                                      </IconButton>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            <IconButton
+                              color="secondary"
+                              aria-label="upload picture"
+                              component="label"
+                              className="bg-dark p-4 rounded-3 text-light"
+                            >
+                              <input
+                                hidden
+                                onChange={onSelectFile}
+                                accept="image/png , image/jpeg"
+                                type="file"
+                                multiple
+                              />
+                              <AddPhotoAlternateIcon />
+                            </IconButton>
+                          </div>
+                        </div>
                       </div>
                       <div className="container text-center my-3">
                         {selectedImages.length > 0 &&
