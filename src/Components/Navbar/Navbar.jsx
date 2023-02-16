@@ -1,7 +1,7 @@
 import style from "./navbar.module.css";
+import React from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
 import $ from "jquery";
 import { useEffect, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
@@ -15,6 +15,9 @@ import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
 import RemoveIcon from "@mui/icons-material/Remove";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import { useSelector } from "react-redux";
 
@@ -33,6 +36,30 @@ const Navbar = ({ list }) => {
   //   });
   // }
   // const { c } = useSelector((state) => state.navOpen);
+
+  // Popover Material UI Code
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl1, setAnchorEl1] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClick1 = (event) => {
+    setAnchorEl1(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleClose1 = () => {
+    setAnchorEl1(null);
+  };
+  const open = Boolean(anchorEl);
+  const open1 = Boolean(anchorEl1);
+  const id = open ? "simple-popover" : undefined;
+  const id1 = open1 ? "simple-popover" : undefined;
+  // Popover Material UI Code
+
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const [openOptions, setOpenOptions] = useState(false);
@@ -132,10 +159,40 @@ const Navbar = ({ list }) => {
                               badgeContent={100}
                               max={999}
                             >
-                              <MailIcon />
+                              <MailIcon
+                                aria-describedby={id}
+                                variant="contained"
+                                onClick={handleClick}
+                              />
                             </Badge>
+                            <Popover
+                              id={id}
+                              open={open}
+                              anchorEl={anchorEl}
+                              onClose={handleClose}
+                              anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "left",
+                              }}
+                            >
+                              <Typography sx={{ p: 2 }}>
+                                The content of the Popover.
+                                <h4>Hello World</h4>
+                              </Typography>
+                            </Popover>
                           </span>
-                          <span className={style.iconHide}>Messages</span>
+                          <span className={style.iconHide}>
+                            <Button
+                              className={style.iconHide}
+                              sx={{ color: "#191a20" }}
+                              aria-describedby={id}
+                              // variant="contained"
+                              onClick={handleClick}
+                            >
+                              Messages
+                            </Button>
+                            {/* Messages */}
+                          </span>
                         </NavLink>
                       </li>
                       <li>
@@ -146,10 +203,49 @@ const Navbar = ({ list }) => {
                               badgeContent={1000}
                               max={999}
                             >
-                              <NotificationsIcon />
+                              <NotificationsIcon
+                                aria-describedby={id1}
+                                variant="contained"
+                                onClick={handleClick1}
+                              />
                             </Badge>
+                            <Popover
+                              id={id1}
+                              open={open1}
+                              anchorEl={anchorEl1}
+                              onClose={handleClose1}
+                              anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "left",
+                              }}
+                            >
+                              <Typography sx={{ p: 2 }}>
+                                The content of the Popover.1
+                                <h4>Hello World 1</h4>
+                              </Typography>
+                            </Popover>
                           </span>
-                          <span className={style.iconHide}>Notifications</span>
+                          <span className={style.iconHide}>
+                            {/* Notifications */}
+                            {/* <Typography
+                              className={style.iconHide}
+                              sx={{ color: "#191a20" }}
+                              aria-describedby={id1}
+                              // variant="contained"
+                              onClick={handleClick1}
+                            >
+                              Notification
+                            </Typography> */}
+                            <Button
+                              className={style.iconHide}
+                              sx={{ color: "#191a20" }}
+                              aria-describedby={id1}
+                              // variant="contained"
+                              onClick={handleClick1}
+                            >
+                              Notifications
+                            </Button>
+                          </span>
                         </NavLink>
                       </li>
                       <li>
