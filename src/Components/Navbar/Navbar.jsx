@@ -147,7 +147,7 @@ const Navbar = ({ list }) => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/hotel">Parkings</NavLink>
+                    <NavLink to="/parking">Parkings</NavLink>
                   </li>
                   {user ? (
                     <>

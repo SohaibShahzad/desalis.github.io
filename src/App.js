@@ -10,6 +10,7 @@ import Signup from "./Pages/Signup/Signup";
 import List from "./Pages/list/List";
 import HotelForm from "./Pages/hotelForm/Hotel";
 import RoomForm from "./Pages/roomForm/Room";
+import Parking from "./Pages/Parking Section/Parking";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       {/* <Map /> */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/parking" element={<Parking />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/hotel" element={<Hotel />} />
