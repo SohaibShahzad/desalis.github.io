@@ -11,6 +11,7 @@ import { cityReducer } from "./reducer/city_search";
 import { optionReducer } from "./reducer/option_search";
 import { parkingDateReducer } from "./reducer/ParkingDate_search";
 import { noOfVehicle } from "./reducer/noOfVehicle";
+import { cityParkingReducer } from "./reducer/ParkingCity";
 
 const store = configureStore({
   reducer: {
@@ -27,6 +28,7 @@ const store = configureStore({
     searchOption: optionReducer,
     searchParkingDate: parkingDateReducer,
     searchVehicle: noOfVehicle,
+    searchParkingCity: cityParkingReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

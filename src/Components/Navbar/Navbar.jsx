@@ -5,20 +5,23 @@ import { useSelector, useDispatch } from "react-redux";
 import $ from "jquery";
 import ParkingDate from "../DateForPaking/ParkingDate";
 import Dates from "../date/Date";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Avatar from "@mui/material/Avatar";
+import Badge from "@mui/material/Badge";
+
 import PersonIcon from "@mui/icons-material/Person";
 import HotelIcon from "@mui/icons-material/Hotel";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
 import MailIcon from "@mui/icons-material/Mail";
-import Badge from "@mui/material/Badge";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
 import RemoveIcon from "@mui/icons-material/Remove";
-import Popover from "@mui/material/Popover";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
+import LocalParkingIcon from "@mui/icons-material/LocalParking";
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 
 const Navbar = ({ list }) => {
   // const location = window.location.pathname;
@@ -332,23 +335,43 @@ const Navbar = ({ list }) => {
                 <div id={style.search_form}>
                   <div className="row position-relative">
                     <div className="col-lg-2 align-self-center">
-                      <fieldset className="d-flex align-items-center">
-                        <HotelIcon className=" me-2" />
-                        <input
-                          type="text"
-                          name="city"
-                          className={style.form_select}
-                          placeholder="Enter your city"
-                          autoComplete="off"
-                          // required
-                          onChange={(e) =>
-                            dispatch({
-                              type: "SET_CITY",
-                              payload: e.target.value,
-                            })
-                          }
-                        />
-                      </fieldset>
+                      {navSearch ? (
+                        <fieldset className="d-flex align-items-center">
+                          <HotelIcon className=" me-2" />
+                          <input
+                            type="text"
+                            name="city"
+                            className={style.form_select}
+                            placeholder="Enter your city"
+                            autoComplete="off"
+                            // required
+                            onChange={(e) =>
+                              dispatch({
+                                type: "SET_CITY",
+                                payload: e.target.value,
+                              })
+                            }
+                          />
+                        </fieldset>
+                      ) : (
+                        <fieldset className="d-flex align-items-center">
+                          <DirectionsCarIcon className=" me-2" />
+                          <input
+                            type="text"
+                            name="city"
+                            className={style.form_select}
+                            placeholder="Enter your city"
+                            autoComplete="off"
+                            // required
+                            onChange={(e) =>
+                              dispatch({
+                                type: "SET_PARKINGCITY",
+                                payload: e.target.value,
+                              })
+                            }
+                          />
+                        </fieldset>
+                      )}
                     </div>
                     <div className="col-lg-4 align-self-center">
                       <fieldset className="d-flex align-items-center">
@@ -439,7 +462,8 @@ const Navbar = ({ list }) => {
                           )}
                         </fieldset>
                       ) : (
-                        <fieldset>
+                        <fieldset className="d-flex align-items-center">
+                          <LocalParkingIcon className="me-2" />
                           <input
                             type="number"
                             name="vehicle"
