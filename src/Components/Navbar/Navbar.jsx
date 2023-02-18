@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
-
 import PersonIcon from "@mui/icons-material/Person";
 import HotelIcon from "@mui/icons-material/Hotel";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -346,7 +345,11 @@ const Navbar = ({ list }) => {
               <div className="col-lg-12">
                 <div id={style.search_form}>
                   <div className="row position-relative">
-                    <div className="col-lg-2 align-self-center">
+                    <div
+                      className={`${
+                        navSearch ? "col-lg-3" : "col-lg-2"
+                      } align-self-center`}
+                    >
                       {navSearch ? (
                         <fieldset className="d-flex align-items-center">
                           <HotelIcon className=" me-2" />
@@ -403,7 +406,11 @@ const Navbar = ({ list }) => {
                         </fieldset>
                       )}
                     </div>
-                    <div className="col-lg-4 align-self-center">
+                    <div
+                      className={`${
+                        navSearch ? "col-lg-3" : nav2 ? "col-lg-3" : "col-lg-4"
+                      } align-self-center`}
+                    >
                       <fieldset className="d-flex align-items-center">
                         <CalendarMonthIcon className=" me-2" />
                         {navSearch ? (
@@ -415,7 +422,11 @@ const Navbar = ({ list }) => {
                         )}
                       </fieldset>
                     </div>
-                    <div className="col-lg-4 align-self-center position-relative">
+                    <div
+                      className={`${
+                        nav2 ? "col-lg-5" : "col-lg-3"
+                      } align-self-center position-relative`}
+                    >
                       {navSearch ? (
                         <fieldset className="d-flex align-items-center">
                           <PersonIcon className=" me-2" />
@@ -498,11 +509,10 @@ const Navbar = ({ list }) => {
                           )}
                         </fieldset>
                       ) : nav2 ? (
-                        <div className="d-flex">
+                        <div className="d-flex justify-content-around">
                           <fieldset className="d-flex align-items-center">
                             <PersonIcon className=" me-2" />
                             <span
-                              style={{ fontSize: "12px" }}
                               onClick={() => setOpenOptions(!openOptions)}
                               className={style.headerSearchText}
                             >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
@@ -620,7 +630,7 @@ const Navbar = ({ list }) => {
                         </fieldset>
                       )}
                     </div>
-                    <div className="col-lg-2">
+                    <div className={`${nav2 ? "col-lg-2" : "col-lg-3"}`}>
                       <fieldset>
                         <button
                           type="submit"
