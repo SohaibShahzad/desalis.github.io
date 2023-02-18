@@ -10,7 +10,7 @@ const { RangePicker } = DatePicker;
 const ParkingDate = () => {
   const dispatch = useDispatch();
   const { dates } = useSelector((state) => state.searchParkingDate);
-  console.log(dates);
+  // console.log(dates);
   const range = (start, end) => {
     const result = [];
     for (let i = start; i < end; i++) {
@@ -107,7 +107,6 @@ const ParkingDate = () => {
             type: "SETPARKING_DATE",
             payload: val.map((v) => v.format("DD-MM-YYYY HH:00")),
           });
-          console.log();
         }}
       />
     </Space>

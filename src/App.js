@@ -12,6 +12,7 @@ import HotelForm from "./Pages/hotelForm/Hotel";
 import RoomForm from "./Pages/roomForm/Room";
 import Parking from "./Pages/Parking Section/Parking";
 import Roomcard from "./Components/RoomCard/Roomcard";
+import ParkingList from "./Pages/ParkingList/ParkingList";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/singleHotel" element={<Hotel />} />
         <Route path="/addHotel" element={<HotelForm />} />
         <Route path="/addRoom" element={<RoomForm />} />
+        <Route path="/ParkingList" element={<ParkingList />} />
       </Routes>
     </>
   );

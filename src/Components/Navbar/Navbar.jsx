@@ -21,7 +21,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
 import RemoveIcon from "@mui/icons-material/Remove";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
 const Navbar = ({ list }) => {
   // const location = window.location.pathname;
@@ -87,7 +87,7 @@ const Navbar = ({ list }) => {
   const { user } = useSelector((state) => state.user);
   const handleOnSearch = () => {
     {
-      navSearch ? navigate(`/listHotel`) : navigate(`/listParking`);
+      navSearch ? navigate(`/listHotel`) : navigate(`/ParkingList`);
     }
   };
 

@@ -17,11 +17,6 @@ const List = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-  useEffect(() => {
-    console.log(option);
-    console.log(options);
-  }, [option]);
-
   const data = [
     {
       name: "Hotels",
