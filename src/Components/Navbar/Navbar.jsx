@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
-
 import PersonIcon from "@mui/icons-material/Person";
 import HotelIcon from "@mui/icons-material/Hotel";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -21,7 +20,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
 import RemoveIcon from "@mui/icons-material/Remove";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
 const Navbar = ({ list }) => {
   // const location = window.location.pathname;
@@ -41,7 +40,9 @@ const Navbar = ({ list }) => {
 
   const location = useLocation();
   const path = location.pathname;
+
   const [navSearch, setNavSearch] = useState(false);
+  const [nav2, setNav2] = useState(false);
   // Popover Material UI Code
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl1, setAnchorEl1] = useState(null);
@@ -87,14 +88,21 @@ const Navbar = ({ list }) => {
   const { user } = useSelector((state) => state.user);
   const handleOnSearch = () => {
     {
-      navSearch ? navigate(`/listHotel`) : navigate(`/listParking`);
+      navSearch
+        ? navigate(`/listHotel`)
+        : nav2
+        ? navigate("/HotelAndParkingList")
+        : navigate(`/ParkingList`);
     }
   };
 
   useEffect(() => {
     if (path === "/") {
       setNavSearch(true);
+    } else if (path === "/HotelAndParking") {
+      setNav2(true);
     } else {
+      setNav2(false);
       setNavSearch(false);
     }
   }, [path]);
@@ -163,6 +171,9 @@ const Navbar = ({ list }) => {
                   </li>
                   <li>
                     <NavLink to="/parking">Parkings</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/HotelAndParking">Hotel and Parking</NavLink>
                   </li>
                   {user ? (
                     <>
@@ -334,7 +345,11 @@ const Navbar = ({ list }) => {
               <div className="col-lg-12">
                 <div id={style.search_form}>
                   <div className="row position-relative">
-                    <div className="col-lg-2 align-self-center">
+                    <div
+                      className={`${
+                        navSearch ? "col-lg-3" : "col-lg-2"
+                      } align-self-center`}
+                    >
                       {navSearch ? (
                         <fieldset className="d-flex align-items-center">
                           <HotelIcon className=" me-2" />
@@ -348,6 +363,24 @@ const Navbar = ({ list }) => {
                             onChange={(e) =>
                               dispatch({
                                 type: "SET_CITY",
+                                payload: e.target.value,
+                              })
+                            }
+                          />
+                        </fieldset>
+                      ) : nav2 ? (
+                        <fieldset className="d-flex align-items-center">
+                          <HotelIcon className=" me-2" />
+                          <input
+                            type="text"
+                            name="city"
+                            className={style.form_select}
+                            placeholder="Enter your city"
+                            autoComplete="off"
+                            // required
+                            onChange={(e) =>
+                              dispatch({
+                                type: "SET_HOTELANDPARKINGCITY",
                                 payload: e.target.value,
                               })
                             }
@@ -373,13 +406,27 @@ const Navbar = ({ list }) => {
                         </fieldset>
                       )}
                     </div>
-                    <div className="col-lg-4 align-self-center">
+                    <div
+                      className={`${
+                        navSearch ? "col-lg-3" : nav2 ? "col-lg-3" : "col-lg-4"
+                      } align-self-center`}
+                    >
                       <fieldset className="d-flex align-items-center">
                         <CalendarMonthIcon className=" me-2" />
-                        {navSearch ? <Dates /> : <ParkingDate />}
+                        {navSearch ? (
+                          <Dates />
+                        ) : nav2 ? (
+                          <Dates />
+                        ) : (
+                          <ParkingDate />
+                        )}
                       </fieldset>
                     </div>
-                    <div className="col-lg-3 align-self-center position-relative">
+                    <div
+                      className={`${
+                        nav2 ? "col-lg-5" : "col-lg-3"
+                      } align-self-center position-relative`}
+                    >
                       {navSearch ? (
                         <fieldset className="d-flex align-items-center">
                           <PersonIcon className=" me-2" />
@@ -461,6 +508,108 @@ const Navbar = ({ list }) => {
                             </div>
                           )}
                         </fieldset>
+                      ) : nav2 ? (
+                        <div className="d-flex justify-content-between">
+                          <fieldset className="d-flex align-items-center">
+                            <PersonIcon className=" me-2" />
+                            <span
+                              onClick={() => setOpenOptions(!openOptions)}
+                              className={style.headerSearchText}
+                            >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+                            {openOptions && (
+                              <div className={style.options}>
+                                <div className={style.optionItem}>
+                                  <span className={style.optionText}>
+                                    Adult
+                                  </span>
+                                  <div className={style.optionCounter}>
+                                    <button
+                                      disabled={options.adult <= 1}
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() => handleOption("adult", "d")}
+                                    >
+                                      <RemoveIcon />
+                                    </button>
+                                    <span className={style.optionCounterNumber}>
+                                      {options.adult}
+                                    </span>
+                                    <button
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() => handleOption("adult", "i")}
+                                    >
+                                      <AddIcon />
+                                    </button>
+                                  </div>
+                                </div>
+                                <div className={style.optionItem}>
+                                  <span className={style.optionText}>
+                                    Children
+                                  </span>
+                                  <div className={style.optionCounter}>
+                                    <button
+                                      disabled={options.children <= 0}
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() =>
+                                        handleOption("children", "d")
+                                      }
+                                    >
+                                      <RemoveIcon />
+                                    </button>
+                                    <span className={style.optionCounterNumber}>
+                                      {options.children}
+                                    </span>
+                                    <button
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() =>
+                                        handleOption("children", "i")
+                                      }
+                                    >
+                                      <AddIcon />
+                                    </button>
+                                  </div>
+                                </div>
+                                <div className={style.optionItem}>
+                                  <span className={style.optionText}>Room</span>
+                                  <div className={style.optionCounter}>
+                                    <button
+                                      disabled={options.room <= 1}
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() => handleOption("room", "d")}
+                                    >
+                                      <RemoveIcon />
+                                    </button>
+                                    <span className={style.optionCounterNumber}>
+                                      {options.room}
+                                    </span>
+                                    <button
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() => handleOption("room", "i")}
+                                    >
+                                      <AddIcon />
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </fieldset>
+                          <fieldset className="d-flex align-items-center">
+                            <LocalParkingIcon className="me-2" />
+                            <input
+                              type="number"
+                              name="vehicle"
+                              className={style.form_select}
+                              placeholder="Number of vehicles"
+                              autoComplete="off"
+                              // required
+                              onChange={(e) =>
+                                dispatch({
+                                  type: "INCREMENT",
+                                  payload: e.target.value,
+                                })
+                              }
+                            />
+                          </fieldset>
+                        </div>
                       ) : (
                         <fieldset className="d-flex align-items-center">
                           <LocalParkingIcon className="me-2" />
@@ -481,7 +630,7 @@ const Navbar = ({ list }) => {
                         </fieldset>
                       )}
                     </div>
-                    <div className="col-lg-3">
+                    <div className={`${nav2 ? "col-lg-2" : "col-lg-3"}`}>
                       <fieldset>
                         <button
                           type="submit"

@@ -115,7 +115,7 @@ const Card = () => {
               12.5km form center
             </div>
           </div>
-          <div className="mt-1 mb-0 text-muted" style={{fontSize:"4px"}}>
+          <div className="mt-1 mb-0 text-muted" style={{fontSize:"12px"}}>
             <span>{cardData.attr1}</span>
             <span className="text-primary"> • </span>
             <span>{cardData.attr2}</span>
@@ -142,7 +142,7 @@ const Card = () => {
             <small className="fs-7 text-muted">
               You can cancel later, so lock in this great price today.
             </small>
-            <p className="mb-4 text-truncate mb-md-0">{cardData.description}</p>
+            {/* <p className="mb-4 text-truncate mb-md-0">{cardData.description}</p> */}
           </div>
         </div>
         <div
@@ -161,10 +161,10 @@ const Card = () => {
             <small className="text-muted text-end fs-7 fw-light">
               +120$ Tax and charges
             </small>
-            <div className="d-flex flex-column mt-4">
+            <div className="d-flex flex-column mt-2">
               <Link
                 to="/singleHotel"
-                className="btn btn-outline-primary text-uppercase btn-md mt-2"
+                className="btn btn-outline-primary text-uppercase btn-md"
                 type="button"
               >
                 See Availability
