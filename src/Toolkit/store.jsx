@@ -9,6 +9,9 @@ import { nav } from "./reducer/nav";
 import { dateReducer } from "./reducer/date_search";
 import { cityReducer } from "./reducer/city_search";
 import { optionReducer } from "./reducer/option_search";
+import { parkingDateReducer } from "./reducer/ParkingDate_search";
+import { noOfVehicle } from "./reducer/noOfVehicle";
+import { cityParkingReducer } from "./reducer/ParkingCity";
 
 const store = configureStore({
   reducer: {
@@ -23,6 +26,9 @@ const store = configureStore({
     searchDate: dateReducer,
     searchCity: cityReducer,
     searchOption: optionReducer,
+    searchParkingDate: parkingDateReducer,
+    searchVehicle: noOfVehicle,
+    searchParkingCity: cityParkingReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
