@@ -37,7 +37,7 @@
 
 .heading_container h2 {
   position: relative;
-  font-weight: bold;
+  font-weight: 800;
 }
 
 .heading_container.heading_center {
@@ -430,7 +430,7 @@ a:focus {
 }
 
 .slider_section .detail_box {
-  color: #155263;
+  color: #adadad;
   text-align: center;
 }
 

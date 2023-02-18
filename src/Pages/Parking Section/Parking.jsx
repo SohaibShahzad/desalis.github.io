@@ -23,6 +23,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { pink } from "@mui/material/colors";
 
 const Parking = () => {
   const [age, setAge] = useState("");
@@ -155,7 +156,12 @@ const Parking = () => {
           <div className="row">
             <div className="col-lg-6 ">
               <div className={`${style.img_box}`}>
-                <img src={about} alt="" />
+                <img
+                  src={about}
+                  style={{ boxShadow: "-2px 12px 22px -5px rgba(0,0,0,0.31)" }}
+                  className="rounded-1"
+                  alt=""
+                />
               </div>
             </div>
             <div className="col-lg-6">
@@ -174,7 +180,7 @@ const Parking = () => {
                   unde alias eius ducimus reiciendis soluta eveniet. Nobis ullam
                   ab omnis quasi expedita.
                 </p>
-                <a href="" className="mt-5">
+                <a href="" className=" mt-5">
                   Read More
                 </a>
               </div>
@@ -346,7 +352,7 @@ const Parking = () => {
       <section className={`${style.client_section} ${style.layout_padding}`}>
         <div className="container">
           <div className={`${style.heading_container} col`}>
-            <h2>
+            <h2 className="">
               What Says Our <span>Client</span>
             </h2>
           </div>
@@ -358,7 +364,7 @@ const Parking = () => {
                 <div className={`${style.item}`}>
                   <div className={`${style.box}`}>
                     <div className={`${style.detail_box}`}>
-                      <p>
+                      <p className="">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua. Ut enim ad minim Lorem ipsum dolor sit
@@ -410,41 +416,55 @@ const Parking = () => {
       {/* <!-- end client section --> */}
 
       {/* <!-- info section --> */}
-      <section className={`${style.info_section}`}>
+      <section className={`${style.info_section} my-4`}>
         <div className="container">
           <div className={`${style.info_top}`}>
             <div className="row ">
               <div className={`col-md-6 col-lg-3 ${style.info_col}`}>
                 <div className={`${style.info_form}`}>
-                  <h4 className="text-dark">Stay Connected</h4>
+                  <h4 className={`text-dark fw-bold`}>Stay Connected</h4>
                   <form action="">
                     <input type="email" placeholder="Enter Your Email" />
                     <button
                       type="submit"
-                      className="btn btn-primary btn-lg  text-dark"
+                      className="btn btn-primary btn-block btn-lg  text-dark"
                     >
                       Subscribe
                     </button>
                   </form>
-                  <div className={`${style.social_box}`}>
+                  <div className="">
                     <a href="">
-                      <FacebookIcon className="text-dark fs-1" />
+                      <FacebookIcon
+                        sx={{ fontSize: 50 }}
+                        color="primary"
+                        className="m-2 ms-3"
+                      />
                     </a>
                     <a href="">
-                      <TwitterIcon className="text-dark fs-1" />
+                      <TwitterIcon
+                        sx={{ fontSize: 50 }}
+                        className="text-info m-2 ms-3 "
+                      />
                     </a>
                     <a href="">
-                      <InstagramIcon className="text-dark fs-1" />
+                      <InstagramIcon
+                        sx={{ color: pink[500], fontSize: 50 }}
+                        className=" m-2  ms-3 "
+                      />
                     </a>
                     <a href="">
-                      <LinkedInIcon className="text-dark fs-1" />
+                      <LinkedInIcon
+                        sx={{ fontSize: 50 }}
+                        color="primary"
+                        className=" m-2 ms-3 "
+                      />
                     </a>
                   </div>
                 </div>
               </div>
               <div className={`col-md-6 col-lg-3 ${style.info_col}`}>
                 <div className={`${style.info_detail}`}>
-                  <h4 className="text-dark">About Us</h4>
+                  <h4 className="text-dark fw-bold">About Us</h4>
                   <p className="text-dark">
                     Necessitatibus, culpa, totam quod neque cum officiis odio,
                     excepturi magnam incidunt voluptates sed voluptate id
@@ -455,7 +475,7 @@ const Parking = () => {
               </div>
               <div className={`col-md-6 col-lg-3 ${style.info_col}`}>
                 <div className={`${style.info_detail}`}>
-                  <h4 className="text-dark">Online Booking</h4>
+                  <h4 className="text-dark fw-bold">Online Booking</h4>
                   <p className="text-dark">
                     Accusantium quis architecto, necessitatibus libero nemo
                     facere perferendis obcaecati pariatur magni quod praesentium
@@ -465,21 +485,21 @@ const Parking = () => {
                 </div>
               </div>
               <div className={`col-md-6 col-lg-3 ${style.info_col}`}>
-                <h4 className="text-dark">Contact us</h4>
+                <h4 className="text-dark fw-bold">Contact us</h4>
                 <p className="text-dark">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit
                 </p>
                 <div className={`${style.contact_nav}`}>
                   <a href="">
-                    <LocationOnIcon className="text-dark" />
+                    <LocationOnIcon color="secondary" className="me-2" />
                     <span className="text-dark">Location</span>
                   </a>
                   <a href="">
-                    <CallIcon className="text-dark" />
+                    <CallIcon className="text-info me-2" />
                     <span className="text-dark">Call : +01 123455678990</span>
                   </a>
                   <a href="">
-                    <EmailIcon className="text-dark" />
+                    <EmailIcon className="text-secondary me-2" />
                     <span className="text-dark">Email : demo@gmail.com</span>
                   </a>
                 </div>
