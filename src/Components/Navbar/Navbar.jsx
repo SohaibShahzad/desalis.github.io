@@ -509,7 +509,7 @@ const Navbar = ({ list }) => {
                           )}
                         </fieldset>
                       ) : nav2 ? (
-                        <div className="d-flex justify-content-around">
+                        <div className="d-flex justify-content-between">
                           <fieldset className="d-flex align-items-center">
                             <PersonIcon className=" me-2" />
                             <span
