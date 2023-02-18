@@ -1,13 +1,13 @@
+import React, { useEffect, useState } from "react";
 import style from "./navbar.module.css";
-import React from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import $ from "jquery";
-import { useEffect, useState } from "react";
+import ParkingDate from "../DateForPaking/ParkingDate";
+import Dates from "../date/Date";
 import PersonIcon from "@mui/icons-material/Person";
 import HotelIcon from "@mui/icons-material/Hotel";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import Dates from "../date/Date";
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
 import MailIcon from "@mui/icons-material/Mail";
@@ -19,7 +19,6 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
-import { useSelector } from "react-redux";
 
 const Navbar = ({ list }) => {
   // const location = window.location.pathname;
@@ -37,6 +36,9 @@ const Navbar = ({ list }) => {
   // }
   // const { c } = useSelector((state) => state.navOpen);
 
+  const location = useLocation();
+  const path = location.pathname;
+  const [navSearch, setNavSearch] = useState(false);
   // Popover Material UI Code
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl1, setAnchorEl1] = useState(null);
@@ -64,18 +66,11 @@ const Navbar = ({ list }) => {
   const dispatch = useDispatch();
   const [openOptions, setOpenOptions] = useState(false);
   const { options } = useSelector((state) => state.searchOption);
-  console.log(options);
   const [option, setOption] = useState({
     adult: 1,
     children: 0,
     room: 1,
   });
-  useEffect(() => {
-    dispatch({
-      type: "SET_OPTION",
-      payload: option,
-    });
-  }, [option]);
 
   const handleOption = (name, operation) => {
     setOption((prev) => {
@@ -88,31 +83,48 @@ const Navbar = ({ list }) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const handleOnSearch = () => {
-    navigate(`/list`);
+    {
+      navSearch ? navigate(`/listHotel`) : navigate(`/listParking`);
+    }
   };
 
-  const data = [
-    {
-      name: "Hotels",
-      img: "",
-    },
-    {
-      name: "Apartments",
-      img: "",
-    },
-    {
-      name: "Villas",
-      img: "",
-    },
-    {
-      name: "Hostels",
-      img: "",
-    },
-    {
-      name: "Resorts",
-      img: "",
-    },
-  ];
+  useEffect(() => {
+    if (path === "/") {
+      setNavSearch(true);
+    } else {
+      setNavSearch(false);
+    }
+  }, [path]);
+
+  useEffect(() => {
+    dispatch({
+      type: "SET_OPTION",
+      payload: option,
+    });
+  }, [option]);
+
+  // const data = [
+  //   {
+  //     name: "Hotels",
+  //     img: "",
+  //   },
+  //   {
+  //     name: "Apartments",
+  //     img: "",
+  //   },
+  //   {
+  //     name: "Villas",
+  //     img: "",
+  //   },
+  //   {
+  //     name: "Hostels",
+  //     img: "",
+  //   },
+  //   {
+  //     name: "Resorts",
+  //     img: "",
+  //   },
+  // ];
 
   useEffect(() => {
     $(window).scroll(() => {
@@ -319,7 +331,7 @@ const Navbar = ({ list }) => {
               <div className="col-lg-12">
                 <div id={style.search_form}>
                   <div className="row position-relative">
-                    <div className="col-lg-3 align-self-center">
+                    <div className="col-lg-2 align-self-center">
                       <fieldset className="d-flex align-items-center">
                         <HotelIcon className=" me-2" />
                         <input
@@ -338,87 +350,112 @@ const Navbar = ({ list }) => {
                         />
                       </fieldset>
                     </div>
-                    <div className="col-lg-3 align-self-center">
+                    <div className="col-lg-4 align-self-center">
                       <fieldset className="d-flex align-items-center">
                         <CalendarMonthIcon className=" me-2" />
-                        <Dates />
+                        {navSearch ? <Dates /> : <ParkingDate />}
                       </fieldset>
                     </div>
                     <div className="col-lg-3 align-self-center position-relative">
-                      <fieldset className="d-flex align-items-center">
-                        <PersonIcon className=" me-2" />
-                        <span
-                          onClick={() => setOpenOptions(!openOptions)}
-                          className={style.headerSearchText}
-                        >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
-                        {openOptions && (
-                          <div className={style.options}>
-                            <div className={style.optionItem}>
-                              <span className={style.optionText}>Adult</span>
-                              <div className={style.optionCounter}>
-                                <button
-                                  disabled={options.adult <= 1}
-                                  className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
-                                  onClick={() => handleOption("adult", "d")}
-                                >
-                                  <RemoveIcon />
-                                </button>
-                                <span className={style.optionCounterNumber}>
-                                  {options.adult}
+                      {navSearch ? (
+                        <fieldset className="d-flex align-items-center">
+                          <PersonIcon className=" me-2" />
+                          <span
+                            onClick={() => setOpenOptions(!openOptions)}
+                            className={style.headerSearchText}
+                          >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+                          {openOptions && (
+                            <div className={style.options}>
+                              <div className={style.optionItem}>
+                                <span className={style.optionText}>Adult</span>
+                                <div className={style.optionCounter}>
+                                  <button
+                                    disabled={options.adult <= 1}
+                                    className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                    onClick={() => handleOption("adult", "d")}
+                                  >
+                                    <RemoveIcon />
+                                  </button>
+                                  <span className={style.optionCounterNumber}>
+                                    {options.adult}
+                                  </span>
+                                  <button
+                                    className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                    onClick={() => handleOption("adult", "i")}
+                                  >
+                                    <AddIcon />
+                                  </button>
+                                </div>
+                              </div>
+                              <div className={style.optionItem}>
+                                <span className={style.optionText}>
+                                  Children
                                 </span>
-                                <button
-                                  className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
-                                  onClick={() => handleOption("adult", "i")}
-                                >
-                                  <AddIcon />
-                                </button>
+                                <div className={style.optionCounter}>
+                                  <button
+                                    disabled={options.children <= 0}
+                                    className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                    onClick={() =>
+                                      handleOption("children", "d")
+                                    }
+                                  >
+                                    <RemoveIcon />
+                                  </button>
+                                  <span className={style.optionCounterNumber}>
+                                    {options.children}
+                                  </span>
+                                  <button
+                                    className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                    onClick={() =>
+                                      handleOption("children", "i")
+                                    }
+                                  >
+                                    <AddIcon />
+                                  </button>
+                                </div>
+                              </div>
+                              <div className={style.optionItem}>
+                                <span className={style.optionText}>Room</span>
+                                <div className={style.optionCounter}>
+                                  <button
+                                    disabled={options.room <= 1}
+                                    className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                    onClick={() => handleOption("room", "d")}
+                                  >
+                                    <RemoveIcon />
+                                  </button>
+                                  <span className={style.optionCounterNumber}>
+                                    {options.room}
+                                  </span>
+                                  <button
+                                    className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                    onClick={() => handleOption("room", "i")}
+                                  >
+                                    <AddIcon />
+                                  </button>
+                                </div>
                               </div>
                             </div>
-                            <div className={style.optionItem}>
-                              <span className={style.optionText}>Children</span>
-                              <div className={style.optionCounter}>
-                                <button
-                                  disabled={options.children <= 0}
-                                  className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
-                                  onClick={() => handleOption("children", "d")}
-                                >
-                                  <RemoveIcon />
-                                </button>
-                                <span className={style.optionCounterNumber}>
-                                  {options.children}
-                                </span>
-                                <button
-                                  className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
-                                  onClick={() => handleOption("children", "i")}
-                                >
-                                  <AddIcon />
-                                </button>
-                              </div>
-                            </div>
-                            <div className={style.optionItem}>
-                              <span className={style.optionText}>Room</span>
-                              <div className={style.optionCounter}>
-                                <button
-                                  disabled={options.room <= 1}
-                                  className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
-                                  onClick={() => handleOption("room", "d")}
-                                >
-                                  <RemoveIcon />
-                                </button>
-                                <span className={style.optionCounterNumber}>
-                                  {options.room}
-                                </span>
-                                <button
-                                  className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
-                                  onClick={() => handleOption("room", "i")}
-                                >
-                                  <AddIcon />
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </fieldset>
+                          )}
+                        </fieldset>
+                      ) : (
+                        <fieldset>
+                          <input
+                            type="number"
+                            name="vehicle"
+                            className={style.form_select}
+                            placeholder="Enter number of vehicle"
+                            autoComplete="off"
+                            // required
+                            onChange={(e) =>
+                              dispatch({
+                                type: "INCREMENT",
+                                payload: e.target.value,
+                              })
+                            }
+                          />
+                        </fieldset>
+                      )}
                     </div>
                     <div className="col-lg-3">
                       <fieldset>
@@ -434,7 +471,7 @@ const Navbar = ({ list }) => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-10 offset-lg-1">
+              {/* <div className="col-lg-10 offset-lg-1">
                 <ul className={style.categories}>
                   {data.map((item, index) => {
                     return (
@@ -449,7 +486,7 @@ const Navbar = ({ list }) => {
                     );
                   })}
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

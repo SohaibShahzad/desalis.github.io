@@ -33,9 +33,9 @@ const Parking = () => {
   };
   return (
     <div className="continer-fluid">
-      <Navbar />
+      <Navbar list={true} />
       {/* <!-- slider section --> */}
-      <section
+      {/* <section
         className={`${style.slider_section} `}
         style={{ backgroundImage: `url(${slider})` }}
       >
@@ -139,7 +139,7 @@ const Parking = () => {
             </form>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <!-- end slider section --> */}
 
       {/* <!-- about section --> */}
