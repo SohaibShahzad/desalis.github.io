@@ -41,7 +41,9 @@ const Navbar = ({ list }) => {
 
   const location = useLocation();
   const path = location.pathname;
+
   const [navSearch, setNavSearch] = useState(false);
+  const [nav2, setNav2] = useState(false);
   // Popover Material UI Code
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl1, setAnchorEl1] = useState(null);
@@ -87,14 +89,21 @@ const Navbar = ({ list }) => {
   const { user } = useSelector((state) => state.user);
   const handleOnSearch = () => {
     {
-      navSearch ? navigate(`/listHotel`) : navigate(`/ParkingList`);
+      navSearch
+        ? navigate(`/listHotel`)
+        : nav2
+        ? navigate("/HotelAndParkingList")
+        : navigate(`/ParkingList`);
     }
   };
 
   useEffect(() => {
     if (path === "/") {
       setNavSearch(true);
+    } else if (path === "/HotelAndParking") {
+      setNav2(true);
     } else {
+      setNav2(false);
       setNavSearch(false);
     }
   }, [path]);
@@ -163,6 +172,9 @@ const Navbar = ({ list }) => {
                   </li>
                   <li>
                     <NavLink to="/parking">Parkings</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/HotelAndParking">Hotel and Parking</NavLink>
                   </li>
                   {user ? (
                     <>
@@ -353,6 +365,24 @@ const Navbar = ({ list }) => {
                             }
                           />
                         </fieldset>
+                      ) : nav2 ? (
+                        <fieldset className="d-flex align-items-center">
+                          <HotelIcon className=" me-2" />
+                          <input
+                            type="text"
+                            name="city"
+                            className={style.form_select}
+                            placeholder="Enter your city"
+                            autoComplete="off"
+                            // required
+                            onChange={(e) =>
+                              dispatch({
+                                type: "SET_HOTELANDPARKINGCITY",
+                                payload: e.target.value,
+                              })
+                            }
+                          />
+                        </fieldset>
                       ) : (
                         <fieldset className="d-flex align-items-center">
                           <DirectionsCarIcon className=" me-2" />
@@ -376,10 +406,16 @@ const Navbar = ({ list }) => {
                     <div className="col-lg-4 align-self-center">
                       <fieldset className="d-flex align-items-center">
                         <CalendarMonthIcon className=" me-2" />
-                        {navSearch ? <Dates /> : <ParkingDate />}
+                        {navSearch ? (
+                          <Dates />
+                        ) : nav2 ? (
+                          <Dates />
+                        ) : (
+                          <ParkingDate />
+                        )}
                       </fieldset>
                     </div>
-                    <div className="col-lg-3 align-self-center position-relative">
+                    <div className="col-lg-4 align-self-center position-relative">
                       {navSearch ? (
                         <fieldset className="d-flex align-items-center">
                           <PersonIcon className=" me-2" />
@@ -461,6 +497,109 @@ const Navbar = ({ list }) => {
                             </div>
                           )}
                         </fieldset>
+                      ) : nav2 ? (
+                        <div className="d-flex">
+                          <fieldset className="d-flex align-items-center">
+                            <PersonIcon className=" me-2" />
+                            <span
+                              style={{ fontSize: "12px" }}
+                              onClick={() => setOpenOptions(!openOptions)}
+                              className={style.headerSearchText}
+                            >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+                            {openOptions && (
+                              <div className={style.options}>
+                                <div className={style.optionItem}>
+                                  <span className={style.optionText}>
+                                    Adult
+                                  </span>
+                                  <div className={style.optionCounter}>
+                                    <button
+                                      disabled={options.adult <= 1}
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() => handleOption("adult", "d")}
+                                    >
+                                      <RemoveIcon />
+                                    </button>
+                                    <span className={style.optionCounterNumber}>
+                                      {options.adult}
+                                    </span>
+                                    <button
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() => handleOption("adult", "i")}
+                                    >
+                                      <AddIcon />
+                                    </button>
+                                  </div>
+                                </div>
+                                <div className={style.optionItem}>
+                                  <span className={style.optionText}>
+                                    Children
+                                  </span>
+                                  <div className={style.optionCounter}>
+                                    <button
+                                      disabled={options.children <= 0}
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() =>
+                                        handleOption("children", "d")
+                                      }
+                                    >
+                                      <RemoveIcon />
+                                    </button>
+                                    <span className={style.optionCounterNumber}>
+                                      {options.children}
+                                    </span>
+                                    <button
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() =>
+                                        handleOption("children", "i")
+                                      }
+                                    >
+                                      <AddIcon />
+                                    </button>
+                                  </div>
+                                </div>
+                                <div className={style.optionItem}>
+                                  <span className={style.optionText}>Room</span>
+                                  <div className={style.optionCounter}>
+                                    <button
+                                      disabled={options.room <= 1}
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() => handleOption("room", "d")}
+                                    >
+                                      <RemoveIcon />
+                                    </button>
+                                    <span className={style.optionCounterNumber}>
+                                      {options.room}
+                                    </span>
+                                    <button
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() => handleOption("room", "i")}
+                                    >
+                                      <AddIcon />
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </fieldset>
+                          <fieldset className="d-flex align-items-center">
+                            <LocalParkingIcon className="me-2" />
+                            <input
+                              type="number"
+                              name="vehicle"
+                              className={style.form_select}
+                              placeholder="Number of vehicles"
+                              autoComplete="off"
+                              // required
+                              onChange={(e) =>
+                                dispatch({
+                                  type: "INCREMENT",
+                                  payload: e.target.value,
+                                })
+                              }
+                            />
+                          </fieldset>
+                        </div>
                       ) : (
                         <fieldset className="d-flex align-items-center">
                           <LocalParkingIcon className="me-2" />
@@ -481,7 +620,7 @@ const Navbar = ({ list }) => {
                         </fieldset>
                       )}
                     </div>
-                    <div className="col-lg-3">
+                    <div className="col-lg-2">
                       <fieldset>
                         <button
                           type="submit"
