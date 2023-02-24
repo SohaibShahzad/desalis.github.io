@@ -18,12 +18,24 @@ import ApartmentIcon from "@mui/icons-material/Apartment";
 import DoneIcon from "@mui/icons-material/Done";
 // import useFetch from "../../hooks/useFetch";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import { SearchContext } from "../../context/SearchContext";
 // import { AuthContext } from "../../context/AuthContext";
 // import Reserve from "../../components/reserve/Reserve";
 
 const Hotel = () => {
   const location = useLocation();
+
+  const { city } = useSelector((state) => state.searchCity);
+  const { dates } = useSelector((state) => state.searchDate);
+  const { options } = useSelector((state) => state.searchOption);
+  const { room_data } = useSelector((state) => state.getStaticroom);
+  // console.log(city, dates, options);
+  const { selected_hotel } = useSelector((state) => state.getSelectedHotel);
+  if (selected_hotel) {
+    console.log(selected_hotel);
+  }
+
   // const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
@@ -119,7 +131,7 @@ const Hotel = () => {
       {false ? (
         "loading"
       ) : (
-        <div className="hotelContainer">
+        <div className="hotelContainer continer-fluid">
           {open && (
             <div className="slider">
               <CloseIcon className="close" onClick={() => setOpen(false)} />
@@ -142,10 +154,17 @@ const Hotel = () => {
           )}
           <div className="hotelWrapper">
             <button className="bookNow">Reserve or Book Now!</button>
-            <h1 className="hotelTitle">{data.name}</h1>
+            <h1 className="hotelTitle">
+              {selected_hotel ? selected_hotel.name : data.name}
+            </h1>
             <div className="hotelAddress">
               <LocationOnIcon />
-              <span>{data.address}</span>
+              <span className="">
+                {selected_hotel ? selected_hotel.country : data.address}
+              </span>
+              <span className="">
+                {selected_hotel ? selected_hotel.city : ""}
+              </span>
             </div>
             <span className="hotelDistance">
               Excellent location – {data.distance}m from center
@@ -216,7 +235,12 @@ const Hotel = () => {
                 </div>
 
                 <div className="col-2 border-end">
-                  <div className="fw-bolder fs-5">PKR 4,181,121</div>
+                  <div className="fw-bolder fs-5">
+                    {selected_hotel
+                      ? selected_hotel.price + 50
+                      : "PKR 4,181,121"}
+                    $
+                  </div>
                   <div style={{ fontSize: "12px" }}>
                     Includes taxes and fees
                   </div>
@@ -224,7 +248,10 @@ const Hotel = () => {
 
                 <div className="col-4">
                   <small>8 nights, 13 adults, 3 children</small>{" "}
-                  <div className="fw-bolder fs-5">PKR 4,181,121</div>{" "}
+                  <div className="fw-bolder fs-5">
+                    {selected_hotel ? selected_hotel.price : data.cheapestPrice}
+                    $
+                  </div>{" "}
                   <small>Includes taxes and fees</small>
                   <button className="btn btn-primary mt-3 w-100 mb-2">
                     Reserve your selection
@@ -239,8 +266,12 @@ const Hotel = () => {
 
             <div className="hotelDetails">
               <div className="hotelDetailsTexts">
-                <h1 className="hotelTitle">{data.title}</h1>
-                <p className="hotelDesc text-dark fs-6 fw-light">{data.desc}</p>
+                <h1 className="hotelTitle">
+                  {selected_hotel ? selected_hotel.name : data.title}
+                </h1>
+                <p className="hotelDesc text-dark fs-6 fw-light">
+                  {selected_hotel ? selected_hotel.description : data.desc}
+                </p>
                 <div>
                   <h5>Most popular facilities</h5>
                   <div className="d-flex flex-wrap text-success">
@@ -317,19 +348,10 @@ const Hotel = () => {
           </div>
         </div>
       )}
-      <div className="row justify-content-start">
-        <div className="col-md-4">
-          <Roomcard />
-        </div>
-        <div className="col-md-4">
-          <Roomcard />
-        </div>
-        <div className="col-md-4">
-          <Roomcard />
-        </div>
-        <div className="col-md-4">
-          <Roomcard />
-        </div>
+      <div className="row">
+          {room_data.map((item) => {
+            return <Roomcard data={item} hotel={selected_hotel.name} />;
+          })}
       </div>
       <MailList />
       <Footer />

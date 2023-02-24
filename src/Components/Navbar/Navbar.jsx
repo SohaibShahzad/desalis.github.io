@@ -23,6 +23,11 @@ import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
 const Navbar = ({ list }) => {
+  const { city } = useSelector((state) => state.searchCity);
+  const { dates } = useSelector((state) => state.searchDate);
+  // console.log(dates);
+  // console.log(city);
+
   // const location = window.location.pathname;
   // const dispatch = useDispatch();
   // if (location === "/") {
@@ -75,7 +80,6 @@ const Navbar = ({ list }) => {
     children: 0,
     room: 1,
   });
-
   const handleOption = (name, operation) => {
     setOption((prev) => {
       return {
@@ -86,14 +90,32 @@ const Navbar = ({ list }) => {
   };
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
+  console.log(city);
+  console.log(dates);
+  console.log(option);
   const handleOnSearch = () => {
-    {
-      navSearch
-        ? navigate(`/listHotel`)
-        : nav2
-        ? navigate("/HotelAndParkingList")
-        : navigate(`/ParkingList`);
+    // const response = await fetch(`http://localhost:5000/gethotel/${city}`, {
+    //   method: "GET",
+    // });
+
+    // const data = await response.json();
+    // console.log(data);
+    if (!city || !dates || !option) {
+      alert("Please fill all the fields");
+      return;
     }
+    if (option) {
+      dispatch({
+        type: "SET_OPTION",
+        payload: option,
+      });
+    }
+
+    navSearch
+      ? navigate(`/listHotel`)
+      : nav2
+      ? navigate("/HotelAndParkingList")
+      : navigate(`/ParkingList`);
   };
 
   useEffect(() => {
@@ -359,7 +381,7 @@ const Navbar = ({ list }) => {
                             className={style.form_select}
                             placeholder="Enter your city"
                             autoComplete="off"
-                            // required
+                            required
                             onChange={(e) =>
                               dispatch({
                                 type: "SET_CITY",
@@ -377,7 +399,7 @@ const Navbar = ({ list }) => {
                             className={style.form_select}
                             placeholder="Enter your city"
                             autoComplete="off"
-                            // required
+                            required
                             onChange={(e) =>
                               dispatch({
                                 type: "SET_HOTELANDPARKINGCITY",
@@ -395,7 +417,7 @@ const Navbar = ({ list }) => {
                             className={style.form_select}
                             placeholder="Enter your city"
                             autoComplete="off"
-                            // required
+                            required
                             onChange={(e) =>
                               dispatch({
                                 type: "SET_PARKINGCITY",

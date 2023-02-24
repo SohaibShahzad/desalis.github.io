@@ -9,7 +9,8 @@ const Dates = () => {
   dayjs.extend(customParseFormat);
   const { RangePicker } = DatePicker;
   const dispatch = useDispatch();
-  // console.log(dates);
+  const { dates } = useSelector((state) => state.searchDate);
+  
 
   const disabledDate = (current) => {
     return current && current < dayjs().endOf("day");
