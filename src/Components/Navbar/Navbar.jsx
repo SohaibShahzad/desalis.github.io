@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import $ from "jquery";
 import ParkingDate from "../DateForPaking/ParkingDate";
 import Dates from "../date/Date";
+import Alert from "../Alert/Alert";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -25,24 +26,7 @@ import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 const Navbar = ({ list }) => {
   const { city } = useSelector((state) => state.searchCity);
   const { dates } = useSelector((state) => state.searchDate);
-  // console.log(dates);
-  // console.log(city);
-
-  // const location = window.location.pathname;
-  // const dispatch = useDispatch();
-  // if (location === "/") {
-  //   dispatch({
-  //     type: "sethoteldata",
-  //     payload: true,
-  //   });
-  // } else {
-  //   dispatch({
-  //     type: "sethoteldata",
-  //     payload: false,
-  //   });
-  // }
-  // const { c } = useSelector((state) => state.navOpen);
-
+  const { result } = useSelector((state) => state.personAlert);
   const location = useLocation();
   const path = location.pathname;
 
@@ -75,10 +59,26 @@ const Navbar = ({ list }) => {
   const dispatch = useDispatch();
   const [openOptions, setOpenOptions] = useState(false);
   const { options } = useSelector((state) => state.searchOption);
+  const validRoom = () => {
+    const numOfPerson = options.adult + option.children;
+    const totalSingleRoomCapacity = option.singleRoom;
+    const totalTwinRoomCapacity = option.twinRoom * 2;
+    const totalfamilyRoomCapacity = option.familyRoom * 5;
+    const totalRoomCapacity =
+      totalSingleRoomCapacity + totalTwinRoomCapacity + totalfamilyRoomCapacity;
+    if (numOfPerson > totalRoomCapacity) {
+      console.log(numOfPerson, totalRoomCapacity);
+      return true;
+    }
+    console.log(numOfPerson, totalRoomCapacity);
+    return false;
+  };
   const [option, setOption] = useState({
     adult: 1,
     children: 0,
-    room: 1,
+    singleRoom: 1,
+    twinRoom: 0,
+    familyRoom: 0,
   });
   const handleOption = (name, operation) => {
     setOption((prev) => {
@@ -90,9 +90,9 @@ const Navbar = ({ list }) => {
   };
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
-  console.log(city);
-  console.log(dates);
-  console.log(option);
+  // console.log(city);
+  // console.log(dates);
+  // console.log(options);
   const handleOnSearch = () => {
     // const response = await fetch(`http://localhost:5000/gethotel/${city}`, {
     //   method: "GET",
@@ -100,7 +100,7 @@ const Navbar = ({ list }) => {
 
     // const data = await response.json();
     // console.log(data);
-    if (!city || !dates || !option) {
+    if (city === "" || dates === []) {
       alert("Please fill all the fields");
       return;
     }
@@ -134,30 +134,12 @@ const Navbar = ({ list }) => {
       type: "SET_OPTION",
       payload: option,
     });
+    dispatch({
+      type: "ALERT",
+      payload: validRoom(),
+    });
   }, [option]);
-
-  // const data = [
-  //   {
-  //     name: "Hotels",
-  //     img: "",
-  //   },
-  //   {
-  //     name: "Apartments",
-  //     img: "",
-  //   },
-  //   {
-  //     name: "Villas",
-  //     img: "",
-  //   },
-  //   {
-  //     name: "Hostels",
-  //     img: "",
-  //   },
-  //   {
-  //     name: "Resorts",
-  //     img: "",
-  //   },
-  // ];
+  // console.log(options);
 
   useEffect(() => {
     $(window).scroll(() => {
@@ -171,6 +153,22 @@ const Navbar = ({ list }) => {
       }
     });
   }, []);
+
+  // const location = window.location.pathname;
+  // const dispatch = useDispatch();
+  // if (location === "/") {
+  //   dispatch({
+  //     type: "sethoteldata",
+  //     payload: true,
+  //   });
+  // } else {
+  //   dispatch({
+  //     type: "sethoteldata",
+  //     payload: false,
+  //   });
+  // }
+  // const { c } = useSelector((state) => state.navOpen);
+
   return (
     <>
       <header
@@ -278,16 +276,6 @@ const Navbar = ({ list }) => {
                             </Popover>
                           </span>
                           <span className={style.iconHide}>
-                            {/* Notifications */}
-                            {/* <Typography
-                              className={style.iconHide}
-                              sx={{ color: "#191a20" }}
-                              aria-describedby={id1}
-                              // variant="contained"
-                              onClick={handleClick1}
-                            >
-                              Notification
-                            </Typography> */}
                             <Button
                               className={style.iconHide}
                               sx={{ color: "#191a20" }}
@@ -352,6 +340,7 @@ const Navbar = ({ list }) => {
             </div>
           </div>
         </div>
+        {result && <Alert />}
       </header>
 
       {list && (
@@ -455,9 +444,15 @@ const Navbar = ({ list }) => {
                           <span
                             onClick={() => setOpenOptions(!openOptions)}
                             className={style.headerSearchText}
-                          >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+                          >{`${options.adult} adult · ${
+                            options.children
+                          } children · ${
+                            options.singleRoom +
+                            options.twinRoom +
+                            options.familyRoom
+                          } room`}</span>
                           {openOptions && (
-                            <div className={style.options}>
+                            <div className={`shadow-lg ${style.options}`}>
                               <div className={style.optionItem}>
                                 <span className={style.optionText}>Adult</span>
                                 <div className={style.optionCounter}>
@@ -507,21 +502,81 @@ const Navbar = ({ list }) => {
                                 </div>
                               </div>
                               <div className={style.optionItem}>
-                                <span className={style.optionText}>Room</span>
+                                <span className={style.optionText}>
+                                  Single Room
+                                </span>
                                 <div className={style.optionCounter}>
                                   <button
-                                    disabled={options.room <= 1}
+                                    disabled={options.singleRoom <= 0}
                                     className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
-                                    onClick={() => handleOption("room", "d")}
+                                    onClick={() =>
+                                      handleOption("singleRoom", "d")
+                                    }
                                   >
                                     <RemoveIcon />
                                   </button>
                                   <span className={style.optionCounterNumber}>
-                                    {options.room}
+                                    {options.singleRoom}
                                   </span>
                                   <button
                                     className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
-                                    onClick={() => handleOption("room", "i")}
+                                    onClick={() =>
+                                      handleOption("singleRoom", "i")
+                                    }
+                                  >
+                                    <AddIcon />
+                                  </button>
+                                </div>
+                              </div>
+                              <div className={style.optionItem}>
+                                <span className={style.optionText}>
+                                  Twin Room
+                                </span>
+                                <div className={style.optionCounter}>
+                                  <button
+                                    disabled={options.twinRoom <= 0}
+                                    className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                    onClick={() =>
+                                      handleOption("twinRoom", "d")
+                                    }
+                                  >
+                                    <RemoveIcon />
+                                  </button>
+                                  <span className={style.optionCounterNumber}>
+                                    {options.twinRoom}
+                                  </span>
+                                  <button
+                                    className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                    onClick={() =>
+                                      handleOption("twinRoom", "i")
+                                    }
+                                  >
+                                    <AddIcon />
+                                  </button>
+                                </div>
+                              </div>
+                              <div className={style.optionItem}>
+                                <span className={style.optionText}>
+                                  Family Room
+                                </span>
+                                <div className={style.optionCounter}>
+                                  <button
+                                    disabled={options.familyRoom <= 0}
+                                    className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                    onClick={() =>
+                                      handleOption("familyRoom", "d")
+                                    }
+                                  >
+                                    <RemoveIcon />
+                                  </button>
+                                  <span className={style.optionCounterNumber}>
+                                    {options.familyRoom}
+                                  </span>
+                                  <button
+                                    className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                    onClick={() =>
+                                      handleOption("familyRoom", "i")
+                                    }
                                   >
                                     <AddIcon />
                                   </button>
