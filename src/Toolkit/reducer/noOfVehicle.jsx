@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-const initialState = { c: 0 };
+const initialState = { c: null };
 
 export const noOfVehicle = createReducer(initialState, {
   INCREMENT: (state, action) => {
