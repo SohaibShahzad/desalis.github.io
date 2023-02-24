@@ -69,7 +69,7 @@ const ParkingCard = (props) => {
           <p> <span className="fw-bold text-info">{total_slots - booked_slots}</span>  Free Slots </p>
           <p className="card-text">{description}</p>
           <div className="mt-3 ">
-            <h4 className=""><span className="fw-bold text-dark bg-success rounded-2 px-2 py-1 me-2">Price </span> {price}$ </h4>
+            <h4 className=""><span className="fw-bold text-dark bg-success rounded-2 px-2 py-1 me-2">Price </span> {price}.00$ </h4>
           </div>
         </div>
 
