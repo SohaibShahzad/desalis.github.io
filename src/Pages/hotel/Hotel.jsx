@@ -8,7 +8,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosNewIcon from "@mui/icons-material/ArrowForwardIos";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Person from "@mui/icons-material/Person";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
@@ -24,11 +24,11 @@ import { useSelector } from "react-redux";
 // import Reserve from "../../components/reserve/Reserve";
 
 const Hotel = () => {
-  const location = useLocation();
+  // const location = useLocation();
 
-  const { city } = useSelector((state) => state.searchCity);
-  const { dates } = useSelector((state) => state.searchDate);
-  const { options } = useSelector((state) => state.searchOption);
+  // const { city } = useSelector((state) => state.searchCity);
+  // const { dates } = useSelector((state) => state.searchDate);
+  // const { options } = useSelector((state) => state.searchOption);
   const { room_data } = useSelector((state) => state.getStaticroom);
   // console.log(city, dates, options);
   const { selected_hotel } = useSelector((state) => state.getSelectedHotel);
@@ -78,7 +78,14 @@ const Hotel = () => {
     address: "ul. Floriańska 1, 31-005 Kraków, Poland",
     distance: "0.1",
     cheapestPrice: "100",
-    photos: [],
+    photos: [
+      "https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/53464/sheraton-palace-hotel-lobby-architecture-san-francisco-53464.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/161758/governor-s-mansion-montgomery-alabama-grand-staircase-161758.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "https://images.pexels.com/photos/1001965/pexels-photo-1001965.jpeg?auto=compress&cs=tinysrgb&w=600",
+    ],
     title: "Hotel Pod Roza",
     desc: "Hotel Pod Roza is located in the heart of Krakow, just 100 metres from the Main Market Square. It offers air-conditioned rooms with free Wi-Fi and satellite TV. The rooms at the Pod Roza are classically decorated with warm colours. Each comes with a private bathroom with a shower. Some rooms have a balcony. The hotel’s restaurant serves Polish and international cuisine. Guests can enjoy a drink at the bar. The Pod Roza is situated just 200 metres from the Wawel Royal Castle. The Main Railway Station is 1.5 km away. The hotel offers a 24-hour front desk service. Free public parking is available nearby.",
     facilities: [
@@ -349,9 +356,9 @@ const Hotel = () => {
         </div>
       )}
       <div className="row">
-          {room_data.map((item) => {
-            return <Roomcard data={item} hotel={selected_hotel.name} />;
-          })}
+        {room_data.map((item) => {
+          return <Roomcard data={item} hotel={selected_hotel.name} />;
+        })}
       </div>
       <MailList />
       <Footer />
