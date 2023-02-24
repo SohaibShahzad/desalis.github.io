@@ -37,14 +37,8 @@ const initialState = {
       pic: hotelPic1,
       price: 25,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Gilgit Baltistan",
       country: "Pakistan",
@@ -61,16 +55,8 @@ const initialState = {
       pic: hotelPic2,
       price: 23,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f17afe0f55b3fa208b9ac3",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f17afe0f55b3fa208b9ac4",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Gilgit Baltistan",
       country: "Pakistan",
@@ -87,16 +73,8 @@ const initialState = {
       pic: hotelPic3,
       price: 27,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f17b5b0f55b3fa208b9acb",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f17b5b0f55b3fa208b9acc",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Gilgit",
       country: "Pakistan",
@@ -113,16 +91,8 @@ const initialState = {
       pic: hotelPic4,
       price: 21,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f17c010f55b3fa208b9ad0",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f17c010f55b3fa208b9ad1",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Gilgit",
       country: "Pakistan",
@@ -139,16 +109,9 @@ const initialState = {
       pic: hotelPic5,
       price: 22,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7ec1706dddd31d074054d",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7ec1706dddd31d074054e",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Lahore",
       country: "Pakistan",
@@ -166,16 +129,9 @@ const initialState = {
       pic: hotelPic6,
       price: 20,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7ec5f06dddd31d0740552",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7ec5f06dddd31d0740553",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Islamabad",
       country: "Pakistan",
@@ -193,16 +149,9 @@ const initialState = {
       pic: hotelPic7,
       price: 40,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7ec9006dddd31d0740557",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7ec9006dddd31d0740558",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Islamabad",
       country: "Pakistan",
@@ -220,16 +169,9 @@ const initialState = {
       pic: hotelPic8,
       price: 30,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7ece806dddd31d074055c",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7ece806dddd31d074055d",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Islamabad",
       country: "Pakistan",
@@ -247,16 +189,9 @@ const initialState = {
       pic: hotelPic9,
       price: 43,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7ed5606dddd31d0740561",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7ed5606dddd31d0740562",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Karachi",
       country: "Pakistan",
@@ -274,16 +209,9 @@ const initialState = {
       pic: hotelPic10,
       price: 37,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7eda306dddd31d0740566",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7eda306dddd31d0740567",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Lahore",
       country: "Pakistan",
@@ -301,16 +229,9 @@ const initialState = {
       pic: hotelPic11,
       price: 23,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7edd306dddd31d074056b",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7edd306dddd31d074056c",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Lahore",
       country: "Pakistan",
@@ -328,16 +249,9 @@ const initialState = {
       pic: hotelPic12,
       price: 28,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7ee4106dddd31d0740570",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7ee4106dddd31d0740571",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Lahore",
       country: "Pakistan",
@@ -355,16 +269,9 @@ const initialState = {
       pic: hotelPic13,
       price: 55,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7ee6406dddd31d0740575",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7ee6406dddd31d0740576",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Karachi",
       country: "Pakistan",
@@ -382,16 +289,9 @@ const initialState = {
       pic: hotelPic14,
       price: 25,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7ee8506dddd31d074057a",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7ee8506dddd31d074057b",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Islamabad",
       country: "Pakistan",
@@ -409,16 +309,9 @@ const initialState = {
       pic: hotelPic15,
       price: 39,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7eec906dddd31d074057f",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7eec906dddd31d0740580",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Islamabad",
       country: "Pakistan",
@@ -436,16 +329,9 @@ const initialState = {
       pic: hotelPic16,
       price: 29,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7eef706dddd31d0740584",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7eef706dddd31d0740585",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Islamabad",
       country: "Pakistan",
@@ -463,16 +349,9 @@ const initialState = {
       pic: hotelPic17,
       price: 19,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7ef2106dddd31d0740589",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7ef2106dddd31d074058a",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Islamabad",
       country: "Pakistan",
@@ -490,16 +369,9 @@ const initialState = {
       pic: hotelPic18,
       price: 15,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7ef8106dddd31d074058e",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7ef8106dddd31d074058f",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Lahore",
       country: "Pakistan",
@@ -517,16 +389,9 @@ const initialState = {
       pic: hotelPic19,
       price: 21,
       photos: [
-        {
-          pic_url:
-            "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
-          _id: "63f7efb706dddd31d0740593",
-        },
-        {
-          pic_url:
-            "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
-          _id: "63f7efb706dddd31d0740594",
-        },
+        "blob:http://localhost:3000/4ddbe6d5-e16b-4435-9aef-900996f59869",
+
+        "blob:http://localhost:3000/fbcfe969-60bf-49ff-b2ca-9e346075a002",
       ],
       city: "Lahore",
       country: "Pakistan",

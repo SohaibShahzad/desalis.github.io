@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./navbar.module.css";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import $ from "jquery";
 import ParkingDate from "../DateForPaking/ParkingDate";
@@ -24,14 +24,6 @@ import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
 const Navbar = ({ list }) => {
-  const { city } = useSelector((state) => state.searchCity);
-  const { dates } = useSelector((state) => state.searchDate);
-  const { result } = useSelector((state) => state.personAlert);
-  const location = useLocation();
-  const path = location.pathname;
-
-  const [navSearch, setNavSearch] = useState(false);
-  const [nav2, setNav2] = useState(false);
   // Popover Material UI Code
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl1, setAnchorEl1] = useState(null);
@@ -54,32 +46,23 @@ const Navbar = ({ list }) => {
   const id = open ? "simple-popover" : undefined;
   const id1 = open1 ? "simple-popover" : undefined;
   // Popover Material UI Code
-
+  const { city } = useSelector((state) => state.searchCity);
+  const { cityHotelAndParking } = useSelector(
+    (state) => state.searchHotelAndParkingCity
+  );
+  const { cityParking } = useSelector((state) => state.searchParkingCity);
+  const { dates } = useSelector((state) => state.searchDate);
+  const { result } = useSelector((state) => state.personAlert);
+  const location = useLocation();
+  const path = location.pathname;
+  const [navSearch, setNavSearch] = useState(false);
+  const [nav2, setNav2] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const [openOptions, setOpenOptions] = useState(false);
   const { options } = useSelector((state) => state.searchOption);
-  const validRoom = () => {
-    const numOfPerson = options.adult + option.children;
-    const totalSingleRoomCapacity = option.singleRoom;
-    const totalTwinRoomCapacity = option.twinRoom * 2;
-    const totalfamilyRoomCapacity = option.familyRoom * 5;
-    const totalRoomCapacity =
-      totalSingleRoomCapacity + totalTwinRoomCapacity + totalfamilyRoomCapacity;
-    if (numOfPerson > totalRoomCapacity) {
-      console.log(numOfPerson, totalRoomCapacity);
-      return true;
-    }
-    console.log(numOfPerson, totalRoomCapacity);
-    return false;
-  };
-  const [option, setOption] = useState({
-    adult: 1,
-    children: 0,
-    singleRoom: 1,
-    twinRoom: 0,
-    familyRoom: 0,
-  });
+  const [option, setOption] = useState(options);
+
   const handleOption = (name, operation) => {
     setOption((prev) => {
       return {
@@ -132,11 +115,31 @@ const Navbar = ({ list }) => {
       type: "SET_OPTION",
       payload: option,
     });
+  }, [option]);
+  // console.log(options);
+
+  useEffect(() => {
+    const validRoom = () => {
+      const numOfPerson = options.adult + option.children;
+      const totalSingleRoomCapacity = option.singleRoom;
+      const totalTwinRoomCapacity = option.twinRoom * 2;
+      const totalfamilyRoomCapacity = option.familyRoom * 5;
+      const totalRoomCapacity =
+        totalSingleRoomCapacity +
+        totalTwinRoomCapacity +
+        totalfamilyRoomCapacity;
+      if (numOfPerson > totalRoomCapacity) {
+        console.log(numOfPerson, totalRoomCapacity);
+        return true;
+      }
+      console.log(numOfPerson, totalRoomCapacity);
+      return false;
+    };
     dispatch({
       type: "ALERT",
       payload: validRoom(),
     });
-  }, [option]);
+  }, [options]);
 
   useEffect(() => {
     $(window).scroll(() => {
@@ -175,11 +178,11 @@ const Navbar = ({ list }) => {
         data-wow-duration="0.75s"
         data-wow-delay="0s"
       >
-        <div className="container">
+        <div className="Container pe-2">
           <div className="row">
             <div className="col-12">
               <nav className={style.main_nav}>
-                <a href="index.html" className={style.logo}></a>
+                <Link to="/" className={style.logo}></Link>
                 <ul className={style.nav}>
                   <li>
                     <NavLink to="/" className="active">
@@ -296,11 +299,11 @@ const Navbar = ({ list }) => {
                           <span className={style.iconHide}>Profile</span>
                         </NavLink>
                       </li>
-                      <li>
+                      {/* <li>
                         <NavLink to="/">
                           <LogoutIcon /> Logout
                         </NavLink>
-                      </li>
+                      </li> */}
                     </>
                   ) : (
                     <>
@@ -337,7 +340,7 @@ const Navbar = ({ list }) => {
             </div>
           </div>
         </div>
-        {result && <Alert />}
+        {list && result && <Alert />}
       </header>
 
       {list && (
@@ -351,7 +354,7 @@ const Navbar = ({ list }) => {
                 </div>
               </div>
               <div className="col-lg-12">
-                <div id={style.search_form}>
+                <div className={` ${style.search_form}`}>
                   <div className="row position-relative">
                     <div
                       className={`${
@@ -363,10 +366,11 @@ const Navbar = ({ list }) => {
                           <HotelIcon className=" me-2" />
                           <input
                             type="text"
-                            name="city"
+                            name="cityHotel"
                             className={style.form_select}
                             placeholder="Enter your city"
                             autoComplete="off"
+                            value={city}
                             required
                             onChange={(e) =>
                               dispatch({
@@ -381,10 +385,11 @@ const Navbar = ({ list }) => {
                           <HotelIcon className=" me-2" />
                           <input
                             type="text"
-                            name="city"
+                            name="cityHotelAndParking"
                             className={style.form_select}
                             placeholder="Enter your city"
                             autoComplete="off"
+                            value={cityHotelAndParking}
                             required
                             onChange={(e) =>
                               dispatch({
@@ -399,10 +404,11 @@ const Navbar = ({ list }) => {
                           <DirectionsCarIcon className=" me-2" />
                           <input
                             type="text"
-                            name="city"
+                            name="cityParking"
                             className={style.form_select}
                             placeholder="Enter your city"
                             autoComplete="off"
+                            value={cityParking}
                             required
                             onChange={(e) =>
                               dispatch({
@@ -707,6 +713,7 @@ const Navbar = ({ list }) => {
                     <div className={`${nav2 ? "col-lg-2" : "col-lg-3"}`}>
                       <fieldset>
                         <button
+                          disabled={result}
                           type="submit"
                           className={style.main_button}
                           onClick={handleOnSearch}
@@ -718,22 +725,6 @@ const Navbar = ({ list }) => {
                   </div>
                 </div>
               </div>
-              {/* <div className="col-lg-10 offset-lg-1">
-                <ul className={style.categories}>
-                  {data.map((item, index) => {
-                    return (
-                      <li key={index}>
-                        <Link to="category.html">
-                          <span className={style.icon}>
-                            <img src={item.img} alt={item.name} />
-                          </span>{" "}
-                          {item.name}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div> */}
             </div>
           </div>
         </div>

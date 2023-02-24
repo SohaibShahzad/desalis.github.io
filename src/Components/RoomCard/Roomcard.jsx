@@ -42,40 +42,40 @@ const Roomcard = (props) => {
     <div className="card mt-4 mx-auto" style={{ width: "23rem" }}>
       <div
         id="carouselExampleControls"
-        class="carousel slide"
+        className="carousel slide"
         data-mdb-ride="carousel"
       >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src={pic} class="card-img-top" alt="Wild Landscape" />
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img src={pic} className="card-img-top" alt="Wild Landscape" />
           </div>
-          {/* <div class="carousel-item active">
-            <img src={listing2} class="card-img-top" alt="Wild Landscape" />
+          {/* <div className="carousel-item active">
+            <img src={listing2} className="card-img-top" alt="Wild Landscape" />
           </div>
-          <div class="carousel-item">
-            <img src={listing3} class="card-img-top" alt="Camera" />
+          <div className="carousel-item">
+            <img src={listing3} className="card-img-top" alt="Camera" />
           </div>
-          <div class="carousel-item">
-            <img src={listing4} class="card-img-top" alt="Exotic Fruits" />
+          <div className="carousel-item">
+            <img src={listing4} className="card-img-top" alt="Exotic Fruits" />
           </div> */}
         </div>
         <button
-          class="carousel-control-prev"
+          className="carousel-control-prev"
           type="button"
           data-mdb-target="#carouselExampleControls"
           data-mdb-slide="prev"
         >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
         </button>
         <button
-          class="carousel-control-next"
+          className="carousel-control-next"
           type="button"
           data-mdb-target="#carouselExampleControls"
           data-mdb-slide="next"
         >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
         </button>
       </div>
       <div className="card-body p-2">
@@ -102,42 +102,42 @@ const Roomcard = (props) => {
         </label>
         <label className="d-block ms-1 fw-light" htmlFor="">
           Fully Refundable <br />
-          <small classname="d-block ms-3 fw-light text-muted ">
+          <small className="d-block ms-3 fw-light text-muted ">
             before 24 hours
           </small>
         </label>
         <a
           href="#"
-          class="text-primary"
+          className="text-primary"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
           More Details
         </a>
         <div
-          class="modal fade"
+          className="modal fade"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog modal-dialog-scrollable modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
+          <div className="modal-dialog modal-dialog-scrollable modal-lg">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">
                   {props.hotel}, {type}{" "}
                 </h1>
                 <button
                   type="button"
-                  class="btn-close"
+                  className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>
               </div>
-              <div class="modal-body">
-                <div id="carouselExample" class="carousel slide">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
+              <div className="modal-body">
+                <div id="carouselExample" className="carousel slide">
+                  <div className="carousel-inner">
+                    <div className="carousel-item active">
                       <img
                         src={pic}
                         className="d-block w-100 rounded-2"
@@ -146,28 +146,28 @@ const Roomcard = (props) => {
                     </div>
                   </div>
                   <button
-                    class="carousel-control-prev"
+                    className="carousel-control-prev"
                     type="button"
                     data-bs-target="#carouselExample"
                     data-bs-slide="prev"
                   >
                     <span
-                      class="carousel-control-prev-icon"
+                      className="carousel-control-prev-icon"
                       aria-hidden="true"
                     ></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span className="visually-hidden">Previous</span>
                   </button>
                   <button
-                    class="carousel-control-next"
+                    className="carousel-control-next"
                     type="button"
                     data-bs-target="#carouselExample"
                     data-bs-slide="next"
                   >
                     <span
-                      class="carousel-control-next-icon"
+                      className="carousel-control-next-icon"
                       aria-hidden="true"
                     ></span>
-                    <span class="visually-hidden">Next</span>
+                    <span className="visually-hidden">Next</span>
                   </button>
                 </div>
                 <div className="container-fluid">
@@ -493,8 +493,7 @@ const Roomcard = (props) => {
             </span>
           </div>
           <small
-            classname="d-block ms-3 fw-light text-muted "
-            className="text-muted text-end fs-7 fw-light"
+            className="d-block ms-3 fw-light text-muted text-muted text-end fs-7 fw-light"
           >
             {rooms * price + 10 + deals}$ Tax and charges
           </small>

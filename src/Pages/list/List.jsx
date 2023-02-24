@@ -35,28 +35,28 @@ const List = () => {
   //   )
   // );
 
-  const data = [
-    {
-      name: "Hotels",
-      img: "",
-    },
-    {
-      name: "Apartments",
-      img: "",
-    },
-    {
-      name: "Villas",
-      img: "",
-    },
-    {
-      name: "Hostels",
-      img: "",
-    },
-    {
-      name: "Resorts",
-      img: "",
-    },
-  ];
+  // const data = [
+  //   {
+  //     name: "Hotels",
+  //     img: "",
+  //   },
+  //   {
+  //     name: "Apartments",
+  //     img: "",
+  //   },
+  //   {
+  //     name: "Villas",
+  //     img: "",
+  //   },
+  //   {
+  //     name: "Hostels",
+  //     img: "",
+  //   },
+  //   {
+  //     name: "Resorts",
+  //     img: "",
+  //   },
+  // ];
 
   const handleClick = () => {
     // reFetch();
@@ -109,7 +109,7 @@ const List = () => {
                     type="number"
                     min={1}
                     className={style.lsOptionInput}
-                    placeholder={options.adult}
+                    placeholder={option.adult}
                     onChange={(e) =>
                       e.target.value < 1 || e.target.value === ""
                         ? dispatch({
@@ -149,7 +149,9 @@ const List = () => {
                     type="number"
                     min={1}
                     className={style.lsOptionInput}
-                    placeholder={options.room}
+                    placeholder={
+                      options.singleRoom + options.twinRoom + options.familyRoom
+                    }
                     onChange={(e) =>
                       e.target.value < 1 || e.target.value === ""
                         ? dispatch({
