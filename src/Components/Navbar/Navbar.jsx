@@ -354,7 +354,7 @@ const Navbar = ({ list }) => {
                 </div>
               </div>
               <div className="col-lg-12">
-                <div id={style.search_form}>
+                <div className={` ${style.search_form}`}>
                   <div className="row position-relative">
                     <div
                       className={`${
