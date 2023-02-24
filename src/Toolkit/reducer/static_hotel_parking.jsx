@@ -48,6 +48,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 100,
       parking_booked_slots: 80,
+      price: 25,
       parking_description:
         "Our parking facility offers safe and convenient parking for guests of The Ritz Carlton.",
       parking_photo: parking1,
@@ -67,6 +68,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 150,
       parking_booked_slots: 100,
+      price: 21,
       parking_description:
         "Our parking facility provides easy and secure parking for guests of The Peninsula.",
       parking_photo: parking2,
@@ -87,6 +89,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 200,
       parking_booked_slots: 150,
+      price: 28,
       parking_description:
         "Our parking facility offers convenient and secure parking for guests of Mandarin Oriental.",
       parking_photo: parking3,
@@ -106,6 +109,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 300,
       parking_booked_slots: 250,
+      price: 29,
       parking_description:
         "Our parking facility offers secure and convenient parking for guests of The Four Seasons.",
       parking_photo: parking4,
@@ -124,6 +128,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 50,
       parking_booked_slots: 30,
+      price: 26,
       parking_description:
         "Our parking facility offers safe and convenient parking for guests of Belmond Hotel Caruso.",
       parking_photo: parking5,
@@ -143,6 +148,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 200,
       parking_booked_slots: 150,
+      price: 22,
       parking_description:
         "Our parking facility offers secure and convenient parking for guests of The Waldorf Astoria.",
       parking_photo: parking6,
@@ -162,6 +168,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 100,
       parking_booked_slots: 80,
+      price: 35,
       parking_description:
         "Our parking facility offers safe and convenient parking for guests of The Ritz London.",
       parking_photo: parking7,
@@ -181,6 +188,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 150,
       parking_booked_slots: 100,
+      price: 45,
       parking_description:
         "Our parking facility provides easy and secure parking for guests of The Plaza Hotel.",
       parking_photo: parking8,
@@ -200,6 +208,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 50,
       parking_booked_slots: 20,
+      price: 36,
       parking_description:
         "Our parking facility offers secure and convenient parking for guests of The Oberoi Rajvilas.",
       parking_photo: parking9,
@@ -219,6 +228,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 100,
       parking_booked_slots: 80,
+      price: 39,
       parking_description:
         "Our parking facility offers safe and convenient parking for guests of Burj Al Arab Jumeirah.",
       parking_photo: parking10,
@@ -238,6 +248,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 150,
       parking_booked_slots: 100,
+      price: 52,
       parking_description:
         "Our parking facility offers safe and convenient parking for guests of InterContinental Sydney.",
       parking_photo: parking11,
@@ -257,6 +268,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 50,
       parking_booked_slots: 30,
+      price: 19,
       parking_description:
         "Our parking facility offers safe and convenient parking for guests of The St. Regis Bali Resort.",
       parking_photo: parking12,
@@ -275,10 +287,10 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 40,
       parking_booked_slots: 20,
+      price: 37,
       parking_description:
         "Our parking facility offers safe and convenient parking for guests of Mandarin Oriental Bangkok.",
-      parking_photo:
-      parking13,
+      parking_photo: parking13,
     },
 
     {
@@ -295,6 +307,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 100,
       parking_booked_slots: 50,
+      price: 21,
       parking_description:
         "Our parking facility offers safe and convenient parking for guests of Four Seasons Resort Maui at Wailea.",
       parking_photo: parking14,
@@ -314,6 +327,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 30,
       parking_booked_slots: 10,
+      price: 34,
       parking_description:
         "Our parking facility offers safe and convenient parking for guests of Rosewood London.",
       parking_photo: parking15,
@@ -333,6 +347,7 @@ const initialState = {
       parking_title: "parking",
       parking_total_slots: 20,
       parking_booked_slots: 5,
+      price: 26,
       parking_description:
         "Our parking facility offers safe and convenient parking for guests of Aman Tokyo.",
       parking_photo: parking16,

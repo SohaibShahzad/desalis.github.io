@@ -48,10 +48,10 @@ const Navbar = ({ list }) => {
   // Popover Material UI Code
   const { city } = useSelector((state) => state.searchCity);
   const { cityParking } = useSelector((state) => state.searchParkingCity);
+  const { seacrhLoc } = useSelector((state) => state.getSearchLocation);
   const { cityHotelAndParking } = useSelector(
     (state) => state.searchHotelAndParkingCity
   );
-  console.log(cityHotelAndParking);
   const { dates } = useSelector((state) => state.searchDate);
   const { result } = useSelector((state) => state.personAlert);
   const { c } = useSelector((state) => state.searchVehicle);
@@ -75,6 +75,18 @@ const Navbar = ({ list }) => {
   };
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
+  if (navSearch) {
+    dispatch({
+      type: "setUserLocation",
+      payload: "hotel",
+    });
+  } else if (nav2) {
+    dispatch({
+      type: "setUserLocation",
+      payload: "hotelAndParking",
+    });
+  }
+
   // console.log(city);
   // console.log(dates);
   // console.log(options);
