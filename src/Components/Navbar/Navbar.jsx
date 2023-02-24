@@ -24,18 +24,6 @@ import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
 const Navbar = ({ list }) => {
-  const { city } = useSelector((state) => state.searchCity);
-  const { cityHotelAndParking } = useSelector(
-    (state) => state.searchHotelAndParkingCity
-  );
-  const { cityParking } = useSelector((state) => state.searchParkingCity);
-  const { dates } = useSelector((state) => state.searchDate);
-  const { result } = useSelector((state) => state.personAlert);
-  const location = useLocation();
-  const path = location.pathname;
-
-  const [navSearch, setNavSearch] = useState(false);
-  const [nav2, setNav2] = useState(false);
   // Popover Material UI Code
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorEl1, setAnchorEl1] = useState(null);
@@ -58,25 +46,21 @@ const Navbar = ({ list }) => {
   const id = open ? "simple-popover" : undefined;
   const id1 = open1 ? "simple-popover" : undefined;
   // Popover Material UI Code
-
+  const { city } = useSelector((state) => state.searchCity);
+  const { cityHotelAndParking } = useSelector(
+    (state) => state.searchHotelAndParkingCity
+  );
+  const { cityParking } = useSelector((state) => state.searchParkingCity);
+  const { dates } = useSelector((state) => state.searchDate);
+  const { result } = useSelector((state) => state.personAlert);
+  const location = useLocation();
+  const path = location.pathname;
+  const [navSearch, setNavSearch] = useState(false);
+  const [nav2, setNav2] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const [openOptions, setOpenOptions] = useState(false);
   const { options } = useSelector((state) => state.searchOption);
-  const validRoom = () => {
-    const numOfPerson = options.adult + option.children;
-    const totalSingleRoomCapacity = option.singleRoom;
-    const totalTwinRoomCapacity = option.twinRoom * 2;
-    const totalfamilyRoomCapacity = option.familyRoom * 5;
-    const totalRoomCapacity =
-      totalSingleRoomCapacity + totalTwinRoomCapacity + totalfamilyRoomCapacity;
-    if (numOfPerson > totalRoomCapacity) {
-      console.log(numOfPerson, totalRoomCapacity);
-      return true;
-    }
-    console.log(numOfPerson, totalRoomCapacity);
-    return false;
-  };
   const [option, setOption] = useState(options);
 
   const handleOption = (name, operation) => {
@@ -133,12 +117,31 @@ const Navbar = ({ list }) => {
       type: "SET_OPTION",
       payload: option,
     });
+  }, [option]);
+  // console.log(options);
+
+  useEffect(() => {
+    const validRoom = () => {
+      const numOfPerson = options.adult + option.children;
+      const totalSingleRoomCapacity = option.singleRoom;
+      const totalTwinRoomCapacity = option.twinRoom * 2;
+      const totalfamilyRoomCapacity = option.familyRoom * 5;
+      const totalRoomCapacity =
+        totalSingleRoomCapacity +
+        totalTwinRoomCapacity +
+        totalfamilyRoomCapacity;
+      if (numOfPerson > totalRoomCapacity) {
+        console.log(numOfPerson, totalRoomCapacity);
+        return true;
+      }
+      console.log(numOfPerson, totalRoomCapacity);
+      return false;
+    };
     dispatch({
       type: "ALERT",
       payload: validRoom(),
     });
-  }, [option]);
-  // console.log(options);
+  }, [options]);
 
   useEffect(() => {
     $(window).scroll(() => {
