@@ -10,51 +10,6 @@ const ParkingList = () => {
   let filtered_data = parking_data.filter(
     (item) => item.city.toLowerCase() === cityParking.toLowerCase()
   );
-  console.log("your data", filtered_data);
-  // const card = [
-  //   {
-  //     title: "Card title",
-  //     rating: "4.5",
-  //     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-  //     price: "$100",
-  //   },
-  //   {
-  //     title: "Card title",
-  //     rating: "4.5",
-  //     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-  //     price: "$100",
-  //   },
-  //   {
-  //     title: "Card title",
-  //     rating: "4.5",
-  //     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-  //     price: "$100",
-  //   },
-  //   {
-  //     title: "Card title",
-  //     rating: "4.5",
-  //     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-  //     price: "$100",
-  //   },
-  //   {
-  //     title: "Card title",
-  //     rating: "4.5",
-  //     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-  //     price: "$100",
-  //   },
-  //   {
-  //     title: "Card title",
-  //     rating: "4.5",
-  //     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-  //     price: "$100",
-  //   },
-  //   {
-  //     title: "Card title",
-  //     rating: "4.5",
-  //     desc: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-  //     price: "$100",
-  //   },
-  // ];
   return (
     <div>
       <Navbar list={false} />
