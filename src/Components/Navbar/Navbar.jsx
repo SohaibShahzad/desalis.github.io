@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./navbar.module.css";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link,NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import $ from "jquery";
 import ParkingDate from "../DateForPaking/ParkingDate";
@@ -178,11 +178,11 @@ const Navbar = ({ list }) => {
         data-wow-duration="0.75s"
         data-wow-delay="0s"
       >
-        <div className="container">
+        <div className="Container pe-2">
           <div className="row">
             <div className="col-12">
               <nav className={style.main_nav}>
-                <a href="index.html" className={style.logo}></a>
+                <Link to="/" className={style.logo}></Link>
                 <ul className={style.nav}>
                   <li>
                     <NavLink to="/" className="active">
@@ -299,11 +299,11 @@ const Navbar = ({ list }) => {
                           <span className={style.iconHide}>Profile</span>
                         </NavLink>
                       </li>
-                      <li>
+                      {/* <li>
                         <NavLink to="/">
                           <LogoutIcon /> Logout
                         </NavLink>
-                      </li>
+                      </li> */}
                     </>
                   ) : (
                     <>

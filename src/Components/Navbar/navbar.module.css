@@ -124,7 +124,7 @@
   background: transparent;
 }
 
-.header_area .main_nav a.logo {
+.header_area  a.logo {
   background-image: url(../../images/white-logo.png);
   width: 166px;
   height: 58px;
@@ -476,7 +476,7 @@ input[type="number"]::-webkit-inner-spin-button {
     box-shadow: none;
     text-align: center;
   }
-  .header_area .container {
+  .header_area .Container {
     padding: 0px;
   }
   .header_area .logo {
