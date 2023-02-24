@@ -1,11 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
-  city: "",
+  cityParking: "",
 };
 
 export const cityParkingReducer = createReducer(initialState, {
     SET_PARKINGCITY: (state, action) => {
-    state.city = action.payload;
+    state.cityParking = action.payload;
   },
 });

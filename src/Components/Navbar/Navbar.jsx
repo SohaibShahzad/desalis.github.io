@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./navbar.module.css";
-import { Link,NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import $ from "jquery";
 import ParkingDate from "../DateForPaking/ParkingDate";
@@ -25,6 +25,10 @@ import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
 const Navbar = ({ list }) => {
   const { city } = useSelector((state) => state.searchCity);
+  const { cityHotelAndParking } = useSelector(
+    (state) => state.searchHotelAndParkingCity
+  );
+  const { cityParking } = useSelector((state) => state.searchParkingCity);
   const { dates } = useSelector((state) => state.searchDate);
   const { result } = useSelector((state) => state.personAlert);
   const location = useLocation();
@@ -73,13 +77,8 @@ const Navbar = ({ list }) => {
     console.log(numOfPerson, totalRoomCapacity);
     return false;
   };
-  const [option, setOption] = useState({
-    adult: 1,
-    children: 0,
-    singleRoom: 1,
-    twinRoom: 0,
-    familyRoom: 0,
-  });
+  const [option, setOption] = useState(options);
+
   const handleOption = (name, operation) => {
     setOption((prev) => {
       return {
@@ -340,7 +339,7 @@ const Navbar = ({ list }) => {
             </div>
           </div>
         </div>
-        {result && <Alert />}
+        {list && result && <Alert />}
       </header>
 
       {list && (
@@ -366,10 +365,11 @@ const Navbar = ({ list }) => {
                           <HotelIcon className=" me-2" />
                           <input
                             type="text"
-                            name="city"
+                            name="cityHotel"
                             className={style.form_select}
                             placeholder="Enter your city"
                             autoComplete="off"
+                            value={city}
                             required
                             onChange={(e) =>
                               dispatch({
@@ -384,10 +384,11 @@ const Navbar = ({ list }) => {
                           <HotelIcon className=" me-2" />
                           <input
                             type="text"
-                            name="city"
+                            name="cityHotelAndParking"
                             className={style.form_select}
                             placeholder="Enter your city"
                             autoComplete="off"
+                            value={cityHotelAndParking}
                             required
                             onChange={(e) =>
                               dispatch({
@@ -402,10 +403,11 @@ const Navbar = ({ list }) => {
                           <DirectionsCarIcon className=" me-2" />
                           <input
                             type="text"
-                            name="city"
+                            name="cityParking"
                             className={style.form_select}
                             placeholder="Enter your city"
                             autoComplete="off"
+                            value={cityParking}
                             required
                             onChange={(e) =>
                               dispatch({
@@ -710,6 +712,7 @@ const Navbar = ({ list }) => {
                     <div className={`${nav2 ? "col-lg-2" : "col-lg-3"}`}>
                       <fieldset>
                         <button
+                          disabled={result}
                           type="submit"
                           className={style.main_button}
                           onClick={handleOnSearch}
@@ -721,22 +724,6 @@ const Navbar = ({ list }) => {
                   </div>
                 </div>
               </div>
-              {/* <div className="col-lg-10 offset-lg-1">
-                <ul className={style.categories}>
-                  {data.map((item, index) => {
-                    return (
-                      <li key={index}>
-                        <Link to="category.html">
-                          <span className={style.icon}>
-                            <img src={item.img} alt={item.name} />
-                          </span>{" "}
-                          {item.name}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div> */}
             </div>
           </div>
         </div>
