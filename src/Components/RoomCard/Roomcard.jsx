@@ -23,7 +23,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 
 const Roomcard = (props) => {
-  const { type, price, pic, description } = props.data;
+  const { type, price, pic } = props.data;
   const [rooms, setRooms] = useState(1);
   const [persons, setPersons] = useState(1);
   const [deals, setDeals] = useState(0);
