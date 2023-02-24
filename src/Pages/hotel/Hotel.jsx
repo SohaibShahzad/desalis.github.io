@@ -280,13 +280,22 @@ const Hotel = () => {
                   {selected_hotel ? selected_hotel.description : data.desc}
                 </p>
                 <div>
-                  <h5>Most popular facilities</h5>
+                  <h5 className="mb-3">Most popular facilities</h5>
                   <div className="d-flex flex-wrap text-success">
                     {data.facilities.map((item, i) => {
                       return (
                         <div key={i}>
-                          <span className="me-3">{item}</span>
-                          <p className="me-3">-</p>
+                          <div
+                            className={`${
+                              i % 2 === 0
+                                ? "bg-info"
+                                : i % 3 === 0
+                                ? "bg-danger"
+                                : "bg-success"
+                            } text-light px-2 py-1 me-3 mb-2 rounded-pill`}
+                          >
+                            {item}
+                          </div>
                         </div>
                       );
                     })}
