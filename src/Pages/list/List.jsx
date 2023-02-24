@@ -11,11 +11,29 @@ const List = () => {
   const { city } = useSelector((state) => state.searchCity);
   const { dates } = useSelector((state) => state.searchDate);
   const { options } = useSelector((state) => state.searchOption);
+  const { hotel_data } = useSelector((state) => state.getStaticHotels);
   const [option, setOption] = useState(options);
   const loading = false;
   const [openDate, setOpenDate] = useState(false);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
+
+  const checkCity = (hotel_data) => {
+    return hotel_data.city.toLowerCase() === city.toLowerCase();
+  };
+
+  let filtered_data = [];
+  if (hotel_data) {
+    filtered_data = hotel_data.filter(checkCity);
+  }
+  console.log(filtered_data);
+  // console.log(
+  //   URL.createObjectURL(
+  //     new Blob([hotelPic1, hotelPic2, hotelPic3, hotelPic4], {
+  //       type: "image/jpg",
+  //     })
+  //   )
+  // );
 
   const data = [
     {
@@ -154,7 +172,10 @@ const List = () => {
               "Loading please wait"
             ) : (
               <>
-                {data.map((item) => (
+                {/* {hotel_data.map((item) => (
+                  <Card item={item} key={item._id} />
+                ))} */}
+                {filtered_data.map((item) => (
                   <Card item={item} key={item._id} />
                 ))}
               </>

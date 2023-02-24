@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import style from "./Card1.module.css";
-import { useSelector } from "react-redux";
-import listing1 from "../../images/listing-01.jpg";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+// import listing1 from "../../images/listing-01.jpg";
+import { Link, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
-const Card = () => {
-  // const dispatch = useDispatch();
+const Card = (props) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { name, rating, description, country, pic, price } = props.item;
   const { cardData } = useSelector((state) => state.setCardData);
-  const [value, setValue] = useState(3);
-  const [hover, setHover] = useState(5);
+  const { options } = useSelector((state) => state.searchOption);
+  const { city } = useSelector((state) => state.searchCity);
+  const { dates } = useSelector((state) => state.searchDate);
+  
+  // const [value, setValue] = useState(3);
+  // const [hover, setHover] = useState(5);
+  // dates.map((item) => {
+  //   let date1 = new Date(item.checkIn);
+  //   let date2 = new Date(item.checkOut);
+  // });
 
   const labels = {
     0.5: "Useless",
@@ -28,6 +38,15 @@ const Card = () => {
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
   }
+
+  const setSelectedHotel = () => {
+    dispatch({
+      type: "setHotelData",
+      payload: props.item,
+    });
+    // console.log(props.item);
+    navigate('/singleHotel');
+  };
   // const [card, setCard] = useState({
   //   name: "",
   //   rating: "",
@@ -63,7 +82,7 @@ const Card = () => {
       <div className="row">
         <div className="col-md-3 col-xl-3 col-sm-12">
           <div className="h-100 bg-image hover-zoom ripple rounded ripple-surface">
-            <img src={listing1} className="w-100" />
+            <img src={pic} className="w-100 h-100" />
             <Link to="/">
               <div className="hover-overlay">
                 <div
@@ -77,45 +96,52 @@ const Card = () => {
           </div>
         </div>
         <div className="col-md-6 col-xl-6 col-sm-12">
-          <h5 className="my-xl-0 my-md-0 my-sm-2">{cardData.name}</h5>
-          <Box
-            sx={{
-              width: 200,
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Rating
-              name="hover-feedback"
-              value={value}
-              precision={0.5}
-              getLabelText={getLabelText}
-              onChange={(event, newValue) => {
-                setValue(newValue);
+          <div className="d-flex flex-column">
+            <h5 className="my-xl-0 my-md-0 my-sm-2">{name}</h5>
+            <Box
+              sx={{
+                width: 200,
+                display: "flex",
+                alignItems: "center",
               }}
-              onChangeActive={(event, newHover) => {
-                setHover(newHover);
-              }}
-              emptyIcon={
-                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-              }
-            />
-            {value !== null && (
-              <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-            )}
-          </Box>
-          <div className="d-flex flex-row">
-            <Link
-              to="/"
-              className="text-primary fs-8 fw-bold my-0 mx-md-0 mx-1"
             >
-              Show on map
-            </Link>
-            <div to="/" className="fs-8 fw-light my-0 mx-1">
-              12.5km form center
-            </div>
+              <Rating
+                name="hover-feedback"
+                value={rating}
+                precision={0.5}
+                getLabelText={getLabelText}
+                // onChange={(event, newValue) => {
+                //   setValue(newValue);
+                // }}
+                // onChangeActive={(event, newHover) => {
+                //   setHover(newHover);
+                // }}
+                emptyIcon={
+                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                }
+              />
+              {rating !== null && (
+                <Box sx={{ mb: 1, fontSize: 17 }}>{labels[rating]}</Box>
+              )}
+            </Box>
           </div>
-          <div className="mt-1 mb-0 text-muted" style={{fontSize:"12px"}}>
+
+          <div className="d-flex flex-row">
+            <span>
+              <Link
+                to="/"
+                className="text-primary fs-8 fw-bold my-0 mx-md-0 mx-1"
+              >
+                {props.item.city}
+              </Link>
+            </span>
+            <span>
+              <div to="/" className="fs-8 fw-light my-0 mx-1">
+                {country}
+              </div>
+            </span>
+          </div>
+          <div className="mt-1 mb-0 text-muted" style={{ fontSize: "12px" }}>
             <span>{cardData.attr1}</span>
             <span className="text-primary"> • </span>
             <span>{cardData.attr2}</span>
@@ -136,13 +162,13 @@ const Card = () => {
             </span>
           </div>
           <div className={style.hide992}>
-            <small className="text-success d-block fs-7 fw-bold">
+            {/* <small className="text-success d-block fs-7 fw-bold">
               Free cancellation - no prepayment needed
             </small>
             <small className="fs-7 text-muted">
               You can cancel later, so lock in this great price today.
-            </small>
-            {/* <p className="mb-4 text-truncate mb-md-0">{cardData.description}</p> */}
+            </small> */}
+            <p className="mb-4 text-truncate mb-md-0">{description}</p>
           </div>
         </div>
         <div
@@ -153,22 +179,27 @@ const Card = () => {
               2 nights,10 adults,3 childer
             </small>
             <div className="d-flex ms-auto flex-row align-items-center">
-              <h4 className="fw-bold mx-1 fs-4">{cardData.price}$</h4>
+              <h4 className="fw-bold mx-1 fs-4">
+                {options.room > 1 ? price * options.room : price}$
+              </h4>
               <span className="text-danger">
-                <s>{cardData.previousPrice}$</s>
+                <s>{options.room > 1 ? price * options.room : price + 50}$</s>
               </span>
             </div>
             <small className="text-muted text-end fs-7 fw-light">
-              +120$ Tax and charges
+              +{options.room > 1 ? price * options.room : price + 20}$ Tax and
+              charges
             </small>
             <div className="d-flex flex-column mt-2">
-              <Link
-                to="/singleHotel"
+              <a
                 className="btn btn-outline-primary text-uppercase btn-md"
                 type="button"
+                onClick={setSelectedHotel}
               >
-                See Availability
-              </Link>
+                {/* See Availability
+                 */}
+                Book {options.room} room{options.room > 1 ? "s" : ""}
+              </a>
             </div>
           </div>
         </div>
@@ -179,3 +210,29 @@ const Card = () => {
 
 export default Card;
 
+{
+  /* <Box
+  sx={{
+    width: 200,
+    display: "flex",
+    alignItems: "center",
+  }}
+>
+  <Rating
+    name="hover-feedback"
+    value={rating}
+    precision={0.5}
+    getLabelText={getLabelText}
+    onChange={(event, newValue) => {
+      setValue(newValue);
+    }}
+    onChangeActive={(event, newHover) => {
+      setHover(newHover);
+    }}
+    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+  />
+  {rating !== null && (
+    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
+  )}
+</Box>; */
+}

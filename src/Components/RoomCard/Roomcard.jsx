@@ -22,10 +22,11 @@ import BathtubIcon from "@mui/icons-material/Bathtub";
 import DoneIcon from "@mui/icons-material/Done";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 
-const Roomcard = () => {
-  const [rooms, setRooms] = useState(3);
-  const [persons, setPersons] = useState(5);
-  const [deals, setDeals] = useState(1);
+const Roomcard = (props) => {
+  const { type, price, pic, description } = props.data;
+  const [rooms, setRooms] = useState(1);
+  const [persons, setPersons] = useState(1);
+  const [deals, setDeals] = useState(0);
 
   const handleChange = (event) => {
     setRooms(event.target.value);
@@ -46,9 +47,9 @@ const Roomcard = () => {
       >
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src={listing1} class="card-img-top" alt="Wild Landscape" />
+            <img src={pic} class="card-img-top" alt="Wild Landscape" />
           </div>
-          <div class="carousel-item active">
+          {/* <div class="carousel-item active">
             <img src={listing2} class="card-img-top" alt="Wild Landscape" />
           </div>
           <div class="carousel-item">
@@ -56,7 +57,7 @@ const Roomcard = () => {
           </div>
           <div class="carousel-item">
             <img src={listing4} class="card-img-top" alt="Exotic Fruits" />
-          </div>
+          </div> */}
         </div>
         <button
           class="carousel-control-prev"
@@ -78,7 +79,9 @@ const Roomcard = () => {
         </button>
       </div>
       <div className="card-body p-2">
-        <h5 className="card-title">Club Suite, 1 Bedroom, Park View</h5>
+        <h5 className="card-title">
+          {props.hotel}, {type}{" "}
+        </h5>
         <label className="d-block fw-light " htmlFor="">
           <SquareFootIcon /> 687 sq ft
         </label>
@@ -122,7 +125,7 @@ const Roomcard = () => {
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Club Suite, 1 Bedroom, Park View
+                  {props.hotel}, {type}{" "}
                 </h1>
                 <button
                   type="button"
@@ -136,22 +139,8 @@ const Roomcard = () => {
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <img
-                        src={listing1}
+                        src={pic}
                         className="d-block w-100 rounded-2"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="carousel-item">
-                      <img
-                        src={listing2}
-                        class="d-block w-100 rounded-2"
-                        alt="..."
-                      />
-                    </div>
-                    <div class="carousel-item">
-                      <img
-                        src={listing4}
-                        class="d-block w-100 rounded-2"
                         alt="..."
                       />
                     </div>
@@ -486,28 +475,28 @@ const Roomcard = () => {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={1}>No Extras</MenuItem>
-                <MenuItem value={2}>Breakfast Only</MenuItem>
-                <MenuItem value={3}>Buffet and Breakfast</MenuItem>
-                <MenuItem value={4}>Lunch + Buffet</MenuItem>
-                <MenuItem value={5}>
-                  Special Deal + Dinner + Refreshment
+                <MenuItem value={0}>No Extras</MenuItem>
+                <MenuItem value={5}>Breakfast Only +5$</MenuItem>
+                <MenuItem value={20}>Buffet and Breakfast +20$</MenuItem>
+                <MenuItem value={45}>Lunch + Buffet +45$</MenuItem>
+                <MenuItem value={50}>
+                  Special Deal + Dinner + Refreshment +50$
                 </MenuItem>
               </Select>
             </FormControl>
           </Box>
           <span className="badge mt-3 bg-success text-light">20% Discount</span>
           <div className="d-flex  ms-auto flex-row align-items-center">
-            <h4 className="fw-bold mx-1 fs-4">119$</h4>
+            <h4 className="fw-bold mx-1 fs-4">{rooms * price + deals}$</h4>
             <span className="text-danger">
-              <s>145$</s>
+              <s>{rooms * price + 40 + deals}$</s>
             </span>
           </div>
           <small
             classname="d-block ms-3 fw-light text-muted "
             className="text-muted text-end fs-7 fw-light"
           >
-            180$ Tax and charges
+            {rooms * price + 10 + deals}$ Tax and charges
           </small>
           <button className="btn my-3 btn-block btn-md btn-outline-primary">
             Reserve
