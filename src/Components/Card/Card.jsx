@@ -78,7 +78,7 @@ const Card = (props) => {
   // };
 
   return (
-    <div className="w-100 container border rounded-2 p-1 mb-3">
+    <div className="w-100 border rounded-2 mb-3">
       <div className="row">
         <div className="col-md-3 col-xl-3 col-sm-12">
           <div className="h-100 bg-image hover-zoom ripple rounded ripple-surface">
@@ -95,7 +95,7 @@ const Card = (props) => {
             </Link>
           </div>
         </div>
-        <div className="col-md-6 col-xl-6 col-sm-12">
+        <div className="col-md-6 col-xl-6 col-sm-12 py-1 px-2">
           <div className="d-flex flex-column">
             <h5 className="my-xl-0 my-md-0 my-sm-2">{name}</h5>
             <Box

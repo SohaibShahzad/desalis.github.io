@@ -16,6 +16,7 @@ import { hotelAndParkingCity } from "./reducer/hotelAndParkingCity";
 import { Hotel_Static_Data } from "./reducer/static_hotel_data";
 import { Selected_Hotel } from "./reducer/Set_Seleted_hotel";
 import { Room_Static_Data } from "./reducer/static_room_data";
+import { alertReducer } from "./reducer/alert";
 
 const store = configureStore({
   reducer: {
@@ -36,7 +37,8 @@ const store = configureStore({
     searchHotelAndParkingCity: hotelAndParkingCity,
     getStaticHotels: Hotel_Static_Data,
     getSelectedHotel: Selected_Hotel,
-    getStaticroom:Room_Static_Data,
+    getStaticroom: Room_Static_Data,
+    personAlert: alertReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
