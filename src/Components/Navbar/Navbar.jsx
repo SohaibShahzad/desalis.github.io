@@ -49,7 +49,7 @@ const Navbar = ({ list }) => {
   const { city } = useSelector((state) => state.searchCity);
   const { cityParking } = useSelector((state) => state.searchParkingCity);
   const { cityHotelAndParking } = useSelector(
-    (state) => state.searchParkingCity
+    (state) => state.searchHotelAndParkingCity
   );
   console.log(cityHotelAndParking);
   const { dates } = useSelector((state) => state.searchDate);
@@ -132,7 +132,6 @@ const Navbar = ({ list }) => {
         console.log(numOfPerson, totalRoomCapacity);
         return true;
       }
-      console.log(numOfPerson, totalRoomCapacity);
       return false;
     };
     dispatch({
