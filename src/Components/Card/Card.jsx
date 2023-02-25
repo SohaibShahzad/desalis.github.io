@@ -9,12 +9,25 @@ import StarIcon from "@mui/icons-material/Star";
 const Card = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { name, rating, description, country, pic, price } = props.item;
+  const {
+    name,
+    rating,
+    description,
+    country,
+    pic,
+    price,
+    hotel_name,
+    hotel_rating,
+    hotel_description,
+    hotel_photo,
+    hotel_city,
+    hotel_country,
+  } = props.item;
   const { cardData } = useSelector((state) => state.setCardData);
   const { options } = useSelector((state) => state.searchOption);
   const { city } = useSelector((state) => state.searchCity);
   const { dates } = useSelector((state) => state.searchDate);
-  
+
   // const [value, setValue] = useState(3);
   // const [hover, setHover] = useState(5);
   // dates.map((item) => {
@@ -45,7 +58,7 @@ const Card = (props) => {
       payload: props.item,
     });
     // console.log(props.item);
-    navigate('/singleHotel');
+    navigate("/singleHotel");
   };
   // const [card, setCard] = useState({
   //   name: "",
@@ -82,7 +95,7 @@ const Card = (props) => {
       <div className="row">
         <div className="col-md-3 col-xl-3 col-sm-12">
           <div className="h-100 bg-image hover-zoom ripple rounded ripple-surface">
-            <img src={pic} className="w-100 h-100" />
+            <img src={pic ? pic : hotel_photo} className="w-100 h-100" />
             <Link to="/">
               <div className="hover-overlay">
                 <div
@@ -97,7 +110,9 @@ const Card = (props) => {
         </div>
         <div className="col-md-6 col-xl-6 col-sm-12 py-1 px-2">
           <div className="d-flex flex-column">
-            <h5 className="my-xl-0 my-md-0 my-sm-2">{name}</h5>
+            <h5 className="my-xl-0 my-md-0 my-sm-2">
+              {name ? name : hotel_name}
+            </h5>
             <Box
               sx={{
                 width: 200,
@@ -107,7 +122,7 @@ const Card = (props) => {
             >
               <Rating
                 name="hover-feedback"
-                value={rating}
+                value={rating ? rating : hotel_rating}
                 precision={0.5}
                 getLabelText={getLabelText}
                 // onChange={(event, newValue) => {
@@ -121,7 +136,9 @@ const Card = (props) => {
                 }
               />
               {rating !== null && (
-                <Box sx={{ mb: 1, fontSize: 17 }}>{labels[rating]}</Box>
+                <Box sx={{ mb: 1, fontSize: 17 }}>
+                  {labels[rating ? rating : hotel_rating]}
+                </Box>
               )}
             </Box>
           </div>
@@ -132,12 +149,12 @@ const Card = (props) => {
                 to="/"
                 className="text-primary fs-8 fw-bold my-0 mx-md-0 mx-1"
               >
-                {props.item.city}
+                {props.item.city ? props.item.city : hotel_city}
               </Link>
             </span>
             <span>
               <div to="/" className="fs-8 fw-light my-0 mx-1">
-                {country}
+                {country ? country : hotel_country}
               </div>
             </span>
           </div>
@@ -168,7 +185,9 @@ const Card = (props) => {
             <small className="fs-7 text-muted">
               You can cancel later, so lock in this great price today.
             </small> */}
-            <p className="mb-4 text-truncate mb-md-0">{description}</p>
+            <p className="mb-4 text-truncate mb-md-0">
+              {description ? description : hotel_description}
+            </p>
           </div>
         </div>
         <div
@@ -176,7 +195,7 @@ const Card = (props) => {
         >
           <div className="d-flex flex-column h-100 justify-content-end">
             <small className="fs-6 text-end fw-light text-muted">
-              2 nights,10 adults,3 childer
+              2 nights,4 adults,3 children
             </small>
             <div className="d-flex ms-auto flex-row align-items-center">
               <h4 className="fw-bold mx-1 fs-4">

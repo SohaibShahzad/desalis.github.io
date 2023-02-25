@@ -18,6 +18,7 @@ import { Parking_Static_Data } from "./reducer/static_parking_data";
 import { Hotel_Parking_Static_Data } from "./reducer/static_hotel_parking";
 import { Selected_Hotel } from "./reducer/Set_Seleted_hotel";
 import { Room_Static_Data } from "./reducer/static_room_data";
+import {setSearchLoaction} from './reducer/searchLocation'
 import { alertReducer } from "./reducer/alert";
 
 const store = configureStore({
@@ -43,6 +44,7 @@ const store = configureStore({
     personAlert: alertReducer,
     getStaticParking: Parking_Static_Data,
     getStaicHotalParking: Hotel_Parking_Static_Data,
+    getSearchLocation: setSearchLoaction,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

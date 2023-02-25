@@ -162,15 +162,30 @@ const Hotel = () => {
           <div className="hotelWrapper">
             <button className="bookNow">Reserve or Book Now!</button>
             <h1 className="hotelTitle">
-              {selected_hotel ? selected_hotel.name : data.name}
+              {selected_hotel.name
+                ? selected_hotel.name
+                : selected_hotel.hotel_name
+                ? selected_hotel.hotel_name
+                : data.name}
+              {/* {selected_hotel.hotel_name
+                ? selected_hotel.hotel_name
+                : data.name} */}
             </h1>
             <div className="hotelAddress">
               <LocationOnIcon />
               <span className="">
-                {selected_hotel ? selected_hotel.country : data.address}
+                {selected_hotel.country
+                  ? selected_hotel.country
+                  : selected_hotel.hotel_country
+                  ? selected_hotel.hotel_country
+                  : data.address}
               </span>
               <span className="">
-                {selected_hotel ? selected_hotel.city : ""}
+                {selected_hotel.city
+                  ? selected_hotel.city
+                  : selected_hotel.hotel_city
+                  ? selected_hotel.hotel_city
+                  : ""}
               </span>
             </div>
             <span className="hotelDistance">
@@ -366,7 +381,16 @@ const Hotel = () => {
       )}
       <div className="row">
         {room_data.map((item) => {
-          return <Roomcard data={item} hotel={selected_hotel.name} />;
+          return (
+            <Roomcard
+              data={item}
+              hotel={
+                selected_hotel.name
+                  ? selected_hotel.name
+                  : selected_hotel.hotel_name
+              }
+            />
+          );
         })}
       </div>
       <MailList />
