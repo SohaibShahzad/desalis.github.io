@@ -349,9 +349,11 @@ const Hotel = () => {
         </div>
       )}
       <div className="row">
+        <div className="col-4">
           {room_data.map((item) => {
             return <Roomcard data={item} hotel={selected_hotel.name} />;
           })}
+        </div>
       </div>
       <MailList />
       <Footer />

@@ -94,16 +94,14 @@ const Navbar = ({ list }) => {
   // console.log(dates);
   // console.log(options);
   const handleOnSearch = () => {
-    // const response = await fetch(`http://localhost:5000/gethotel/${city}`, {
-    //   method: "GET",
-    // });
-
-    // const data = await response.json();
-    // console.log(data);
-    if (city === "" || dates === []) {
-      alert("Please fill all the fields");
-      return;
+    
+    if (navSearch) {
+      if (city === "" || dates === []) {
+        alert("Please fill all the fields");
+        return;
+      }
     }
+
     if (option) {
       dispatch({
         type: "SET_OPTION",
@@ -139,7 +137,6 @@ const Navbar = ({ list }) => {
       payload: validRoom(),
     });
   }, [option]);
-  // console.log(options);
 
   useEffect(() => {
     $(window).scroll(() => {
