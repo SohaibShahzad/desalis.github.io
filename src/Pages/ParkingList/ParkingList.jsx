@@ -5,10 +5,10 @@ import { useSelector } from "react-redux";
 
 const ParkingList = () => {
   const { parking_data } = useSelector((state) => state.getStaticParking);
-  const { city } = useSelector((state) => state.searchParkingCity);
+  const { cityParking } = useSelector((state) => state.searchParkingCity);
 
   let filtered_data = parking_data.filter(
-    (item) => item.city.toLowerCase() === city.toLowerCase()
+    (item) => item.city.toLowerCase() === cityParking.toLowerCase()
   );
   console.log("your data", filtered_data);
   // const card = [

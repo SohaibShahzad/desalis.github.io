@@ -47,10 +47,10 @@ const Navbar = ({ list }) => {
   const id1 = open1 ? "simple-popover" : undefined;
   // Popover Material UI Code
   const { city } = useSelector((state) => state.searchCity);
-  const { cityHotelAndParking } = useSelector(
-    (state) => state.searchHotelAndParkingCity
-  );
   const { cityParking } = useSelector((state) => state.searchParkingCity);
+  const { cityHotelAndParking } = useSelector(
+    (state) => state.searchParkingCity
+  );
   const { dates } = useSelector((state) => state.searchDate);
   const { result } = useSelector((state) => state.personAlert);
   const location = useLocation();
@@ -77,14 +77,12 @@ const Navbar = ({ list }) => {
   // console.log(dates);
   // console.log(options);
   const handleOnSearch = () => {
-    
     if (navSearch) {
       if (city === "" || dates === []) {
         alert("Please fill all the fields");
         return;
       }
     }
-
     if (option) {
       dispatch({
         type: "SET_OPTION",
@@ -95,7 +93,7 @@ const Navbar = ({ list }) => {
     navSearch
       ? navigate(`/listHotel`)
       : nav2
-      ? navigate("/HotelAndParkingList")
+      ? navigate("/listHotel")
       : navigate(`/ParkingList`);
   };
 

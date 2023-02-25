@@ -12,6 +12,31 @@ const List = () => {
   const { dates } = useSelector((state) => state.searchDate);
   const { options } = useSelector((state) => state.searchOption);
   const { hotel_data } = useSelector((state) => state.getStaticHotels);
+
+  // For Hotel and parking
+  // Getting City For Hotel and Parking
+  const { cityHotelAndParking } = useSelector(
+    (state) => state.searchParkingCity
+  );
+
+  // Getting Static Data For Hotel and parking
+  const { hotel_parking_data } = useSelector(
+    (state) => state.getStaicHotalParking
+  );
+
+  // Checking City For Hotel and parking
+  const checkHotelParkingCity = () => {
+    return hotel_parking_data.hotel_city === cityHotelAndParking
+  };
+  // Filtering Data For Hotel and parking
+  // let filtered_hotel_parking = [];
+  // if (hotel_parking_data) {
+  //   filtered_hotel_parking = hotel_parking_data.filter(checkHotelParkingCity);
+  // }
+  // console.log(filtered_hotel_parking);
+  console.log(cityHotelAndParking);
+  // For Hotel and parking
+
   const [option, setOption] = useState(options);
   const loading = false;
   const [openDate, setOpenDate] = useState(false);
@@ -27,36 +52,6 @@ const List = () => {
     filtered_data = hotel_data.filter(checkCity);
   }
   console.log(filtered_data);
-  // console.log(
-  //   URL.createObjectURL(
-  //     new Blob([hotelPic1, hotelPic2, hotelPic3, hotelPic4], {
-  //       type: "image/jpg",
-  //     })
-  //   )
-  // );
-
-  // const data = [
-  //   {
-  //     name: "Hotels",
-  //     img: "",
-  //   },
-  //   {
-  //     name: "Apartments",
-  //     img: "",
-  //   },
-  //   {
-  //     name: "Villas",
-  //     img: "",
-  //   },
-  //   {
-  //     name: "Hostels",
-  //     img: "",
-  //   },
-  //   {
-  //     name: "Resorts",
-  //     img: "",
-  //   },
-  // ];
 
   const handleClick = () => {
     // reFetch();
@@ -177,9 +172,14 @@ const List = () => {
                 {/* {hotel_data.map((item) => (
                   <Card item={item} key={item._id} />
                 ))} */}
-                {filtered_data.map((item) => (
-                  <Card item={item} key={item._id} />
-                ))}
+                {city &&
+                  filtered_data.map((item) => (
+                    <Card item={item} key={item._id} />
+                  ))}
+                {cityHotelAndParking &&
+                  hotel_parking_data.map((item) => (
+                    <Card item={item} key={item._id} />
+                  ))}
               </>
             )}
           </div>
