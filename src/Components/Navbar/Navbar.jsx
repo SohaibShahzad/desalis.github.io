@@ -6,6 +6,9 @@ import $ from "jquery";
 import ParkingDate from "../DateForPaking/ParkingDate";
 import Dates from "../date/Date";
 import Alert from "../Alert/Alert";
+import hotel from "../../images/hotel-bg.jpg";
+import hotelparking from "../../images/hotelparking-bg.jpg";
+import parking from "../../images/parking-bg.jpg";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -197,26 +200,44 @@ const Navbar = ({ list }) => {
                 <Link to="/" className={style.logo}></Link>
                 <ul className={style.nav}>
                   <li>
-                    <NavLink to="/" className="active">
+                    <NavLink to="/" className={`${style.text_shadow}`}>
                       Hotels
+                      <hr
+                        className={`mt-0 ${style.activeTab} ${
+                          navSearch ? "d-block" : "d-none"
+                        }`}
+                      />
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/parking">Parkings</NavLink>
+                    <NavLink to="/parking" className={style.text_shadow}>
+                      Parkings
+                      <hr
+                        className={`mt-0 ${style.activeTab} ${
+                          !navSearch && !nav2 ? "d-block" : "d-none"
+                        }`}
+                      />
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/HotelAndParking">Hotel and Parking</NavLink>
+                    <NavLink
+                      to="/HotelAndParking"
+                      className={style.text_shadow}
+                    >
+                      Hotel and Parking
+                      <hr
+                        className={`mt-0 ${style.activeTab} ${
+                          nav2 ? "d-block" : "d-none"
+                        }`}
+                      />
+                    </NavLink>
                   </li>
                   {user ? (
                     <>
                       <li>
                         <NavLink to="/">
                           <span className={style.iconShow}>
-                            <Badge
-                              color="secondary"
-                              badgeContent={100}
-                              max={999}
-                            >
+                            <Badge color="primary" badgeContent={100} max={999}>
                               <MailIcon
                                 aria-describedby={id}
                                 variant="contained"
@@ -257,7 +278,7 @@ const Navbar = ({ list }) => {
                         <NavLink to="/">
                           <span className={style.iconShow}>
                             <Badge
-                              color="secondary"
+                              color="primary"
                               badgeContent={1000}
                               max={999}
                             >
@@ -321,10 +342,14 @@ const Navbar = ({ list }) => {
                     <>
                       {" "}
                       <li>
-                        <NavLink to="/signup">Sign Up</NavLink>
+                        <NavLink to="/signup" className={style.text_shadow}>
+                          Sign Up
+                        </NavLink>
                       </li>
                       <li>
-                        <NavLink to="/signin">Sign In</NavLink>
+                        <NavLink to="/signin" className={style.text_shadow}>
+                          Sign In
+                        </NavLink>
                       </li>
                     </>
                   )}
@@ -356,13 +381,24 @@ const Navbar = ({ list }) => {
       </header>
 
       {list && (
-        <div className={style.main_banner}>
+        <div
+          className={style.main_banner}
+          style={{
+            backgroundImage: `url(${
+              navSearch ? hotel : nav2 ? hotelparking : parking
+            })`,
+          }}
+        >
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
                 <div className={`${style.top_text} ${style.header_text}`}>
-                  <h6>Over 36,500+ Active Listings</h6>
-                  <h2>Find Nearby Places &amp; Things</h2>
+                  <h4 className={style.text_shadow}>
+                    Over 36,500+ Active Listings
+                  </h4>
+                  <h2 className={style.text_shadow}>
+                    Find Nearby Places &amp; Things
+                  </h2>
                 </div>
               </div>
               <div className="col-lg-12">
