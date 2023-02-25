@@ -20,6 +20,8 @@ const Card = (props) => {
     hotel_rating,
     hotel_description,
     hotel_photo,
+    parking_total_slots,
+    parking_booked_slots,
     hotel_city,
     hotel_country,
   } = props.item;
