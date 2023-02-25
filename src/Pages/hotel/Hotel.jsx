@@ -55,6 +55,9 @@ const Hotel = () => {
   }
 
   // const days = dayDifference(dates[0].endDate, dates[0].startDate);
+  // Calculating available parking slots
+  let availableParkingSlots =
+    selected_hotel.parking_total_slots - selected_hotel.parking_booked_slots;
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -87,6 +90,7 @@ const Hotel = () => {
       "https://images.pexels.com/photos/1001965/pexels-photo-1001965.jpeg?auto=compress&cs=tinysrgb&w=600",
     ],
     title: "Hotel Pod Roza",
+    price: "100",
     desc: "Hotel Pod Roza is located in the heart of Krakow, just 100 metres from the Main Market Square. It offers air-conditioned rooms with free Wi-Fi and satellite TV. The rooms at the Pod Roza are classically decorated with warm colours. Each comes with a private bathroom with a shower. Some rooms have a balcony. The hotel’s restaurant serves Polish and international cuisine. Guests can enjoy a drink at the bar. The Pod Roza is situated just 200 metres from the Wawel Royal Castle. The Main Railway Station is 1.5 km away. The hotel offers a 24-hour front desk service. Free public parking is available nearby.",
     facilities: [
       "Free WiFi",
@@ -258,10 +262,10 @@ const Hotel = () => {
 
                 <div className="col-2 border-end">
                   <div className="fw-bolder fs-5">
-                    {selected_hotel
-                      ? selected_hotel.price + 50
-                      : "PKR 4,181,121"}
-                    $
+                    {selected_hotel.price
+                      ? selected_hotel.price + 20
+                      : data.price}
+                    ${availableParkingSlots ? "+5$" : ""}
                   </div>
                   <div style={{ fontSize: "12px" }}>
                     Includes taxes and fees
@@ -271,10 +275,15 @@ const Hotel = () => {
                 <div className="col-4">
                   <small>8 nights, 13 adults, 3 children</small>{" "}
                   <div className="fw-bolder fs-5">
-                    {selected_hotel ? selected_hotel.price : data.cheapestPrice}
-                    $
-                  </div>{" "}
-                  <small>Includes taxes and fees</small>
+                    {selected_hotel.price ? selected_hotel.price + 20 : data.price}$
+                    {availableParkingSlots ? "+5$" : ""}
+                  </div>
+                  <small className="d-block">Includes taxes and fees</small>
+                  {availableParkingSlots ? (
+                    <small className="d-block">Extra 5$ for parking</small>
+                  ) : (
+                    ""
+                  )}
                   <button className="btn btn-primary mt-3 w-100 mb-2">
                     Reserve your selection
                   </button>
@@ -388,7 +397,10 @@ const Hotel = () => {
                 selected_hotel.name
                   ? selected_hotel.name
                   : selected_hotel.hotel_name
+                  ? selected_hotel.hotel_name
+                  : data.title
               }
+              key={item.name}
             />
           );
         })}
