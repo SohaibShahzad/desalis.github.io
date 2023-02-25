@@ -34,7 +34,7 @@ const List = () => {
   //   filtered_hotel_parking = hotel_parking_data.filter(checkHotelParkingCity);
   // }
   // console.log(filtered_hotel_parking);
-  console.log(cityHotelAndParking);
+  // console.log(cityHotelAndParking);
   // For Hotel and parking
 
   const [option, setOption] = useState(options);

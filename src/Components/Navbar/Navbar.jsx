@@ -51,6 +51,7 @@ const Navbar = ({ list }) => {
   const { cityHotelAndParking } = useSelector(
     (state) => state.searchParkingCity
   );
+  console.log(cityHotelAndParking);
   const { dates } = useSelector((state) => state.searchDate);
   const { result } = useSelector((state) => state.personAlert);
   const { c } = useSelector((state) => state.searchVehicle);
