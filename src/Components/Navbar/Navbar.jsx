@@ -53,6 +53,7 @@ const Navbar = ({ list }) => {
   );
   const { dates } = useSelector((state) => state.searchDate);
   const { result } = useSelector((state) => state.personAlert);
+  const { c } = useSelector((state) => state.searchVehicle);
   const location = useLocation();
   const path = location.pathname;
   const [navSearch, setNavSearch] = useState(false);
@@ -593,9 +594,15 @@ const Navbar = ({ list }) => {
                             <span
                               onClick={() => setOpenOptions(!openOptions)}
                               className={style.headerSearchText}
-                            >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+                            >{`${options.adult} adult · ${
+                              options.children
+                            } children · ${
+                              options.singleRoom +
+                              options.twinRoom +
+                              options.familyRoom
+                            } room`}</span>
                             {openOptions && (
-                              <div className={style.options}>
+                              <div className={`shadow-lg ${style.options}`}>
                                 <div className={style.optionItem}>
                                   <span className={style.optionText}>
                                     Adult
@@ -647,21 +654,81 @@ const Navbar = ({ list }) => {
                                   </div>
                                 </div>
                                 <div className={style.optionItem}>
-                                  <span className={style.optionText}>Room</span>
+                                  <span className={style.optionText}>
+                                    Single Room
+                                  </span>
                                   <div className={style.optionCounter}>
                                     <button
-                                      disabled={options.room <= 1}
+                                      disabled={options.singleRoom <= 0}
                                       className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
-                                      onClick={() => handleOption("room", "d")}
+                                      onClick={() =>
+                                        handleOption("singleRoom", "d")
+                                      }
                                     >
                                       <RemoveIcon />
                                     </button>
                                     <span className={style.optionCounterNumber}>
-                                      {options.room}
+                                      {options.singleRoom}
                                     </span>
                                     <button
                                       className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
-                                      onClick={() => handleOption("room", "i")}
+                                      onClick={() =>
+                                        handleOption("singleRoom", "i")
+                                      }
+                                    >
+                                      <AddIcon />
+                                    </button>
+                                  </div>
+                                </div>
+                                <div className={style.optionItem}>
+                                  <span className={style.optionText}>
+                                    Twin Room
+                                  </span>
+                                  <div className={style.optionCounter}>
+                                    <button
+                                      disabled={options.twinRoom <= 0}
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() =>
+                                        handleOption("twinRoom", "d")
+                                      }
+                                    >
+                                      <RemoveIcon />
+                                    </button>
+                                    <span className={style.optionCounterNumber}>
+                                      {options.twinRoom}
+                                    </span>
+                                    <button
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() =>
+                                        handleOption("twinRoom", "i")
+                                      }
+                                    >
+                                      <AddIcon />
+                                    </button>
+                                  </div>
+                                </div>
+                                <div className={style.optionItem}>
+                                  <span className={style.optionText}>
+                                    Family Room
+                                  </span>
+                                  <div className={style.optionCounter}>
+                                    <button
+                                      disabled={options.familyRoom <= 0}
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() =>
+                                        handleOption("familyRoom", "d")
+                                      }
+                                    >
+                                      <RemoveIcon />
+                                    </button>
+                                    <span className={style.optionCounterNumber}>
+                                      {options.familyRoom}
+                                    </span>
+                                    <button
+                                      className={`btn btn-primary d-flex justify-content-center align-items-center ${style.optionCounterButton}`}
+                                      onClick={() =>
+                                        handleOption("familyRoom", "i")
+                                      }
                                     >
                                       <AddIcon />
                                     </button>
@@ -678,6 +745,7 @@ const Navbar = ({ list }) => {
                               className={style.form_select}
                               placeholder="Number of vehicles"
                               autoComplete="off"
+                              value={c}
                               // required
                               onChange={(e) =>
                                 dispatch({
@@ -697,6 +765,7 @@ const Navbar = ({ list }) => {
                             className={style.form_select}
                             placeholder="Enter number of vehicle"
                             autoComplete="off"
+                            value={c}
                             // required
                             onChange={(e) =>
                               dispatch({
