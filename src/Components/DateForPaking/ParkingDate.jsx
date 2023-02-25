@@ -95,7 +95,7 @@ const ParkingDate = () => {
         disabledTime={disabledRangeTime}
         popupClassName={style.popup}
         className={style.date}
-        placeholder={["Check In", "Check Out"]}
+        placeholder={["Parking from", "Parking to"]}
         showTime={{
           format: "HH:00",
           defaultValue: dayjs(),

@@ -61,6 +61,7 @@ const Navbar = ({ list }) => {
   const [nav2, setNav2] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
+  const [openRoom, setOpenRoom] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const { options } = useSelector((state) => state.searchOption);
   const [option, setOption] = useState(options);
@@ -351,7 +352,7 @@ const Navbar = ({ list }) => {
             </div>
           </div>
         </div>
-        {list && result && <Alert />}
+        {/* {list && result && <Alert />} */}
       </header>
 
       {list && (
@@ -367,11 +368,7 @@ const Navbar = ({ list }) => {
               <div className="col-lg-12">
                 <div className={` ${style.search_form}`}>
                   <div className="row position-relative">
-                    <div
-                      className={`${
-                        navSearch ? "col-lg-3" : "col-lg-2"
-                      } align-self-center`}
-                    >
+                    <div className={`col-lg-2 align-self-center`}>
                       {navSearch ? (
                         <fieldset className="d-flex align-items-center">
                           <HotelIcon className=" me-2" />
@@ -379,7 +376,7 @@ const Navbar = ({ list }) => {
                             type="text"
                             name="cityHotel"
                             className={style.form_select}
-                            placeholder="Enter your city"
+                            placeholder="City"
                             autoComplete="off"
                             value={city}
                             required
@@ -398,7 +395,7 @@ const Navbar = ({ list }) => {
                             type="text"
                             name="cityHotelAndParking"
                             className={style.form_select}
-                            placeholder="Enter your city"
+                            placeholder="City"
                             autoComplete="off"
                             value={cityHotelAndParking}
                             required
@@ -417,7 +414,7 @@ const Navbar = ({ list }) => {
                             type="text"
                             name="cityParking"
                             className={style.form_select}
-                            placeholder="Enter your city"
+                            placeholder="City"
                             autoComplete="off"
                             value={cityParking}
                             required
@@ -433,7 +430,7 @@ const Navbar = ({ list }) => {
                     </div>
                     <div
                       className={`${
-                        navSearch ? "col-lg-3" : nav2 ? "col-lg-3" : "col-lg-4"
+                        navSearch || nav2 ? "col-lg-3" : "col-lg-4"
                       } align-self-center`}
                     >
                       <fieldset className="d-flex align-items-center">
@@ -449,7 +446,7 @@ const Navbar = ({ list }) => {
                     </div>
                     <div
                       className={`${
-                        nav2 ? "col-lg-5" : "col-lg-3"
+                        nav2 ? "col-lg-5" : navSearch ? "col-lg-4" : "col-lg-3"
                       } align-self-center position-relative`}
                     >
                       {navSearch ? (
@@ -601,7 +598,7 @@ const Navbar = ({ list }) => {
                         </fieldset>
                       ) : nav2 ? (
                         <div className="d-flex justify-content-between">
-                          <fieldset className="d-flex align-items-center">
+                          <fieldset className="container d-flex align-items-center">
                             <PersonIcon className=" me-2" />
                             <span
                               onClick={() => setOpenOptions(!openOptions)}
@@ -755,7 +752,7 @@ const Navbar = ({ list }) => {
                               type="number"
                               name="vehicle"
                               className={style.form_select}
-                              placeholder="Number of vehicles"
+                              placeholder="Vehicles"
                               autoComplete="off"
                               value={c}
                               // required
@@ -775,7 +772,7 @@ const Navbar = ({ list }) => {
                             type="number"
                             name="vehicle"
                             className={style.form_select}
-                            placeholder="Enter number of vehicle"
+                            placeholder="Number of vehicles"
                             autoComplete="off"
                             value={c}
                             // required
