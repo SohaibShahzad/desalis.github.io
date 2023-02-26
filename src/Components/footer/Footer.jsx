@@ -1,121 +1,81 @@
 import style from "./footer.module.css";
 import { Link } from "react-router-dom";
+import MailList from "../mailList/MailList";
 
 const Footer = () => {
   return (
-    <div className={`container ${style.footer}`}>
-      <div className={style.fLists}>
-        <ul className={style.fList}>
-          <li className={style.fListItem}>
-            <Link to='/' >Countries</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Regions</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Cities</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Districts</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Airports</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Hotels</Link>
-          </li>
-        </ul>
-        <ul className={style.fList}>
-          <li className={style.fListItem}>
-            <Link to='/' >Home</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Apartments</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Resorts</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Villas</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Hostels</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Guest houses</Link>
-          </li>
-        </ul>
-        <ul className={style.fList}>
-          <li className={style.fListItem}>
-            <Link to='/' >Unique places to stay</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Reviews</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Unpacked : Travel articles </Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Travel communities</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Seasonal and holiday deals</Link>
-          </li>
-        </ul>
-        <ul className={style.fList}>
-          <li className={style.fListItem}>
-            <Link to='/' >Car rental</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Flight Finder</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Restaurant reservations</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Travel Agents</Link>
-          </li>
-        </ul>
-        <ul className={style.fList}>
-          <li className={style.fListItem}>
-            <Link to='/' >Curtomer Service</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/contact' >Contact Us</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Careers</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Sustainability</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Press center</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Safety Resource Center</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Investor relations</Link>
-          </li>
-          <li className={style.fListItem}>
-            <Link to='/' >Terms & conditions</Link>
-          </li>
-        </ul>
+    <div style={{ backgroundColor: "#003580" }}>
+      <div className={`d-flex pt-5 ${style.footer}`}>
+        <div className={`d-flex justify-content-between align-items-start mx-auto ${style.fLists}`}>
+          <ul className={style.fList}>
+            <li className={style.fListItem}>
+              <Link to="/">Countries</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Regions</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Cities</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Districts</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Airports</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Hotels</Link>
+            </li>
+          </ul>
+          <ul className={style.fList}>
+            <li className={style.fListItem}>
+              <Link to="/">Home</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Apartments</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Resorts</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Villas</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Hostels</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Guest houses</Link>
+            </li>
+          </ul>
+
+          <ul className={style.fList}>
+            <li className={style.fListItem}>
+              <Link to="/">Unique places to stay</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Reviews</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Unpacked : Travel articles </Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Travel communities</Link>
+            </li>
+            <li className={style.fListItem}>
+              <Link to="/">Seasonal and holiday deals</Link>
+            </li>
+          </ul>
+        <div>
+          <MailList />
+        </div>
+        </div>
       </div>
-      <div className={style.fText}>Copyright © 2022 Lamabooking.</div>
+      <div className={`${style.fText}`}>Copyright © 2022 Lamabooking.</div>
     </div>
   );
 };
 
 export default Footer;
-
-
-
-
-
-
-
 
 // import style from "./footer.module.css";
 // import { Link } from "react-router-dom";

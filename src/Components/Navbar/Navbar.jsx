@@ -185,7 +185,7 @@ const Navbar = ({ list }) => {
   // const { c } = useSelector((state) => state.navOpen);
 
   return (
-    <>
+    <div className="w-100">
       <header
         className={`${style.header_area} ${style.header_sticky} ${style.wow} ${
           style.slideInDown
@@ -466,7 +466,7 @@ const Navbar = ({ list }) => {
                     </div>
                     <div
                       className={`${
-                        navSearch || nav2 ? "col-lg-3" : "col-lg-4"
+                        nav2 ? "col-lg-3" : "col-lg-4"
                       } align-self-center`}
                     >
                       <fieldset className="d-flex align-items-center">
@@ -822,7 +822,11 @@ const Navbar = ({ list }) => {
                         </fieldset>
                       )}
                     </div>
-                    <div className={`${nav2 ? "col-lg-2" : "col-lg-3"}`}>
+                    <div
+                      className={`${
+                        nav2 || navSearch ? "col-lg-2" : "col-lg-3"
+                      }`}
+                    >
                       <fieldset>
                         <button
                           disabled={result}
@@ -841,7 +845,7 @@ const Navbar = ({ list }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

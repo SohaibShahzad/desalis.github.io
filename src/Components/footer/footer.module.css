@@ -1,31 +1,38 @@
-.footer{
+.footer {
   width: 100%;
-  width: 1024px;
   font-size: 12px;
+  margin-top: 20px;
 }
 
-.fLists{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+.fLists {
+  width: 90%;
   margin-bottom: 50px;
 }
 
-.fList{
+.fList {
   list-style: none;
   padding: 0;
 }
 
-.fListItem{
+.fListItem {
   margin-bottom: 10px;
-  color: #003580;
   cursor: pointer;
 }
 
+.fListItem a {
+  color: white;
+}
+
+.fText {
+  text-align: center;
+  color: white;
+  padding-bottom: 10px;
+}
+
 @media screen and (max-width: 768px) {
-  .fLists{
+  .fLists {
     flex-direction: column;
   }
 
-  
+
 }

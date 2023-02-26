@@ -15,25 +15,32 @@ import Roomcard from "./Components/RoomCard/Roomcard";
 import ParkingList from "./Pages/ParkingList/ParkingList";
 import HotelAndParking from "./Pages/HotelAndParking/HotelAndParking";
 
+
+
+
+
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+
 function App() {
   return (
     <>
       {/* <Map /> */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/roomcard" element={<Roomcard />} />
-        <Route path="/parking" element={<Parking />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/hotel" element={<Hotel />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/listproperty" element={<Listing />} />
+        <Route path="/" element={<Home />} />
         <Route path="/listHotel" element={<List />} />
         <Route path="/singleHotel" element={<Hotel />} />
         <Route path="/addHotel" element={<HotelForm />} />
         <Route path="/addRoom" element={<RoomForm />} />
+        <Route path="/parking" element={<Parking />} />
         <Route path="/ParkingList" element={<ParkingList />} />
         <Route path="/HotelAndParking" element={<HotelAndParking />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/listproperty" element={<Listing />} />
+        <Route path="/roomcard" element={<Roomcard />} />
       </Routes>
     </>
   );
