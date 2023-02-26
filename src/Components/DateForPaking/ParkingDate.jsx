@@ -28,38 +28,38 @@ const ParkingDate = () => {
   const disabledRangeTime = (_, type) => {
     const currentDateTime = new Date(); // get current date and time
     const currentHour = currentDateTime.getHours();
-  
+
     if (type === "start") {
       // Check if the starting date is after the current date
       const startingDate = dayjs(_).startOf("day");
       const currentDate = dayjs().startOf("day");
       const isStartingDateAfterCurrentDate = startingDate.isAfter(currentDate);
-  
+
       // If the starting date is after the current date, enable all hours for that date
       if (isStartingDateAfterCurrentDate) {
         return {
           disabledHours: () => [],
         };
       }
-  
+
       return {
         disabledHours: () => range(0, currentHour),
       };
     }
-  
+
     // Disable times before the starting time
     const [start, end] = dates.map((date) => dayjs(date, "DD-MM-YYYY HH:mm"));
     if (type === "end" && start) {
       const startingDate = dayjs(start).startOf("hour");
       const currentDate = dayjs().startOf("hour");
       const isStartingDateAfterCurrentDate = startingDate.isAfter(currentDate);
-  
+
       if (isStartingDateAfterCurrentDate) {
         return {
           disabledHours: () => [],
         };
       }
-  
+
       if (currentDate.isSame(startingDate, "day")) {
         return {
           disabledHours: () => {
@@ -69,33 +69,33 @@ const ParkingDate = () => {
         };
       }
     }
-  
+
     // Check if the ending date is after the current date
     const endingDate = dayjs(_).startOf("day");
     const currentDate = dayjs().startOf("day");
     const isEndingDateAfterCurrentDate = endingDate.isAfter(currentDate);
-  
+
     // If the ending date is after the current date, enable all hours for that date
     if (isEndingDateAfterCurrentDate) {
       return {
         disabledHours: () => [],
       };
     }
-  
+
     return {
       disabledHours: () => range(0, currentHour + 1),
     };
   };
-  
 
   return (
     <Space direction="vertical" size={12}>
       <RangePicker
+        bordered={false}
         disabledDate={disabledDate}
         disabledTime={disabledRangeTime}
         popupClassName={style.popup}
         className={style.date}
-        placeholder={["Check In", "Check Out"]}
+        placeholder={["Parking from", "Parking to"]}
         showTime={{
           format: "HH:00",
           defaultValue: dayjs(),

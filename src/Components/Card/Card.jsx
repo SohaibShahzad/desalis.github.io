@@ -93,7 +93,7 @@ const Card = (props) => {
   // };
 
   return (
-    <div className="w-100 border rounded-2 mb-3">
+    <div className="w-100 pe-2 rounded-2 mb-3">
       <div className="row">
         <div className="col-md-3 col-xl-3 col-sm-12">
           <div className="h-100 bg-image hover-zoom ripple rounded ripple-surface">
@@ -111,11 +111,12 @@ const Card = (props) => {
           </div>
         </div>
         <div className="col-md-6 col-xl-6 col-sm-12 py-1 px-2">
-          <div className="d-flex flex-column">
-            <h5 className="my-xl-0 my-md-0 my-sm-2">
+          <div className="d-flex flex-row justify-content-between">
+            <h5 className="my-xl-0 my-md-0 my-sm-2 flex-grow-1">
               {name ? name : hotel_name}
             </h5>
             <Box
+            className="justify-content-end"
               sx={{
                 width: 200,
                 display: "flex",
@@ -137,11 +138,11 @@ const Card = (props) => {
                   <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
                 }
               />
-              {rating !== null && (
+              {/* {rating !== null && (
                 <Box sx={{ mb: 1, fontSize: 17 }}>
                   {labels[rating ? rating : hotel_rating]}
                 </Box>
-              )}
+              )} */}
             </Box>
           </div>
 
@@ -149,7 +150,7 @@ const Card = (props) => {
             <span>
               <Link
                 to="/"
-                className="text-primary fs-8 fw-bold my-0 mx-md-0 mx-1"
+                className="text-primary fs-8 fw-bold my-0 mx-md-0 mx-0"
               >
                 {props.item.city ? props.item.city : hotel_city}
               </Link>
@@ -160,6 +161,7 @@ const Card = (props) => {
               </div>
             </span>
           </div>
+
           <div className="mt-1 mb-0 text-muted" style={{ fontSize: "12px" }}>
             <span>{cardData.attr1}</span>
             <span className="text-primary"> • </span>
@@ -170,7 +172,7 @@ const Card = (props) => {
               <br />
             </span>
           </div>
-          <div className="mb-2 text-muted small">
+          <div className="mb-1 text-muted small" style={{ fontSize: "12px" }}>
             <span>{cardData.attr4}</span>
             <span className="text-primary"> • </span>
             <span>{cardData.attr5}</span>
@@ -180,28 +182,44 @@ const Card = (props) => {
               <br />
             </span>
           </div>
+          <div className="text-muted small">
+            {options.singleRoom > 0
+              ? `${options.singleRoom}x Single Room`
+              : null}{" "}
+            {options.twinRoom > 0 ? ` . ${options.twinRoom}x Twin Room` : null}{" "}
+            {options.familyRoom > 0
+              ? ` . ${options.familyRoom}x Family Room`
+              : null}{" "}
+          </div>
           <div className={style.hide992}>
-            {/* <small className="text-success d-block fs-7 fw-bold">
-              Free cancellation - no prepayment needed
+            <small className="text-success d-block fs-7 fw-bold">
+              Free cancellation
             </small>
-            <small className="fs-7 text-muted">
+            {/* <small className="fs-7 text-muted">
               You can cancel later, so lock in this great price today.
             </small> */}
-            <p className="mb-4 text-truncate mb-md-0">
+            {/* <p className="mb-4 text-truncate mb-md-0">
               {description ? description : hotel_description}
-            </p>
+            </p> */}
           </div>
         </div>
         <div
-          className={`col-md-3 col-xl-3 col-sm-12 border-start ${style.border_sm_start_none}`}
+          className={`col-md-3 col-xl-3 col-sm-12 border-start border-3 pb-2 ${style.border_sm_start_none}`}
         >
           <div className="d-flex flex-column h-100 justify-content-end">
             <small className="fs-6 text-end fw-light text-muted">
-              2 nights,4 adults,3 children
+              2 nights
+            </small>
+            <small className="fs-6 text-end fw-light text-muted">
+              {options.adult} adults, {options.children} children
             </small>
             <div className="d-flex ms-auto flex-row align-items-center">
               <h4 className="fw-bold mx-1 fs-4">
-                {options.room > 1 ? price * options.room : price}$
+                {options.singleRoom + options.twinRoom + options.familyRoom > 1
+                  ? price *
+                    (options.singleRoom + options.twinRoom + options.familyRoom)
+                  : price}
+                $
               </h4>
               <span className="text-danger">
                 <s>{options.room > 1 ? price * options.room : price + 50}$</s>
@@ -212,19 +230,23 @@ const Card = (props) => {
               charges
             </small>
             <div className="d-flex flex-column mt-2">
-              <a
-                className="btn btn-outline-primary text-uppercase btn-md"
+              <button
+                className="btn btn-primary text-uppercase btn-md"
                 type="button"
                 onClick={setSelectedHotel}
               >
                 {/* See Availability
                  */}
-                Book {options.room} room{options.room > 1 ? "s" : ""}
-              </a>
+                Book room
+                {options.singleRoom + options.twinRoom + options.familyRoom > 1
+                  ? "s"
+                  : ""}
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <hr className={`my-4 mx-auto ${style.hr}`}/>
     </div>
   );
 };

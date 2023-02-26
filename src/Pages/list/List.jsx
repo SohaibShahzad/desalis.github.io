@@ -80,7 +80,7 @@ const List = () => {
             <div className={style.lsItem}>
               <label>Options</label>
               <div className={style.lsOptions}>
-                <div className={style.lsOptionItem}>
+                {/* <div className={style.lsOptionItem}>
                   <span className={style.lsOptionText}>
                     Min price <small>per night</small>
                   </span>
@@ -99,7 +99,7 @@ const List = () => {
                     onChange={(e) => setMax(e.target.value)}
                     className={style.lsOptionInput}
                   />
-                </div>
+                </div> */}
                 <div className={style.lsOptionItem}>
                   <span className={style.lsOptionText}>Adult</span>
                   <input
@@ -164,7 +164,7 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <button onClick={handleClick}>Search</button>
+            <button className="btn btn-primary " onClick={handleClick}>Search</button>
           </div>
           <div className={`col-8 ${style.listResult}`}>
             {loading ? (

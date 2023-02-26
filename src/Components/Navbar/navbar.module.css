@@ -40,6 +40,17 @@
   cursor: pointer;
 }
 
+.activeTab {
+  border: none;
+  height: 3px;
+  width: 110%;
+  background-color: silver;
+  border-radius: 10%;
+  opacity: 1 !important;
+  margin-top: 0 !important;
+  /* margin-bottom: 10px; */
+}
+
 .options {
   z-index: 2;
   position: absolute;
@@ -47,8 +58,8 @@
   background-color: white;
   color: gray;
   border-radius: 5px;
-  /* -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4); */
-  /* box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4); */
+  -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .optionItem {
@@ -136,8 +147,12 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+.text_shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
 .background_header .main_nav a.logo {
-  background-image: url(../../images/black-logo.png);
+  background-image: url(../../images/white-logo.png);
   width: 164px;
   height: 58px;
   display: inline-block;
@@ -466,6 +481,10 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #1e1e1e;
   }
 
+  .text_shadow {
+    text-shadow: unset;
+  }
+
   .header_area.header_sticky .nav li a:hover,
   .header_area.header_sticky .nav li a.active {
     color: #8d99af !important;
@@ -600,7 +619,7 @@ input[type="number"]::-webkit-inner-spin-button {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  background-image: url(../../images/banner-bg.jpg);
+  /* background-image: url(../../images/banner-bg.jpg); */
   padding: 290px 0px 250px 0px;
   position: relative;
   overflow: hidden;
@@ -610,9 +629,9 @@ input[type="number"]::-webkit-inner-spin-button {
   text-align: center;
 }
 
-.main_banner .top_text h6 {
+.main_banner .top_text h4 {
   color: #fff;
-  font-size: 15px;
+  font-size: 25px;
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -686,10 +705,6 @@ div.search_form input {
   outline: none;
 }
 
-.form_select:focus {
-  box-shadow: none;
-}
-
 div.search_form .searchText {
   border-left: 1px solid #8d99af !important;
   border-right: 1px solid #8d99af !important;
@@ -759,7 +774,7 @@ div.search_form button i {
   }
 
   .header_area .main_nav a.logo {
-    background-image: url(../../images/black-logo.png);
+    background-image: url(../../images/white-logo.png);
     float: left;
   }
 

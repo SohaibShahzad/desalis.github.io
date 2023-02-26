@@ -32,9 +32,9 @@ const Hotel = () => {
   const { room_data } = useSelector((state) => state.getStaticroom);
   // console.log(city, dates, options);
   const { selected_hotel } = useSelector((state) => state.getSelectedHotel);
-  if (selected_hotel) {
-    console.log(selected_hotel);
-  }
+  // if (selected_hotel) {
+  //   console.log(selected_hotel);
+  // }
 
   // const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
@@ -135,32 +135,38 @@ const Hotel = () => {
     //   navigate("/login");
     // }
   };
+
+  let [limit, setLimit] = useState(6);
+  const handleSeemore = () => {
+    limit === data.facilities.length
+      ? setLimit(6)
+      : setLimit(data.facilities.length);
+  };
   return (
     <div>
       <Navbar list={false} />
-      {/* <Header type="list" /> */}
       {false ? (
         "loading"
       ) : (
         <div className="hotelContainer continer-fluid">
           {open && (
             <div className="slider">
-              <CloseIcon className="close" onClick={() => setOpen(false)} />
-              <ArrowBackIosNewIcon
-                className="arrow"
-                onClick={() => handleMove("l")}
-              />
               <div className="sliderWrapper">
+                <CloseIcon className="close" onClick={() => setOpen(false)} />
+                <ArrowBackIosNewIcon
+                  className="arrow fs-1"
+                  onClick={() => handleMove("l")}
+                />
                 <img
                   src={data.photos[slideNumber]}
                   alt=""
                   className="sliderImg"
                 />
+                <ArrowForwardIosNewIcon
+                  className="arrow fs-1"
+                  onClick={() => handleMove("r")}
+                />
               </div>
-              <ArrowForwardIosNewIcon
-                className="arrow"
-                onClick={() => handleMove("r")}
-              />
             </div>
           )}
           <div className="hotelWrapper">
@@ -275,8 +281,10 @@ const Hotel = () => {
                 <div className="col-4">
                   <small>8 nights, 13 adults, 3 children</small>{" "}
                   <div className="fw-bolder fs-5">
-                    {selected_hotel.price ? selected_hotel.price + 20 : data.price}$
-                    {availableParkingSlots ? "+5$" : ""}
+                    {selected_hotel.price
+                      ? selected_hotel.price + 20
+                      : data.price}
+                    ${availableParkingSlots ? "+5$" : ""}
                   </div>
                   <small className="d-block">Includes taxes and fees</small>
                   {availableParkingSlots ? (
@@ -304,25 +312,42 @@ const Hotel = () => {
                   {selected_hotel ? selected_hotel.description : data.desc}
                 </p>
                 <div>
-                  <h5 className="mb-3">Most popular facilities</h5>
+                  <h5 className="my-3">Most popular facilities</h5>
                   <div className="d-flex flex-wrap text-success">
                     {data.facilities.map((item, i) => {
-                      return (
-                        <div key={i}>
-                          <div
-                            className={`${
-                              i % 2 === 0
-                                ? "bg-info"
-                                : i % 3 === 0
-                                ? "bg-danger"
-                                : "bg-success"
-                            } text-light px-2 py-1 me-3 mb-2 rounded-pill`}
-                          >
-                            {item}
-                          </div>
-                        </div>
-                      );
+                      {
+                        if (i <= limit)
+                          return (
+                            <>
+                              <div key={i}>
+                                <div
+                                  className={`bg-info text-light px-2 py-1 me-3 mb-2 rounded-pill`}
+                                >
+                                  {item}
+                                </div>
+                              </div>
+                            </>
+                          );
+                      }
                     })}
+
+                    {limit < data.facilities.length && (
+                      <div
+                        onClick={handleSeemore}
+                        className="my-auto text-info text-decoration-underline cursor_pointer"
+                      >
+                        See More
+                      </div>
+                    )}
+
+                    {limit === data.facilities.length && (
+                      <div
+                        onClick={handleSeemore}
+                        className="my-auto text-info text-decoration-underline cursor_pointer"
+                      >
+                        See Less
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -388,7 +413,7 @@ const Hotel = () => {
           </div>
         </div>
       )}
-      <div className="row">
+      {/* <div className="row">
         {room_data.map((item) => {
           return (
             <Roomcard
@@ -404,8 +429,7 @@ const Hotel = () => {
             />
           );
         })}
-      </div>
-      <MailList />
+      </div> */}
       <Footer />
     </div>
   );

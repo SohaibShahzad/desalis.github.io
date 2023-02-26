@@ -6,6 +6,10 @@ import $ from "jquery";
 import ParkingDate from "../DateForPaking/ParkingDate";
 import Dates from "../date/Date";
 import Alert from "../Alert/Alert";
+import Dropdown from "../dropdown/Dropdown";
+import hotel from "../../images/hotel-bg.jpg";
+import hotelparking from "../../images/hotelparking-bg.jpg";
+import parking from "../../images/parking-bg.jpg";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -46,12 +50,13 @@ const Navbar = ({ list }) => {
   const id = open ? "simple-popover" : undefined;
   const id1 = open1 ? "simple-popover" : undefined;
   // Popover Material UI Code
+  const dispatch = useDispatch();
   const { city } = useSelector((state) => state.searchCity);
-  const { cityParking } = useSelector((state) => state.searchParkingCity);
-  const { seacrhLoc } = useSelector((state) => state.getSearchLocation);
-  const { cityHotelAndParking } = useSelector(
-    (state) => state.searchHotelAndParkingCity
-  );
+  // const { cityParking } = useSelector((state) => state.searchParkingCity);
+  // const { seacrhLoc } = useSelector((state) => state.getSearchLocation);
+  // const { cityHotelAndParking } = useSelector(
+  //   (state) => state.searchHotelAndParkingCity
+  // );
   const { dates } = useSelector((state) => state.searchDate);
   const { result } = useSelector((state) => state.personAlert);
   const { c } = useSelector((state) => state.searchVehicle);
@@ -60,7 +65,6 @@ const Navbar = ({ list }) => {
   const [navSearch, setNavSearch] = useState(false);
   const [nav2, setNav2] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const dispatch = useDispatch();
   const [openOptions, setOpenOptions] = useState(false);
   const { options } = useSelector((state) => state.searchOption);
   const [option, setOption] = useState(options);
@@ -86,10 +90,6 @@ const Navbar = ({ list }) => {
       payload: "hotelAndParking",
     });
   }
-
-  // console.log(city);
-  // console.log(dates);
-  // console.log(options);
   const handleOnSearch = () => {
     if (navSearch) {
       if (city === "" || dates === []) {
@@ -120,6 +120,19 @@ const Navbar = ({ list }) => {
       setNav2(false);
       setNavSearch(false);
     }
+    
+    setOption({
+      adult: 1,
+      children: 0,
+      singleRoom: 1,
+      twinRoom: 0,
+      familyRoom: 0,
+    });
+
+    dispatch({
+      type: "INCREMENT",
+      payload: "",
+    });
   }, [path]);
 
   useEffect(() => {
@@ -128,7 +141,6 @@ const Navbar = ({ list }) => {
       payload: option,
     });
   }, [option]);
-  // console.log(options);
 
   useEffect(() => {
     const validRoom = () => {
@@ -141,7 +153,6 @@ const Navbar = ({ list }) => {
         totalTwinRoomCapacity +
         totalfamilyRoomCapacity;
       if (numOfPerson > totalRoomCapacity) {
-        console.log(numOfPerson, totalRoomCapacity);
         return true;
       }
       return false;
@@ -181,7 +192,7 @@ const Navbar = ({ list }) => {
   // const { c } = useSelector((state) => state.navOpen);
 
   return (
-    <>
+    <div className="w-100">
       <header
         className={`${style.header_area} ${style.header_sticky} ${style.wow} ${
           style.slideInDown
@@ -196,26 +207,44 @@ const Navbar = ({ list }) => {
                 <Link to="/" className={style.logo}></Link>
                 <ul className={style.nav}>
                   <li>
-                    <NavLink to="/" className="active">
+                    <NavLink to="/" className={`${style.text_shadow}`}>
                       Hotels
+                      <hr
+                        className={`mt-0 ${style.activeTab} ${
+                          navSearch ? "d-block" : "d-none"
+                        }`}
+                      />
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/parking">Parkings</NavLink>
+                    <NavLink to="/parking" className={style.text_shadow}>
+                      Parkings
+                      <hr
+                        className={`mt-0 ${style.activeTab} ${
+                          !navSearch && !nav2 ? "d-block" : "d-none"
+                        }`}
+                      />
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/HotelAndParking">Hotel and Parking</NavLink>
+                    <NavLink
+                      to="/HotelAndParking"
+                      className={style.text_shadow}
+                    >
+                      Hotel and Parking
+                      <hr
+                        className={`mt-0 ${style.activeTab} ${
+                          nav2 ? "d-block" : "d-none"
+                        }`}
+                      />
+                    </NavLink>
                   </li>
                   {user ? (
                     <>
                       <li>
                         <NavLink to="/">
                           <span className={style.iconShow}>
-                            <Badge
-                              color="secondary"
-                              badgeContent={100}
-                              max={999}
-                            >
+                            <Badge color="primary" badgeContent={100} max={999}>
                               <MailIcon
                                 aria-describedby={id}
                                 variant="contained"
@@ -256,7 +285,7 @@ const Navbar = ({ list }) => {
                         <NavLink to="/">
                           <span className={style.iconShow}>
                             <Badge
-                              color="secondary"
+                              color="primary"
                               badgeContent={1000}
                               max={999}
                             >
@@ -320,10 +349,14 @@ const Navbar = ({ list }) => {
                     <>
                       {" "}
                       <li>
-                        <NavLink to="/signup">Sign Up</NavLink>
+                        <NavLink to="/signup" className={style.text_shadow}>
+                          Sign Up
+                        </NavLink>
                       </li>
                       <li>
-                        <NavLink to="/signin">Sign In</NavLink>
+                        <NavLink to="/signin" className={style.text_shadow}>
+                          Sign In
+                        </NavLink>
                       </li>
                     </>
                   )}
@@ -351,89 +384,53 @@ const Navbar = ({ list }) => {
             </div>
           </div>
         </div>
-        {list && result && <Alert />}
       </header>
 
       {list && (
-        <div className={style.main_banner}>
+        <div
+          className={style.main_banner}
+          style={{
+            backgroundImage: `url(${
+              navSearch ? hotel : nav2 ? hotelparking : parking
+            })`,
+          }}
+        >
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
                 <div className={`${style.top_text} ${style.header_text}`}>
-                  <h6>Over 36,500+ Active Listings</h6>
-                  <h2>Find Nearby Places &amp; Things</h2>
+                  <h4 className={style.text_shadow}>
+                    Over 36,500+ Active Listings
+                  </h4>
+                  <h2 className={style.text_shadow}>
+                    Find Nearby Places &amp; Things
+                  </h2>
                 </div>
               </div>
               <div className="col-lg-12">
                 <div className={` ${style.search_form}`}>
                   <div className="row position-relative">
-                    <div
-                      className={`${
-                        navSearch ? "col-lg-3" : "col-lg-2"
-                      } align-self-center`}
-                    >
+                    <div className={`col-lg-2 align-self-center`}>
                       {navSearch ? (
                         <fieldset className="d-flex align-items-center">
                           <HotelIcon className=" me-2" />
-                          <input
-                            type="text"
-                            name="cityHotel"
-                            className={style.form_select}
-                            placeholder="Enter your city"
-                            autoComplete="off"
-                            value={city}
-                            required
-                            onChange={(e) =>
-                              dispatch({
-                                type: "SET_CITY",
-                                payload: e.target.value,
-                              })
-                            }
-                          />
+                          <Dropdown name="cityHotel" />
                         </fieldset>
                       ) : nav2 ? (
                         <fieldset className="d-flex align-items-center">
                           <HotelIcon className=" me-2" />
-                          <input
-                            type="text"
-                            name="cityHotelAndParking"
-                            className={style.form_select}
-                            placeholder="Enter your city"
-                            autoComplete="off"
-                            value={cityHotelAndParking}
-                            required
-                            onChange={(e) =>
-                              dispatch({
-                                type: "SET_HOTELANDPARKINGCITY",
-                                payload: e.target.value,
-                              })
-                            }
-                          />
+                          <Dropdown name="cityHotelAndParking" />
                         </fieldset>
                       ) : (
                         <fieldset className="d-flex align-items-center">
                           <DirectionsCarIcon className=" me-2" />
-                          <input
-                            type="text"
-                            name="cityParking"
-                            className={style.form_select}
-                            placeholder="Enter your city"
-                            autoComplete="off"
-                            value={cityParking}
-                            required
-                            onChange={(e) =>
-                              dispatch({
-                                type: "SET_PARKINGCITY",
-                                payload: e.target.value,
-                              })
-                            }
-                          />
+                          <Dropdown name="cityParking" />
                         </fieldset>
                       )}
                     </div>
                     <div
                       className={`${
-                        navSearch ? "col-lg-3" : nav2 ? "col-lg-3" : "col-lg-4"
+                        nav2 ? "col-lg-3" : "col-lg-4"
                       } align-self-center`}
                     >
                       <fieldset className="d-flex align-items-center">
@@ -449,7 +446,7 @@ const Navbar = ({ list }) => {
                     </div>
                     <div
                       className={`${
-                        nav2 ? "col-lg-5" : "col-lg-3"
+                        nav2 ? "col-lg-5" : navSearch ? "col-lg-4" : "col-lg-3"
                       } align-self-center position-relative`}
                     >
                       {navSearch ? (
@@ -601,7 +598,7 @@ const Navbar = ({ list }) => {
                         </fieldset>
                       ) : nav2 ? (
                         <div className="d-flex justify-content-between">
-                          <fieldset className="d-flex align-items-center">
+                          <fieldset className="container d-flex align-items-center">
                             <PersonIcon className=" me-2" />
                             <span
                               onClick={() => setOpenOptions(!openOptions)}
@@ -755,7 +752,7 @@ const Navbar = ({ list }) => {
                               type="number"
                               name="vehicle"
                               className={style.form_select}
-                              placeholder="Number of vehicles"
+                              placeholder="Vehicles"
                               autoComplete="off"
                               value={c}
                               // required
@@ -775,7 +772,7 @@ const Navbar = ({ list }) => {
                             type="number"
                             name="vehicle"
                             className={style.form_select}
-                            placeholder="Enter number of vehicle"
+                            placeholder="Number of vehicles"
                             autoComplete="off"
                             value={c}
                             // required
@@ -789,7 +786,11 @@ const Navbar = ({ list }) => {
                         </fieldset>
                       )}
                     </div>
-                    <div className={`${nav2 ? "col-lg-2" : "col-lg-3"}`}>
+                    <div
+                      className={`${
+                        nav2 || navSearch ? "col-lg-2" : "col-lg-3"
+                      }`}
+                    >
                       <fieldset>
                         <button
                           disabled={result}
@@ -799,6 +800,13 @@ const Navbar = ({ list }) => {
                         >
                           <SearchIcon /> Search Now
                         </button>
+                        {/* {list && result && <Alert />} */}
+                        {list && result && (
+                          <div className="mt-2 start-0 bg-danger bg-opacity-75 text-light rounded-3 p-3 position-absolute">
+                            <strong>Error! </strong>Total number of persons are
+                            more than total capacity
+                          </div>
+                        )}
                       </fieldset>
                     </div>
                   </div>
@@ -808,7 +816,7 @@ const Navbar = ({ list }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

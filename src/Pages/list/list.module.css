@@ -6,12 +6,12 @@
 
 .listWrapper {
   width: 100%;
-  max-width: 80%;
+  max-width: 85%;
   gap: 20px;
 }
 
 .listSearch {
-  background-color: #00FFF6;
+  background-color: #55A7F1;
   padding: 10px;
   border-radius: 10px;
   position: sticky;
@@ -32,16 +32,17 @@
   margin-bottom: 10px;
 }
 
-.lsItem > label {
+.lsItem>label {
   font-size: 12px;
 }
 
-.lsItem > input {
+.lsItem>input {
   height: 30px;
   border: none;
   padding: 5px;
 }
-.lsItem > span {
+
+.lsItem>span {
   height: 30px;
   padding: 5px;
   background-color: white;
@@ -66,11 +67,7 @@
   width: 50px;
 }
 
-.listSearch > button {
-  padding: 10px;
-  background-color: #0071c2;
-  color: white;
-  border: none;
+.listSearch>button {
   width: 100%;
   font-weight: 500;
   cursor: pointer;

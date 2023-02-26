@@ -19,9 +19,8 @@ const Home = () => {
         <PropertyList /> */}
         <h1 className={`${style.homeTitle} container`}>Homes guests love</h1>
         <FeaturedProperties />
-        <MailList />
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };
