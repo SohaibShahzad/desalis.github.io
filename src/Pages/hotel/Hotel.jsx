@@ -145,29 +145,28 @@ const Hotel = () => {
   return (
     <div>
       <Navbar list={false} />
-      {/* <Header type="list" /> */}
       {false ? (
         "loading"
       ) : (
         <div className="hotelContainer continer-fluid">
           {open && (
             <div className="slider">
-              <CloseIcon className="close" onClick={() => setOpen(false)} />
-              <ArrowBackIosNewIcon
-                className="arrow"
-                onClick={() => handleMove("l")}
-              />
               <div className="sliderWrapper">
+                <CloseIcon className="close" onClick={() => setOpen(false)} />
+                <ArrowBackIosNewIcon
+                  className="arrow fs-1"
+                  onClick={() => handleMove("l")}
+                />
                 <img
                   src={data.photos[slideNumber]}
                   alt=""
                   className="sliderImg"
                 />
+                <ArrowForwardIosNewIcon
+                  className="arrow fs-1"
+                  onClick={() => handleMove("r")}
+                />
               </div>
-              <ArrowForwardIosNewIcon
-                className="arrow"
-                onClick={() => handleMove("r")}
-              />
             </div>
           )}
           <div className="hotelWrapper">
@@ -333,13 +332,19 @@ const Hotel = () => {
                     })}
 
                     {limit < data.facilities.length && (
-                      <div onClick={handleSeemore} className="my-auto text-info text-decoration-underline">
+                      <div
+                        onClick={handleSeemore}
+                        className="my-auto text-info text-decoration-underline cursor_pointer"
+                      >
                         See More
                       </div>
                     )}
 
                     {limit === data.facilities.length && (
-                      <div onClick={handleSeemore} className="my-auto text-info text-decoration-underline">
+                      <div
+                        onClick={handleSeemore}
+                        className="my-auto text-info text-decoration-underline cursor_pointer"
+                      >
                         See Less
                       </div>
                     )}
