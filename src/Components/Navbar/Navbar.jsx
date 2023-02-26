@@ -25,6 +25,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import RemoveIcon from "@mui/icons-material/Remove";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import Dropdown from "../dropdown/Dropdown";
 
 const Navbar = ({ list }) => {
   // Popover Material UI Code
@@ -408,59 +409,17 @@ const Navbar = ({ list }) => {
                       {navSearch ? (
                         <fieldset className="d-flex align-items-center">
                           <HotelIcon className=" me-2" />
-                          <input
-                            type="text"
-                            name="cityHotel"
-                            className={style.form_select}
-                            placeholder="City"
-                            autoComplete="off"
-                            value={city}
-                            required
-                            onChange={(e) =>
-                              dispatch({
-                                type: "SET_CITY",
-                                payload: e.target.value,
-                              })
-                            }
-                          />
+                          <Dropdown name="cityHotel" />
                         </fieldset>
                       ) : nav2 ? (
                         <fieldset className="d-flex align-items-center">
                           <HotelIcon className=" me-2" />
-                          <input
-                            type="text"
-                            name="cityHotelAndParking"
-                            className={style.form_select}
-                            placeholder="City"
-                            autoComplete="off"
-                            value={cityHotelAndParking}
-                            required
-                            onChange={(e) =>
-                              dispatch({
-                                type: "SET_HOTELANDPARKINGCITY",
-                                payload: e.target.value,
-                              })
-                            }
-                          />
+                          <Dropdown name="cityHotelAndParking" />
                         </fieldset>
                       ) : (
                         <fieldset className="d-flex align-items-center">
                           <DirectionsCarIcon className=" me-2" />
-                          <input
-                            type="text"
-                            name="cityParking"
-                            className={style.form_select}
-                            placeholder="City"
-                            autoComplete="off"
-                            value={cityParking}
-                            required
-                            onChange={(e) =>
-                              dispatch({
-                                type: "SET_PARKINGCITY",
-                                payload: e.target.value,
-                              })
-                            }
-                          />
+                          <Dropdown name="cityParking" />
                         </fieldset>
                       )}
                     </div>
