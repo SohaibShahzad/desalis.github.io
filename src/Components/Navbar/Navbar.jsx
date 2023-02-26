@@ -120,18 +120,19 @@ const Navbar = ({ list }) => {
       setNav2(false);
       setNavSearch(false);
     }
-    if (path === "/" || path === "/HotelAndParking") {
-      dispatch({
-        type: "SET_OPTION",
-        payload: {
-          adult: 1,
-          children: 0,
-          singleRoom: 1,
-          twinRoom: 0,
-          familyRoom: 0,
-        },
-      });
-    }
+    
+    setOption({
+      adult: 1,
+      children: 0,
+      singleRoom: 1,
+      twinRoom: 0,
+      familyRoom: 0,
+    });
+
+    dispatch({
+      type: "INCREMENT",
+      payload: "",
+    });
   }, [path]);
 
   useEffect(() => {
@@ -140,7 +141,6 @@ const Navbar = ({ list }) => {
       payload: option,
     });
   }, [option]);
-  // console.log(options);
 
   useEffect(() => {
     const validRoom = () => {
@@ -801,6 +801,12 @@ const Navbar = ({ list }) => {
                           <SearchIcon /> Search Now
                         </button>
                         {/* {list && result && <Alert />} */}
+                        {list && result && (
+                          <div className="mt-2 start-0 bg-danger bg-opacity-75 text-light rounded-3 p-3 position-absolute">
+                            <strong>Error! </strong>Total number of persons are
+                            more than total capacity
+                          </div>
+                        )}
                       </fieldset>
                     </div>
                   </div>
