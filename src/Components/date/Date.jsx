@@ -3,14 +3,12 @@ import { DatePicker, Space } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import style from "./Date.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Dates = () => {
   dayjs.extend(customParseFormat);
   const { RangePicker } = DatePicker;
   const dispatch = useDispatch();
-  const { dates } = useSelector((state) => state.searchDate);
-  
 
   const disabledDate = (current) => {
     return current && current < dayjs().endOf("day");
@@ -18,6 +16,7 @@ const Dates = () => {
   return (
     <Space direction="vertical" size={12}>
       <RangePicker
+        bordered={false}
         format="DD-MM-YYYY"
         disabledDate={disabledDate}
         popupClassName={style.popup}

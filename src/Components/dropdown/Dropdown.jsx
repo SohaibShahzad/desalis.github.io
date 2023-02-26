@@ -11,17 +11,13 @@ const Dropdown = (props) => {
   const { cityHotelAndParking } = useSelector(
     (state) => state.searchHotelAndParkingCity
   );
-  console.log("city", city);
-  console.log("cityParking", cityParking);
-  console.log("cityHotelAndParking", cityHotelAndParking);
-
   return (
     <Select
       showSearch
       style={{ width: "100%" }}
       placeholder="Search to Select"
       value={
-        name === "city"
+        name === "cityHotel"
           ? city
           : name === "cityParking"
           ? cityParking

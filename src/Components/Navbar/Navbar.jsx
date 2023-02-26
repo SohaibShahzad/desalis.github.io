@@ -6,6 +6,7 @@ import $ from "jquery";
 import ParkingDate from "../DateForPaking/ParkingDate";
 import Dates from "../date/Date";
 import Alert from "../Alert/Alert";
+import Dropdown from "../dropdown/Dropdown";
 import hotel from "../../images/hotel-bg.jpg";
 import hotelparking from "../../images/hotelparking-bg.jpg";
 import parking from "../../images/parking-bg.jpg";
@@ -25,7 +26,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import RemoveIcon from "@mui/icons-material/Remove";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import Dropdown from "../dropdown/Dropdown";
 
 const Navbar = ({ list }) => {
   // Popover Material UI Code
@@ -50,12 +50,13 @@ const Navbar = ({ list }) => {
   const id = open ? "simple-popover" : undefined;
   const id1 = open1 ? "simple-popover" : undefined;
   // Popover Material UI Code
+  const dispatch = useDispatch();
   const { city } = useSelector((state) => state.searchCity);
-  const { cityParking } = useSelector((state) => state.searchParkingCity);
-  const { seacrhLoc } = useSelector((state) => state.getSearchLocation);
-  const { cityHotelAndParking } = useSelector(
-    (state) => state.searchHotelAndParkingCity
-  );
+  // const { cityParking } = useSelector((state) => state.searchParkingCity);
+  // const { seacrhLoc } = useSelector((state) => state.getSearchLocation);
+  // const { cityHotelAndParking } = useSelector(
+  //   (state) => state.searchHotelAndParkingCity
+  // );
   const { dates } = useSelector((state) => state.searchDate);
   const { result } = useSelector((state) => state.personAlert);
   const { c } = useSelector((state) => state.searchVehicle);
@@ -64,8 +65,6 @@ const Navbar = ({ list }) => {
   const [navSearch, setNavSearch] = useState(false);
   const [nav2, setNav2] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const dispatch = useDispatch();
-  const [openRoom, setOpenRoom] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const { options } = useSelector((state) => state.searchOption);
   const [option, setOption] = useState(options);
@@ -91,10 +90,6 @@ const Navbar = ({ list }) => {
       payload: "hotelAndParking",
     });
   }
-
-  // console.log(city);
-  // console.log(dates);
-  // console.log(options);
   const handleOnSearch = () => {
     if (navSearch) {
       if (city === "" || dates === []) {
@@ -125,6 +120,18 @@ const Navbar = ({ list }) => {
       setNav2(false);
       setNavSearch(false);
     }
+    if (path === "/" || path === "/HotelAndParking") {
+      dispatch({
+        type: "SET_OPTION",
+        payload: {
+          adult: 1,
+          children: 0,
+          singleRoom: 1,
+          twinRoom: 0,
+          familyRoom: 0,
+        },
+      });
+    }
   }, [path]);
 
   useEffect(() => {
@@ -146,7 +153,6 @@ const Navbar = ({ list }) => {
         totalTwinRoomCapacity +
         totalfamilyRoomCapacity;
       if (numOfPerson > totalRoomCapacity) {
-        console.log(numOfPerson, totalRoomCapacity);
         return true;
       }
       return false;
@@ -378,7 +384,6 @@ const Navbar = ({ list }) => {
             </div>
           </div>
         </div>
-        {/* {list && result && <Alert />} */}
       </header>
 
       {list && (
@@ -795,6 +800,7 @@ const Navbar = ({ list }) => {
                         >
                           <SearchIcon /> Search Now
                         </button>
+                        {/* {list && result && <Alert />} */}
                       </fieldset>
                     </div>
                   </div>
