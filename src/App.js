@@ -15,10 +15,6 @@ import Roomcard from "./Components/RoomCard/Roomcard";
 import ParkingList from "./Pages/ParkingList/ParkingList";
 import HotelAndParking from "./Pages/HotelAndParking/HotelAndParking";
 
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import Dropdown from "./Components/dropdown/Dropdown";
-
 function App() {
   return (
     <>

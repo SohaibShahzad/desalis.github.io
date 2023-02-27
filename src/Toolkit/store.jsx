@@ -18,8 +18,12 @@ import { Parking_Static_Data } from "./reducer/static_parking_data";
 import { Hotel_Parking_Static_Data } from "./reducer/static_hotel_parking";
 import { Selected_Hotel } from "./reducer/Set_Seleted_hotel";
 import { Room_Static_Data } from "./reducer/static_room_data";
-import {setSearchLoaction} from './reducer/searchLocation'
-import { alertReducer } from "./reducer/alert";
+import { setSearchLoaction } from "./reducer/searchLocation";
+import { alertPerson } from "./reducer/alertPerson";
+import { alertCity } from "./reducer/alertCity";
+import { alertVehicle } from "./reducer/alertVehicle";
+import { alertDate } from "./reducer/alertDate";
+import { alertDateTime } from "./reducer/alertDateTime";
 
 const store = configureStore({
   reducer: {
@@ -41,7 +45,11 @@ const store = configureStore({
     getStaticHotels: Hotel_Static_Data,
     getSelectedHotel: Selected_Hotel,
     getStaticroom: Room_Static_Data,
-    personAlert: alertReducer,
+    personAlert: alertPerson,
+    cityAlert: alertCity,
+    vehicleAlert: alertVehicle,
+    dateAlert: alertDate,
+    dateTimeAlert: alertDateTime,
     getStaticParking: Parking_Static_Data,
     getStaicHotalParking: Hotel_Parking_Static_Data,
     getSearchLocation: setSearchLoaction,

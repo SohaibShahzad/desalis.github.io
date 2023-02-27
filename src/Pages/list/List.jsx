@@ -1,6 +1,6 @@
 import style from "./list.module.css";
 import Navbar from "../../Components/Navbar/Navbar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "../../Components/Card/Card";
 // import useFetch from "../../hooks/useFetch";
 import Dates from "../../Components/date/Date";
@@ -28,7 +28,7 @@ const List = () => {
   );
 
   console.log(options)
-  
+
 
   // Checking City For Hotel and parking
   const checkHotelParkingCity = (hotel_parking_data) => {
@@ -45,8 +45,8 @@ const List = () => {
   const [option, setOption] = useState(options);
   const loading = false;
   const [openDate, setOpenDate] = useState(false);
-  const [min, setMin] = useState(undefined);
-  const [max, setMax] = useState(undefined);
+  // const [min, setMin] = useState(undefined);
+  // const [max, setMax] = useState(undefined);
 
   const checkCity = (hotel_data) => {
     return hotel_data.city.toLowerCase() === city.toLowerCase();
