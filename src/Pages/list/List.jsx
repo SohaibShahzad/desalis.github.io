@@ -71,11 +71,11 @@ const List = () => {
             <h1 className={style.lsTitle}>Search</h1>
             <div className={style.lsItem}>
               <label>Destination</label>
-              <input placeholder={city} type="text" />
+              <input placeholder={city} style={{fontSize:"15px"}} type="text" />
             </div>
             <div className={style.lsItem}>
               <label>Check-in Date</label>
-              <span onClick={() => setOpenDate(!openDate)}>
+              <span style={{fontSize:"15px"}} onClick={() => setOpenDate(!openDate)}>
                 {dates[0] ? `${dates[0]} to ${dates[1]}` : null}
               </span>
               {openDate && <Dates />}

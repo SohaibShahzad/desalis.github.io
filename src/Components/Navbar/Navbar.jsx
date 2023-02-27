@@ -98,6 +98,11 @@ const Navbar = ({ list }) => {
       type: "setUserLocation",
       payload: "hotelAndParking",
     });
+  } else {
+    dispatch({
+      type: "setUserLocation",
+      payload: "parking",
+    });
   }
 
   const validRoom = () => {
@@ -1062,7 +1067,9 @@ const Navbar = ({ list }) => {
                                   <div>Enter number of vehicles</div>
                                 )}
                                 {resultDate && <div>Enter Date</div>}
-                                {resultDateTime && <div>Enter Date and time</div>}
+                                {resultDateTime && (
+                                  <div>Enter Date and time</div>
+                                )}
                               </div>
                             )}
                         </fieldset>

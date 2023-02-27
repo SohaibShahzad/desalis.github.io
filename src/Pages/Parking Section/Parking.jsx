@@ -180,9 +180,9 @@ const Parking = () => {
                   unde alias eius ducimus reiciendis soluta eveniet. Nobis ullam
                   ab omnis quasi expedita.
                 </p>
-                <a href="" className=" mt-5">
+                <button className="btn btn-lg btn-primary mt-5">
                   Read More
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -416,7 +416,7 @@ const Parking = () => {
       {/* <!-- end client section --> */}
 
       {/* <!-- info section --> */}
-      <section className={`${style.info_section} my-4`}>
+      {/* <section className={`${style.info_section} my-4`}>
         <div className="container">
           <div className={`${style.info_top}`}>
             <div className="row ">
@@ -507,7 +507,7 @@ const Parking = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <!-- end info_section --> */}
 
       {/* <!-- footer section --> */}
