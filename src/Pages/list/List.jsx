@@ -14,7 +14,7 @@ const List = () => {
   const { hotel_data } = useSelector((state) => state.getStaticHotels);
 
   // Getting Search Location e.g Hotel or Hotel+Prking
-  const { seacrhLoc } = useSelector((state) => state.getSearchLocation);
+  const { searchLoc } = useSelector((state) => state.getSearchLocation);
 
   // For Hotel and parking
   // Getting City For Hotel and Parking
@@ -26,8 +26,6 @@ const List = () => {
   const { hotel_parking_data } = useSelector(
     (state) => state.getStaicHotalParking
   );
-
-  console.log(options);
 
   // Checking City For Hotel and parking
   const checkHotelParkingCity = (hotel_parking_data) => {
@@ -184,11 +182,11 @@ const List = () => {
                 {/* {hotel_data.map((item) => (
                   <Card item={item} key={item._id} />
                 ))} */}
-                {seacrhLoc === "hotel" &&
+                {searchLoc === "hotel" &&
                   filtered_data.map((item) => (
                     <Card item={item} key={item._id} />
                   ))}
-                {seacrhLoc === "hotelAndParking" &&
+                {searchLoc === "hotelAndParking" &&
                   filtered_hotel_parking.map((item) => (
                     <Card item={item} key={item._id} />
                   ))}
