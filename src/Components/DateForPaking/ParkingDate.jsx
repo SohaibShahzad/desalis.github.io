@@ -108,6 +108,13 @@ const ParkingDate = () => {
             payload: val.map((v) => v.format("DD-MM-YYYY HH:00")),
           });
         }}
+        onClick={() => {
+          console.log("click");
+          dispatch({
+            type: "ALERTDATETIME",
+            payload: false,
+          });
+        }}
       />
     </Space>
   );

@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import $ from "jquery";
 import ParkingDate from "../DateForPaking/ParkingDate";
 import Dates from "../date/Date";
-import Alert from "../Alert/Alert";
 import Dropdown from "../dropdown/Dropdown";
 import hotel from "../../images/hotel-bg.jpg";
 import hotelparking from "../../images/hotelparking-bg.jpg";
@@ -26,7 +25,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import RemoveIcon from "@mui/icons-material/Remove";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import bgrmvblk from "../../images/bgrmvblk.png";
 
 const Navbar = ({ list }) => {
@@ -54,13 +54,18 @@ const Navbar = ({ list }) => {
   // Popover Material UI Code
   const dispatch = useDispatch();
   const { city } = useSelector((state) => state.searchCity);
-  // const { cityParking } = useSelector((state) => state.searchParkingCity);
+  const { cityParking } = useSelector((state) => state.searchParkingCity);
   // const { seacrhLoc } = useSelector((state) => state.getSearchLocation);
-  // const { cityHotelAndParking } = useSelector(
-  //   (state) => state.searchHotelAndParkingCity
-  // );
+  const { cityHotelAndParking } = useSelector(
+    (state) => state.searchHotelAndParkingCity
+  );
   const { dates } = useSelector((state) => state.searchDate);
-  const { result } = useSelector((state) => state.personAlert);
+  const datesParking = useSelector((state) => state.searchParkingDate.dates);
+  const { resultPerson } = useSelector((state) => state.personAlert);
+  const { resultCity } = useSelector((state) => state.cityAlert);
+  const { resultVehicle } = useSelector((state) => state.vehicleAlert);
+  const { resultDate } = useSelector((state) => state.dateAlert);
+  const { resultDateTime } = useSelector((state) => state.dateTimeAlert);
   const { c } = useSelector((state) => state.searchVehicle);
   const location = useLocation();
   const path = location.pathname;
@@ -94,11 +99,144 @@ const Navbar = ({ list }) => {
       payload: "hotelAndParking",
     });
   }
+
+  const validRoom = () => {
+    const numOfPerson = options.adult + option.children;
+    const totalSingleRoomCapacity = option.singleRoom;
+    const totalTwinRoomCapacity = option.twinRoom * 2;
+    const totalfamilyRoomCapacity = option.familyRoom * 5;
+    const totalRoomCapacity =
+      totalSingleRoomCapacity + totalTwinRoomCapacity + totalfamilyRoomCapacity;
+    if (numOfPerson > totalRoomCapacity) {
+      return true;
+    }
+    return false;
+  };
+
   const handleOnSearch = () => {
-    if (city === "" || dates === []) {
-      alert("Please fill all the fields");
+    if (path === "/") {
+      dispatch({
+        type: "ALERTPERSON",
+        payload: validRoom(),
+      });
+      if (city === "") {
+        dispatch({
+          type: "ALERTCITY",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTCITY",
+          payload: false,
+        });
+      }
+      if (dates[0] === undefined || dates[1] === undefined) {
+        dispatch({
+          type: "ALERTDATE",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTDATE",
+          payload: false,
+        });
+      }
+    } else if (path === "/parking") {
+      if (cityParking === "") {
+        dispatch({
+          type: "ALERTCITY",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTCITY",
+          payload: false,
+        });
+      }
+      if (datesParking[0] === undefined || datesParking[1] === undefined) {
+        dispatch({
+          type: "ALERTDATETIME",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTDATE",
+          payload: false,
+        });
+      }
+      if (path !== "/" && c === "") {
+        dispatch({
+          type: "ALERTVEHICLE",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTVEHICLE",
+          payload: false,
+        });
+      }
+    } else if (path === "/HotelAndParking") {
+      dispatch({
+        type: "ALERTPERSON",
+        payload: validRoom(),
+      });
+      if (cityHotelAndParking === "") {
+        dispatch({
+          type: "ALERTCITY",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTCITY",
+          payload: false,
+        });
+      }
+      if (dates[0] === undefined || dates[1] === undefined) {
+        dispatch({
+          type: "ALERTDATE",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTDATE",
+          payload: false,
+        });
+      }
+      if (c === "") {
+        dispatch({
+          type: "ALERTVEHICLE",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTVEHICLE",
+          payload: false,
+        });
+      }
+    }
+
+    if (
+      (path === "/" &&
+        (city === "" ||
+          dates[0] === undefined ||
+          dates[1] === undefined ||
+          validRoom())) ||
+      (path === "/parking" &&
+        (cityParking === "" ||
+          datesParking[0] === undefined ||
+          datesParking[1] === undefined ||
+          c === "")) ||
+      (path === "/HotelAndParking" &&
+        (cityHotelAndParking === "" ||
+          dates[0] === undefined ||
+          dates[1] === undefined ||
+          validRoom() ||
+          c === ""))
+    ) {
+      // alert("Please fill all the fields");
       return;
     }
+
     if (option) {
       dispatch({
         type: "SET_OPTION",
@@ -132,18 +270,54 @@ const Navbar = ({ list }) => {
         familyRoom: 0,
       });
       dispatch({
-        type: "INCREMENT",
-        payload: "",
-      });
-      dispatch({
         type: "SET_DATE",
         payload: [],
       });
-      dispatch({
-        type: "SET_CITY",
-        payload: "",
-      });
     }
+    dispatch({
+      type: "SET_CITY",
+      payload: "",
+    });
+
+    dispatch({
+      type: "SET_HOTELANDPARKINGCITY",
+      payload: "",
+    });
+
+    dispatch({
+      type: "SET_PARKINGCITY",
+      payload: "",
+    });
+
+    dispatch({
+      type: "INCREMENT",
+      payload: "",
+    });
+    dispatch({
+      type: "ALERTPERSON",
+      payload: false,
+    });
+
+    dispatch({
+      type: "ALERTCITY",
+      payload: false,
+    });
+
+    dispatch({
+      type: "ALERTVEHICLE",
+      payload: false,
+    });
+
+    dispatch({
+      type: "ALERTDATE",
+      payload: false,
+    });
+
+    dispatch({
+      type: "ALERTDATETIME",
+      payload: false,
+    });
+
     window.scrollTo(0, 0);
   }, [path]);
 
@@ -153,27 +327,6 @@ const Navbar = ({ list }) => {
       payload: option,
     });
   }, [option]);
-
-  useEffect(() => {
-    const validRoom = () => {
-      const numOfPerson = options.adult + option.children;
-      const totalSingleRoomCapacity = option.singleRoom;
-      const totalTwinRoomCapacity = option.twinRoom * 2;
-      const totalfamilyRoomCapacity = option.familyRoom * 5;
-      const totalRoomCapacity =
-        totalSingleRoomCapacity +
-        totalTwinRoomCapacity +
-        totalfamilyRoomCapacity;
-      if (numOfPerson > totalRoomCapacity) {
-        return true;
-      }
-      return false;
-    };
-    dispatch({
-      type: "ALERT",
-      payload: validRoom(),
-    });
-  }, [options]);
 
   useEffect(() => {
     $(window).scroll(() => {
@@ -220,6 +373,7 @@ const Navbar = ({ list }) => {
               <nav className={style.main_nav}>
                 <Link to="/" className={style.logo}>
                   <img
+                    alt="logo"
                     style={{ width: "100%", height: "100%" }}
                     src={bgrmvblk}
                   />
@@ -434,7 +588,15 @@ const Navbar = ({ list }) => {
                         {navSearch ? (
                           <fieldset className="d-flex align-items-center">
                             <HotelIcon className=" me-2" />
-                            <Dropdown name="cityHotel" />
+                            <Dropdown
+                              name="cityHotel"
+                              onClick={() => {
+                                dispatch({
+                                  type: "ALERTCITY",
+                                  payload: false,
+                                });
+                              }}
+                            />
                           </fieldset>
                         ) : nav2 ? (
                           <fieldset className="d-flex align-items-center">
@@ -477,15 +639,30 @@ const Navbar = ({ list }) => {
                           <fieldset className="d-flex align-items-center">
                             <PersonIcon className=" me-2" />
                             <span
-                              onClick={() => setOpenOptions(!openOptions)}
-                              className={style.headerSearchText}
-                            >{`${options.adult} adult · ${
-                              options.children
-                            } children · ${
-                              options.singleRoom +
-                              options.twinRoom +
-                              options.familyRoom
-                            } room`}</span>
+                              onClick={() => {
+                                setOpenOptions(!openOptions);
+                                dispatch({
+                                  type: "ALERTPERSON",
+                                  payload: false,
+                                });
+                              }}
+                              className={`d-flex ${style.headerSearchText}`}
+                            >
+                              {`${options.adult} adult · ${
+                                options.children
+                              } children · ${
+                                options.singleRoom +
+                                options.twinRoom +
+                                options.familyRoom
+                              } room`}
+                              <div className="ms-3 text-dark">
+                                {openOptions ? (
+                                  <ExpandLessIcon />
+                                ) : (
+                                  <ExpandMoreIcon />
+                                )}
+                              </div>
+                            </span>
                             {openOptions && (
                               <div className={`shadow-lg ${style.options}`}>
                                 <div className={style.optionItem}>
@@ -627,15 +804,30 @@ const Navbar = ({ list }) => {
                             <fieldset className="container d-flex align-items-center">
                               <PersonIcon className=" me-2" />
                               <span
-                                onClick={() => setOpenOptions(!openOptions)}
-                                className={style.headerSearchText}
-                              >{`${options.adult} adult · ${
-                                options.children
-                              } children · ${
-                                options.singleRoom +
-                                options.twinRoom +
-                                options.familyRoom
-                              } room`}</span>
+                                onClick={() => {
+                                  setOpenOptions(!openOptions);
+                                  dispatch({
+                                    type: "ALERTPERSON",
+                                    payload: false,
+                                  });
+                                }}
+                                className={`d-flex ${style.headerSearchText}`}
+                              >
+                                {`${options.adult} adult · ${
+                                  options.children
+                                } children · ${
+                                  options.singleRoom +
+                                  options.twinRoom +
+                                  options.familyRoom
+                                } room`}
+                                <div className="ms-3 text-dark">
+                                  {openOptions ? (
+                                    <ExpandLessIcon />
+                                  ) : (
+                                    <ExpandMoreIcon />
+                                  )}
+                                </div>
+                              </span>
                               {openOptions && (
                                 <div className={`shadow-lg ${style.options}`}>
                                   <div className={style.optionItem}>
@@ -802,6 +994,12 @@ const Navbar = ({ list }) => {
                                     payload: e.target.value,
                                   })
                                 }
+                                onClick={() => {
+                                  dispatch({
+                                    type: "ALERTVEHICLE",
+                                    payload: false,
+                                  });
+                                }}
                               />
                             </fieldset>
                           </div>
@@ -822,6 +1020,12 @@ const Navbar = ({ list }) => {
                                   payload: e.target.value,
                                 })
                               }
+                              onClick={() => {
+                                dispatch({
+                                  type: "ALERTVEHICLE",
+                                  payload: false,
+                                });
+                              }}
                             />
                           </fieldset>
                         )}
@@ -833,20 +1037,34 @@ const Navbar = ({ list }) => {
                       >
                         <fieldset>
                           <button
-                            disabled={result}
                             type="submit"
                             className={style.main_button}
                             onClick={handleOnSearch}
                           >
                             <SearchIcon /> Search Now
                           </button>
-                          {/* {list && result && <Alert />} */}
-                          {list && result && (
-                            <div className="mt-2 start-0 bg-danger bg-opacity-75 text-light rounded-3 p-3 position-absolute">
-                              <strong>Error! </strong>Total number of persons
-                              are more than total capacity
-                            </div>
-                          )}
+
+                          {list &&
+                            (resultPerson ||
+                              resultCity ||
+                              resultVehicle ||
+                              resultDate ||
+                              resultDateTime) && (
+                              <div className="mt-2 start-0 bg-danger bg-opacity-75 text-light rounded-3 p-3 position-absolute d-flex flex-column align-items-start">
+                                <strong>Error! </strong>
+                                {resultPerson && (
+                                  <div>
+                                    Total number of persons l capacity of rooms
+                                  </div>
+                                )}
+                                {resultCity && <div>Enter city</div>}
+                                {resultVehicle && (
+                                  <div>Enter number of vehicles</div>
+                                )}
+                                {resultDate && <div>Enter Date</div>}
+                                {resultDateTime && <div>Enter Date and time</div>}
+                              </div>
+                            )}
                         </fieldset>
                       </div>
                     </div>

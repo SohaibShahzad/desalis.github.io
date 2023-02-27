@@ -15,7 +15,7 @@ const Dropdown = (props) => {
     <Select
       showSearch
       style={{ width: "100%" }}
-      placeholder="Search to Select"
+      placeholder="City"
       value={
         name === "cityHotel"
           ? city
@@ -34,6 +34,9 @@ const Dropdown = (props) => {
         value: city,
         label: city,
       }))}
+      onClick={() => {
+        dispatch({ type: "ALERTCITY", payload: false });
+      }}
       onChange={(value) => {
         if (name === "cityHotel") {
           dispatch({
