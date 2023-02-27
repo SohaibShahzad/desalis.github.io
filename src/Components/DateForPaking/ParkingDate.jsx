@@ -109,6 +109,7 @@ const ParkingDate = () => {
           });
         }}
         onClick={() => {
+          console.log("click");
           dispatch({
             type: "ALERTDATETIME",
             payload: false,

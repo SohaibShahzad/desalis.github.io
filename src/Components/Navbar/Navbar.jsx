@@ -155,7 +155,7 @@ const Navbar = ({ list }) => {
       }
       if (datesParking[0] === undefined || datesParking[1] === undefined) {
         dispatch({
-          type: "ALERTDATE",
+          type: "ALERTDATETIME",
           payload: true,
         });
       } else {
@@ -1061,9 +1061,8 @@ const Navbar = ({ list }) => {
                                 {resultVehicle && (
                                   <div>Enter number of vehicles</div>
                                 )}
-                                {(resultDate || resultDateTime) && (
-                                  <div>Enter Date</div>
-                                )}
+                                {resultDate && <div>Enter Date</div>}
+                                {resultDateTime && <div>Enter Date and time</div>}
                               </div>
                             )}
                         </fieldset>
