@@ -28,6 +28,12 @@ const Dates = () => {
             payload: val.map((v) => v.format("DD-MM-YYYY")),
           });
         }}
+        onClick={() => {
+          dispatch({
+            type: "ALERTDATE",
+            payload: false,
+          });
+        }}
         required={true}
       />
     </Space>

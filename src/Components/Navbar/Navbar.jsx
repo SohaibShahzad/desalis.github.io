@@ -114,64 +114,125 @@ const Navbar = ({ list }) => {
   };
 
   const handleOnSearch = () => {
-    dispatch({
-      type: "ALERTPERSON",
-      payload: validRoom(),
-    });
+    if (path === "/") {
+      dispatch({
+        type: "ALERTPERSON",
+        payload: validRoom(),
+      });
+      if (city === "") {
+        dispatch({
+          type: "ALERTCITY",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTCITY",
+          payload: false,
+        });
+      }
+      if (dates[0] === undefined || dates[1] === undefined) {
+        dispatch({
+          type: "ALERTDATE",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTDATE",
+          payload: false,
+        });
+      }
+    } else if (path === "/parking") {
+      if (cityParking === "") {
+        dispatch({
+          type: "ALERTCITY",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTCITY",
+          payload: false,
+        });
+      }
+      if (datesParking[0] === undefined || datesParking[1] === undefined) {
+        dispatch({
+          type: "ALERTDATE",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTDATE",
+          payload: false,
+        });
+      }
+      if (path !== "/" && c === "") {
+        dispatch({
+          type: "ALERTVEHICLE",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTVEHICLE",
+          payload: false,
+        });
+      }
+    } else if (path === "/HotelAndParking") {
+      dispatch({
+        type: "ALERTPERSON",
+        payload: validRoom(),
+      });
+      if (cityHotelAndParking === "") {
+        dispatch({
+          type: "ALERTCITY",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTCITY",
+          payload: false,
+        });
+      }
+      if (dates[0] === undefined || dates[1] === undefined) {
+        dispatch({
+          type: "ALERTDATE",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTDATE",
+          payload: false,
+        });
+      }
+      if (c === "") {
+        dispatch({
+          type: "ALERTVEHICLE",
+          payload: true,
+        });
+      } else {
+        dispatch({
+          type: "ALERTVEHICLE",
+          payload: false,
+        });
+      }
+    }
 
     if (
-      (city === "" && path === "/") ||
-      (cityParking === "" && path === "/parking") ||
-      (cityHotelAndParking === "" && path === "/hotelAndParking")
+      (path === "/" &&
+        (city === "" ||
+          dates[0] === undefined ||
+          dates[1] === undefined ||
+          validRoom())) ||
+      (path === "/parking" &&
+        (cityParking === "" ||
+          datesParking[0] === undefined ||
+          datesParking[1] === undefined ||
+          c === "")) ||
+      (path === "/HotelAndParking" &&
+        (cityHotelAndParking === "" ||
+          dates[0] === undefined ||
+          dates[1] === undefined ||
+          validRoom() ||
+          c === ""))
     ) {
-      dispatch({
-        type: "ALERTCITY",
-        payload: true,
-      });
-    } else {
-      dispatch({
-        type: "ALERTCITY",
-        payload: false,
-      });
-    }
-
-    if (path !== "/" && c === "") {
-      dispatch({
-        type: "ALERTVEHICLE",
-        payload: true,
-      });
-    } else {
-      dispatch({
-        type: "ALERTVEHICLE",
-        payload: false,
-      });
-    }
-
-    if (dates[0] === undefined || dates[1] === undefined) {
-      dispatch({
-        type: "ALERTDATE",
-        payload: true,
-      });
-    } else {
-      dispatch({
-        type: "ALERTDATE",
-        payload: false,
-      });
-    }
-
-    if (datesParking[0] === undefined || datesParking[1] === undefined) {
-      dispatch({
-        type: "ALERTDATE",
-        payload: true,
-      });
-    } else {
-      dispatch({
-        type: "ALERTDATE",
-        payload: false,
-      });
-    }
-
-    if (city === "" || dates[0] === undefined || dates[1] === undefined) {
       // alert("Please fill all the fields");
       return;
     }
@@ -212,11 +273,22 @@ const Navbar = ({ list }) => {
         type: "SET_DATE",
         payload: [],
       });
-      dispatch({
-        type: "SET_CITY",
-        payload: "",
-      });
     }
+    dispatch({
+      type: "SET_CITY",
+      payload: "",
+    });
+
+    dispatch({
+      type: "SET_HOTELANDPARKINGCITY",
+      payload: "",
+    });
+
+    dispatch({
+      type: "SET_PARKINGCITY",
+      payload: "",
+    });
+
     dispatch({
       type: "INCREMENT",
       payload: "",
@@ -516,7 +588,15 @@ const Navbar = ({ list }) => {
                         {navSearch ? (
                           <fieldset className="d-flex align-items-center">
                             <HotelIcon className=" me-2" />
-                            <Dropdown name="cityHotel" />
+                            <Dropdown
+                              name="cityHotel"
+                              onClick={() => {
+                                dispatch({
+                                  type: "ALERTCITY",
+                                  payload: false,
+                                });
+                              }}
+                            />
                           </fieldset>
                         ) : nav2 ? (
                           <fieldset className="d-flex align-items-center">
@@ -914,6 +994,12 @@ const Navbar = ({ list }) => {
                                     payload: e.target.value,
                                   })
                                 }
+                                onClick={() => {
+                                  dispatch({
+                                    type: "ALERTVEHICLE",
+                                    payload: false,
+                                  });
+                                }}
                               />
                             </fieldset>
                           </div>
@@ -934,6 +1020,12 @@ const Navbar = ({ list }) => {
                                   payload: e.target.value,
                                 })
                               }
+                              onClick={() => {
+                                dispatch({
+                                  type: "ALERTVEHICLE",
+                                  payload: false,
+                                });
+                              }}
                             />
                           </fieldset>
                         )}
@@ -958,28 +1050,19 @@ const Navbar = ({ list }) => {
                               resultVehicle ||
                               resultDate ||
                               resultDateTime) && (
-                              <div className="mt-2 start-0 bg-danger bg-opacity-75 text-light rounded-3 p-3 position-absolute">
+                              <div className="mt-2 start-0 bg-danger bg-opacity-75 text-light rounded-3 p-3 position-absolute d-flex flex-column align-items-start">
+                                <strong>Error! </strong>
                                 {resultPerson && (
                                   <div>
-                                    <strong>Error! </strong>Total number of
-                                    persons l capacity of rooms
+                                    Total number of persons l capacity of rooms
                                   </div>
                                 )}
-                                {resultCity && (
-                                  <div>
-                                    <strong>Error! </strong>Enter city
-                                  </div>
-                                )}
+                                {resultCity && <div>Enter city</div>}
                                 {resultVehicle && (
-                                  <div>
-                                    <strong>Error! </strong>Enter number of
-                                    vehicles
-                                  </div>
+                                  <div>Enter number of vehicles</div>
                                 )}
                                 {(resultDate || resultDateTime) && (
-                                  <div>
-                                    <strong>Error! </strong>Enter Date
-                                  </div>
+                                  <div>Enter Date</div>
                                 )}
                               </div>
                             )}
