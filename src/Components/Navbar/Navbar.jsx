@@ -98,6 +98,11 @@ const Navbar = ({ list }) => {
       type: "setUserLocation",
       payload: "hotelAndParking",
     });
+  } else {
+    dispatch({
+      type: "setUserLocation",
+      payload: "parking",
+    });
   }
 
   const validRoom = () => {

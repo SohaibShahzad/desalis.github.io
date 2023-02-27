@@ -80,7 +80,7 @@ const List = () => {
             </div>
             <div className={style.lsItem}>
               <label>Check-in Date</label>
-              <span onClick={() => setOpenDate(!openDate)}>
+              <span style={{fontSize:"15px"}} onClick={() => setOpenDate(!openDate)}>
                 {dates[0] ? `${dates[0]} to ${dates[1]}` : null}
               </span>
               {openDate && <Dates />}
