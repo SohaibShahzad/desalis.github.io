@@ -27,6 +27,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import LocalParkingIcon from "@mui/icons-material/LocalParking";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
+import bgrmvblk from "../../images/bgrmvblk.png";
+
 const Navbar = ({ list }) => {
   // Popover Material UI Code
   const [anchorEl, setAnchorEl] = useState(null);
@@ -78,6 +80,8 @@ const Navbar = ({ list }) => {
     });
   };
   const navigate = useNavigate();
+
+  // get location of user
   const { user } = useSelector((state) => state.user);
   if (navSearch) {
     dispatch({
@@ -91,11 +95,9 @@ const Navbar = ({ list }) => {
     });
   }
   const handleOnSearch = () => {
-    if (navSearch) {
-      if (city === "" || dates === []) {
-        alert("Please fill all the fields");
-        return;
-      }
+    if (city === "" || dates === []) {
+      alert("Please fill all the fields");
+      return;
     }
     if (option) {
       dispatch({
@@ -120,19 +122,29 @@ const Navbar = ({ list }) => {
       setNav2(false);
       setNavSearch(false);
     }
-    
-    setOption({
-      adult: 1,
-      children: 0,
-      singleRoom: 1,
-      twinRoom: 0,
-      familyRoom: 0,
-    });
 
-    dispatch({
-      type: "INCREMENT",
-      payload: "",
-    });
+    if (path === "/" || path === "/HotelAndParking") {
+      setOption({
+        adult: 1,
+        children: 0,
+        singleRoom: 1,
+        twinRoom: 0,
+        familyRoom: 0,
+      });
+      dispatch({
+        type: "INCREMENT",
+        payload: "",
+      });
+      dispatch({
+        type: "SET_DATE",
+        payload: [],
+      });
+      dispatch({
+        type: "SET_CITY",
+        payload: "",
+      });
+    }
+    
   }, [path]);
 
   useEffect(() => {
@@ -170,7 +182,9 @@ const Navbar = ({ list }) => {
       let header = $("header").height();
       if (scroll > box - header) {
         $("header").addClass(`${style.background_header}`);
+        $("li a").removeClass(`${style.text_shadow}`);
       } else {
+        $("li a").addClass(`${style.text_shadow}`);
         $("header").removeClass(`${style.background_header}`);
       }
     });
@@ -204,7 +218,12 @@ const Navbar = ({ list }) => {
           <div className="row">
             <div className="col-12">
               <nav className={style.main_nav}>
-                <Link to="/" className={style.logo}></Link>
+                <Link to="/" className={style.logo}>
+                  <img
+                    style={{ width: "100%", height: "100%" }}
+                    src={bgrmvblk}
+                  />
+                </Link>
                 <ul className={style.nav}>
                   <li>
                     <NavLink to="/" className={`${style.text_shadow}`}>

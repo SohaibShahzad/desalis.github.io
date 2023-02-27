@@ -136,7 +136,7 @@
 }
 
 .header_area a.logo {
-  background-image: url(../../images/white-logo.png);
+  /* background-image: url(../../images/bgrmv.png); */
   width: 166px;
   height: 58px;
   display: inline-block;
@@ -152,7 +152,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .background_header .main_nav a.logo {
-  background-image: url(../../images/white-logo.png);
+  /* background-image: url(../../images/bgrmv.png); */
   width: 164px;
   height: 58px;
   display: inline-block;
@@ -774,7 +774,7 @@ div.search_form button i {
   }
 
   .header_area .main_nav a.logo {
-    background-image: url(../../images/white-logo.png);
+    background-image: url(../../images/bgrmvblk.png);
     float: left;
   }
 

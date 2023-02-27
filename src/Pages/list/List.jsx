@@ -27,6 +27,9 @@ const List = () => {
     (state) => state.getStaicHotalParking
   );
 
+  console.log(options)
+  
+
   // Checking City For Hotel and parking
   const checkHotelParkingCity = (hotel_parking_data) => {
     return hotel_parking_data.hotel_city.toLowerCase() === cityHotelAndParking.toLowerCase()
@@ -128,14 +131,14 @@ const List = () => {
                     className={style.lsOptionInput}
                     placeholder={options.children}
                     onChange={(e) =>
-                      e.target.value < 0 || e.target.value === ""
+                      e.target.value < 1 || e.target.value === ""
                         ? dispatch({
                             type: "SET_OPTION",
-                            payload: { ...options, children: 0 },
+                            payload: { ...options, children: 1 },
                           })
                         : dispatch({
                             type: "SET_OPTION",
-                            payload: { ...options, children: e.target.value },
+                            payload: { ...options, adult: e.target.value },
                           })
                     }
                   />
@@ -153,7 +156,7 @@ const List = () => {
                       e.target.value < 1 || e.target.value === ""
                         ? dispatch({
                             type: "SET_OPTION",
-                            payload: { ...options, room: 1 },
+                            payload: { ...options, SingleRoom: 1 },
                           })
                         : dispatch({
                             type: "SET_OPTION",
