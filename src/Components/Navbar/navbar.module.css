@@ -108,11 +108,11 @@
 }
 
 .background_header .main_nav .nav li:hover a {
-  color: #8d99af !important;
+  color: black !important;
 }
 
 .background_header .nav li a.active {
-  color: #8d99af !important;
+  color: black !important;
 }
 
 .header_area {
@@ -149,6 +149,10 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .text_shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.text_shadow:hover {
+  text-shadow: none;
 }
 
 .background_header .main_nav a.logo {
@@ -233,12 +237,12 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .header_area .main_nav .nav li:hover a,
 .header_area .main_nav .nav li a.active {
-  color: #8d99af !important;
+  color: black !important;
 }
 
 .background_header .main_nav .nav li:hover a,
 .background_header .main_nav .nav li a.active {
-  color: #8d99af !important;
+  color: black !important;
   opacity: 1;
 }
 
@@ -487,7 +491,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
   .header_area.header_sticky .nav li a:hover,
   .header_area.header_sticky .nav li a.active {
-    color: #8d99af !important;
+    color: black !important;
     opacity: 1;
   }
 
@@ -561,7 +565,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
   .header_area .main_nav .nav li a:hover {
     background: #eee !important;
-    color: #8d99af !important;
+    color: black !important;
   }
 
   .header_area .main_nav .nav li.has-sub ul.sub-menu {
@@ -619,11 +623,23 @@ input[type="number"]::-webkit-inner-spin-button {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  /* background-image: url(../../images/banner-bg.jpg); */
   padding: 290px 0px 250px 0px;
   position: relative;
   overflow: hidden;
 }
+
+/* .main_banner:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 0.8s;
+  opacity: 0.3;
+  background-color: gray;
+  background-size: 100% 100%;
+} */
 
 .main_banner .top_text {
   text-align: center;
@@ -699,10 +715,10 @@ div.search_form input {
   width: 100%;
   height: 36px;
   background-color: transparent;
-  border: none;
+  border: none !important;
   color: #2a2a2a;
   font-size: 15px;
-  outline: none;
+  outline: none !important;
 }
 
 div.search_form .searchText {
