@@ -8,7 +8,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosNewIcon from "@mui/icons-material/ArrowForwardIos";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Person from "@mui/icons-material/Person";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
@@ -16,6 +16,8 @@ import BedIcon from "@mui/icons-material/Bed";
 import Diversity1TwoToneIcon from "@mui/icons-material/Diversity1TwoTone";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import DoneIcon from "@mui/icons-material/Done";
+import { useMediaQuery } from "@mui/material";
+
 // import useFetch from "../../hooks/useFetch";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -59,11 +61,13 @@ const Hotel = () => {
   let availableParkingSlots =
     selected_hotel.parking_total_slots - selected_hotel.parking_booked_slots;
 
+  
   const handleOpen = (i) => {
     setSlideNumber(i);
     setOpen(true);
   };
 
+  // to move modal left and right
   const handleMove = (direction) => {
     let newSlideNumber;
 
@@ -75,6 +79,9 @@ const Hotel = () => {
 
     setSlideNumber(newSlideNumber);
   };
+
+  //card responsiveness for mobile screen
+  const isXtraSmallScreen = useMediaQuery("(max-width:400px)");
 
   const data = {
     name: "Hotel Pod Roza",
@@ -136,12 +143,27 @@ const Hotel = () => {
     // }
   };
 
+  // To handle see more button
   let [limit, setLimit] = useState(6);
   const handleSeemore = () => {
     limit === data.facilities.length
       ? setLimit(6)
       : setLimit(data.facilities.length);
   };
+
+  // To disable scroll when modal is open
+  useEffect(() => {
+    const disableScroll = () => {
+      if (open) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "visible";
+      }
+    };
+    window.addEventListener("scroll", disableScroll);
+    return () => window.removeEventListener("scroll", disableScroll);
+  }, [open]);
+
   return (
     <div>
       <Navbar list={false} />
@@ -152,7 +174,13 @@ const Hotel = () => {
           {open && (
             <div className="slider">
               <div className="sliderWrapper">
-                <CloseIcon className="close" onClick={() => setOpen(false)} />
+                <CloseIcon
+                  className="close"
+                  onClick={() => {
+                    setOpen(false);
+                    document.body.style.overflow = "visible";
+                  }}
+                />
                 <ArrowBackIosNewIcon
                   className="arrow fs-1"
                   onClick={() => handleMove("l")}
@@ -170,46 +198,59 @@ const Hotel = () => {
             </div>
           )}
           <div className="hotelWrapper">
-            <button className="bookNow">Reserve or Book Now!</button>
-            <h1 className="hotelTitle">
-              {selected_hotel.name
-                ? selected_hotel.name
-                : selected_hotel.hotel_name
-                ? selected_hotel.hotel_name
-                : data.name}
-              {/* {selected_hotel.hotel_name
+            <div className="row p-1">
+              <div className="col-md-9">
+                <h1 className="hotelTitle">
+                  {selected_hotel.name
+                    ? selected_hotel.name
+                    : selected_hotel.hotel_name
+                    ? selected_hotel.hotel_name
+                    : data.name}
+                  {/* {selected_hotel.hotel_name
                 ? selected_hotel.hotel_name
                 : data.name} */}
-            </h1>
-            <div className="hotelAddress">
-              <LocationOnIcon />
-              <span className="">
-                {selected_hotel.country
-                  ? selected_hotel.country
-                  : selected_hotel.hotel_country
-                  ? selected_hotel.hotel_country
-                  : data.address}
-              </span>
-              <span className="">
-                {selected_hotel.city
-                  ? selected_hotel.city
-                  : selected_hotel.hotel_city
-                  ? selected_hotel.hotel_city
-                  : ""}
-              </span>
+                </h1>
+                <div className="hotelAddress">
+                  <LocationOnIcon />
+                  <span className="">
+                    {selected_hotel.country
+                      ? selected_hotel.country
+                      : selected_hotel.hotel_country
+                      ? selected_hotel.hotel_country
+                      : data.address}
+                  </span>
+                  <span className="">
+                    {selected_hotel.city
+                      ? selected_hotel.city
+                      : selected_hotel.hotel_city
+                      ? selected_hotel.hotel_city
+                      : ""}
+                  </span>
+                </div>
+                <span className="hotelDistance">
+                  Excellent location – {data.distance}m from center
+                </span>
+                <span className="hotelPriceHighlight d-block">
+                  Book a stay over ${data.cheapestPrice} at this property and
+                  get a free airport taxi
+                </span>
+              </div>
+              <div className="col-md-3 col-sm-6 col-12 text-start mt-1">
+                <button className="btn btn-primary">
+                  Reserve or Book Now!
+                </button>
+              </div>
             </div>
-            <span className="hotelDistance">
-              Excellent location – {data.distance}m from center
-            </span>
-            <span className="hotelPriceHighlight">
-              Book a stay over ${data.cheapestPrice} at this property and get a
-              free airport taxi
-            </span>
             <div className="hotelImages">
               {data.photos?.map((photo, i) => (
                 <div className="hotelImgWrapper" key={photo}>
                   <img
-                    onClick={() => handleOpen(i)}
+                    onClick={() => {
+                      if (!isXtraSmallScreen) {
+                        window.scrollTo(20, 20);
+                        handleOpen(i);
+                      }
+                    }}
                     src={photo}
                     alt=""
                     className="hotelImg"
@@ -217,8 +258,21 @@ const Hotel = () => {
                 </div>
               ))}
             </div>
-
-            <div className="flex-wrap d-flex justify-content-start">
+            {/* <div className="d-flex flex-wrap justify-content-start align-items-center">
+              {data.facilities.map((item, i) => {
+                if (i <= 12)
+                  return (
+                    <span
+                      className="m-2 align-self-stretch text-dark fw-light border border-secondary font-size"
+                      key={i}
+                    >
+                      {item}
+                    </span>
+                  );
+                return null;
+              })}
+            </div> */}
+            {/* <div className="flex-wrap d-flex justify-content-start">
               {data.facilities.map((item, i) => {
                 if (i <= 12)
                   return (
@@ -231,10 +285,10 @@ const Hotel = () => {
                   );
                 return null;
               })}
-            </div>
+            </div> */}
 
             <div className="shadow p-3 mt-3">
-              <div className="row">
+              {/* <div className="row">
                 <div className="col-12 mb-2 pb-2 border-bottom">
                   <h5>Enjoy some extra spaces</h5>
                 </div>
@@ -300,10 +354,147 @@ const Hotel = () => {
                     anything!
                   </div>
                 </div>
+              </div> */}
+              <div class="row">
+                <div class="col-12 mb-2 pb-2 border-bottom">
+                  <h5>Enjoy some extra spaces</h5>
+                </div>
+                <div class="col-md-6 mb-3 border-end">
+                  <div class="row">
+                    <div class="col-12 mb-3">
+                      <div class="fw-bold">
+                        8 ×{" "}
+                        <a href="/" class="fw-bold">
+                          King Room
+                        </a>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div>
+                          Price for:{" "}
+                          <span class="mx-1">
+                            <i class="fas fa-user"></i>
+                          </span>
+                          <span class="mx-1">
+                            <i class="fas fa-user"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div>
+                        <b>Each unit has:</b>
+                        <br />
+                        Bed: 1 king bed
+                      </div>
+                      <div class="text-success mt-3">
+                        Free cancellation until 2:00 PM on Feb 15, 2023
+                      </div>
+                      <div class="text-success">
+                        NO PREPAYMENT NEEDED – pay at the property
+                      </div>
+                      <div class="mt-3">
+                        <i class="fas fa-utensils"></i>
+                        <span class="ms-2">Breakfast PKR 5,513 (optional)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class={`col-md-2 border-end ${
+                    isXtraSmallScreen ? "d-none" : ""
+                  }`}
+                >
+                  <div class="d-flex flex-column align-items-start">
+                    <div class="fw-bold fs-5">
+                      $
+                      {selected_hotel.price
+                        ? selected_hotel.price + 20
+                        : data.price}
+                    </div>
+                    <div class="mt-2" style={{ fontSize: "12px" }}>
+                      Includes taxes and fees
+                    </div>
+                  </div>
+                </div>
+                <div class={`col-md-4 ${isXtraSmallScreen ? "mt-0" : ""}`}>
+                  <div class="d-flex flex-column align-items-start">
+                    <div class="mt-3" style={{ fontSize: "12px" }}>
+                      8 nights, 13 adults, 3 children
+                    </div>
+                    <div class="fw-bold fs-5">
+                      $
+                      {selected_hotel.price
+                        ? selected_hotel.price + 20
+                        : data.price}
+                    </div>
+                    <div class="mt-2" style={{ fontSize: "12px" }}>
+                      Includes taxes and fees
+                    </div>
+                    {availableParkingSlots ? (
+                      <div class="mt-2" style={{ fontSize: "12px" }}>
+                        Extra 5$ for parking
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <button class="btn btn-primary btn-block mt-3 mb-2">
+                      Reserve your selection
+                    </button>
+                    <div class="mt-2" style={{ fontSize: "12px" }}>
+                      Don't worry – clicking this button won't charge you
+                      anything!
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div className="hotelDetails">
+              {/* <div className="hotelDetailsTexts">
+                <h1 className="hotelTitle">
+                  {selected_hotel ? selected_hotel.name : data.title}
+                </h1>
+                <p className="hotelDesc text-dark fs-6 fw-light">
+                  {selected_hotel ? selected_hotel.description : data.desc}
+                </p>
+                <div>
+                  <h5 className="my-3">Most popular facilities</h5>
+                  <div className="d-flex flex-wrap text-success">
+                    {data.facilities.map((item, i) => {
+                      {
+                        if (i <= limit)
+                          return (
+                            <>
+                              <div key={i}>
+                                <div
+                                  className={`bg-info text-light px-2 py-1 me-3 mb-2 rounded-pill`}
+                                >
+                                  {item}
+                                </div>
+                              </div>
+                            </>
+                          );
+                      }
+                    })}
+
+                    {limit < data.facilities.length && (
+                      <div
+                        onClick={handleSeemore}
+                        className="my-auto text-info text-decoration-underline cursor_pointer"
+                      >
+                        See More
+                      </div>
+                    )}
+
+                    {limit === data.facilities.length && (
+                      <div
+                        onClick={handleSeemore}
+                        className="my-auto text-info text-decoration-underline cursor_pointer"
+                      >
+                        See Less
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div> */}
               <div className="hotelDetailsTexts">
                 <h1 className="hotelTitle">
                   {selected_hotel ? selected_hotel.name : data.title}
@@ -351,6 +542,7 @@ const Hotel = () => {
                   </div>
                 </div>
               </div>
+
               <div className="hotelDetailsPrice">
                 {/* <h1>Perfect for a {days}-night stay!</h1>
                 <span>
