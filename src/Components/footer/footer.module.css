@@ -1,17 +1,17 @@
 .footer {
-  width: 100%;
+  /* width: 100%; */
   font-size: 12px;
   margin-top: 20px;
 }
 
 .fLists {
-  width: 90%;
+  /* width: 90%; */
   margin-bottom: 50px;
 }
 
 .fList {
   list-style: none;
-  padding: 0;
+  padding-left: 10px;
 }
 
 .fListItem {
@@ -26,13 +26,13 @@
 .fText {
   text-align: center;
   color: white;
-  padding-bottom: 10px;
+  /* padding-bottom: 4px; */
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .fLists {
     flex-direction: column;
   }
 
 
-}
+} */
