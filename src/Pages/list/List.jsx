@@ -27,12 +27,14 @@ const List = () => {
     (state) => state.getStaicHotalParking
   );
 
-  console.log(options)
-
+  console.log(options);
 
   // Checking City For Hotel and parking
   const checkHotelParkingCity = (hotel_parking_data) => {
-    return hotel_parking_data.hotel_city.toLowerCase() === cityHotelAndParking.toLowerCase()
+    return (
+      hotel_parking_data.hotel_city.toLowerCase() ===
+      cityHotelAndParking.toLowerCase()
+    );
   };
   // Filtering Data For Hotel and `parking
   let filtered_hotel_parking = [];
@@ -71,7 +73,10 @@ const List = () => {
             <h1 className={style.lsTitle}>Search</h1>
             <div className={style.lsItem}>
               <label>Destination</label>
-              <input placeholder={city} type="text" />
+              <input
+                placeholder={city === "" ? cityHotelAndParking : city}
+                type="text"
+              />
             </div>
             <div className={style.lsItem}>
               <label>Check-in Date</label>
@@ -167,7 +172,9 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <button className="btn btn-primary " onClick={handleClick}>Search</button>
+            <button className="btn btn-primary " onClick={handleClick}>
+              Search
+            </button>
           </div>
           <div className={`col-8 ${style.listResult}`}>
             {loading ? (
@@ -177,7 +184,7 @@ const List = () => {
                 {/* {hotel_data.map((item) => (
                   <Card item={item} key={item._id} />
                 ))} */}
-                {seacrhLoc === "hotel" && 
+                {seacrhLoc === "hotel" &&
                   filtered_data.map((item) => (
                     <Card item={item} key={item._id} />
                   ))}

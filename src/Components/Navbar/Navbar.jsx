@@ -261,7 +261,7 @@ const Navbar = ({ list }) => {
       setNavSearch(false);
     }
 
-    if (path === "/" || path === "/HotelAndParking") {
+    if (path === "/" || path === "/HotelAndParking" || path === "/parking") {
       setOption({
         adult: 1,
         children: 0,
@@ -273,26 +273,27 @@ const Navbar = ({ list }) => {
         type: "SET_DATE",
         payload: [],
       });
+      dispatch({
+        type: "SET_CITY",
+        payload: "",
+      });
+
+      dispatch({
+        type: "SET_HOTELANDPARKINGCITY",
+        payload: "",
+      });
+
+      dispatch({
+        type: "SET_PARKINGCITY",
+        payload: "",
+      });
+
+      dispatch({
+        type: "INCREMENT",
+        payload: "",
+      });
     }
-    dispatch({
-      type: "SET_CITY",
-      payload: "",
-    });
 
-    dispatch({
-      type: "SET_HOTELANDPARKINGCITY",
-      payload: "",
-    });
-
-    dispatch({
-      type: "SET_PARKINGCITY",
-      payload: "",
-    });
-
-    dispatch({
-      type: "INCREMENT",
-      payload: "",
-    });
     dispatch({
       type: "ALERTPERSON",
       payload: false,
@@ -1062,7 +1063,9 @@ const Navbar = ({ list }) => {
                                   <div>Enter number of vehicles</div>
                                 )}
                                 {resultDate && <div>Enter Date</div>}
-                                {resultDateTime && <div>Enter Date and time</div>}
+                                {resultDateTime && (
+                                  <div>Enter Date and time</div>
+                                )}
                               </div>
                             )}
                         </fieldset>

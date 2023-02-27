@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Dropdown = (props) => {
   const dispatch = useDispatch();
-  const cities = ["Lahore", "Karachi", "Islamabad"];
+  const citiesHotel = ["Lahore", "Karachi", "Islamabad"];
+  const citiesParking = ["Tokyo", "London", "Paris"];
+  const citiesHotelAndParking = ["London", "Tokyo", "Sydney"];
   const { name } = props;
   const { city } = useSelector((state) => state.searchCity);
   const { cityParking } = useSelector((state) => state.searchParkingCity);
@@ -30,10 +32,22 @@ const Dropdown = (props) => {
           .toLowerCase()
           .localeCompare((optionB?.label ?? "").toLowerCase())
       }
-      options={cities.map((city) => ({
-        value: city,
-        label: city,
-      }))}
+      options={
+        name === "cityHotel"
+          ? citiesHotel.map((city) => ({
+              value: city,
+              label: city,
+            }))
+          : name === "cityParking"
+          ? citiesParking.map((city) => ({
+              value: city,
+              label: city,
+            }))
+          : citiesHotelAndParking.map((city) => ({
+              value: city,
+              label: city,
+            }))
+      }
       onClick={() => {
         dispatch({ type: "ALERTCITY", payload: false });
       }}
