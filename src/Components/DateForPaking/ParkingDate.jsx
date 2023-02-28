@@ -47,7 +47,17 @@ const ParkingDate = () => {
       };
     }
 
-    // Disable times before the starting time
+    if (type === "end" && dates[0] === dates[1]) {
+      const startingDate = dayjs(dates[0], "DD-MM-YYYY HH:mm").startOf("hour");
+      const endingDate = dayjs(_).startOf("hour");
+
+      if (endingDate.isSame(startingDate, "hour")) {
+        return {
+          disabledHours: () => range(0, startingDate.hour()),
+        };
+      }
+    }
+
     const [start, end] = dates.map((date) => dayjs(date, "DD-MM-YYYY HH:mm"));
     if (type === "end" && start) {
       const startingDate = dayjs(start).startOf("hour");
@@ -87,6 +97,20 @@ const ParkingDate = () => {
     };
   };
 
+  const handleDateChange = (val) => {
+    dispatch({
+      type: "SETPARKING_DATE",
+      payload: val.map((v) => v.format("DD-MM-YYYY HH:00")),
+    });
+
+    if (val.length === 2) {
+      dispatch({
+        type: "ALERTDATETIME",
+        payload: false,
+      });
+    }
+  };
+
   return (
     <Space direction="vertical" size={12}>
       <RangePicker
@@ -102,19 +126,8 @@ const ParkingDate = () => {
           hideDisabledOptions: true,
         }}
         format="DD-MM-YYYY HH:00"
-        onChange={(val) => {
-          dispatch({
-            type: "SETPARKING_DATE",
-            payload: val.map((v) => v.format("DD-MM-YYYY HH:00")),
-          });
-        }}
-        onClick={() => {
-          console.log("click");
-          dispatch({
-            type: "ALERTDATETIME",
-            payload: false,
-          });
-        }}
+        onChange={handleDateChange}
+        // onOpenChange={handlePickerClick}
       />
     </Space>
   );
