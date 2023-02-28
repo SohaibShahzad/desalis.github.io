@@ -16,6 +16,8 @@ const List = () => {
   // Getting Search Location e.g Hotel or Hotel+Prking
   const { seacrhLoc } = useSelector((state) => state.getSearchLocation);
 
+  console.log("From List", seacrhLoc);
+
   // For Hotel and parking
   // Getting City For Hotel and Parking
   const { cityHotelAndParking } = useSelector(
@@ -80,7 +82,10 @@ const List = () => {
             </div>
             <div className={style.lsItem}>
               <label>Check-in Date</label>
-              <span style={{fontSize:"15px"}} onClick={() => setOpenDate(!openDate)}>
+              <span
+                style={{ fontSize: "15px" }}
+                onClick={() => setOpenDate(!openDate)}
+              >
                 {dates[0] ? `${dates[0]} to ${dates[1]}` : null}
               </span>
               {openDate && <Dates />}

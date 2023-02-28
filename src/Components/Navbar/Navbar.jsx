@@ -105,6 +105,11 @@ const Navbar = ({ list }) => {
     });
   }
 
+  // Getting Search Location e.g Hotel or Hotel+Prking
+  const { seacrhLoc } = useSelector((state) => state.getSearchLocation);
+
+  console.log("From Navbar",seacrhLoc);
+
   const validRoom = () => {
     const numOfPerson = options.adult + option.children;
     const totalSingleRoomCapacity = option.singleRoom;
@@ -255,6 +260,7 @@ const Navbar = ({ list }) => {
       ? navigate("/listHotel")
       : navigate(`/ParkingList`);
   };
+  
 
   useEffect(() => {
     if (path === "/") {
@@ -390,7 +396,7 @@ const Navbar = ({ list }) => {
                       Hotels
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          navSearch ? "d-block" : "d-none"
+                          seacrhLoc === "hotel" ? "d-block" : "d-none"
                         }`}
                       />
                     </NavLink>
@@ -400,7 +406,7 @@ const Navbar = ({ list }) => {
                       Parkings
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          !navSearch && !nav2 ? "d-block" : "d-none"
+                          seacrhLoc === "parking" ? "d-block" : "d-none"
                         }`}
                       />
                     </NavLink>
@@ -413,7 +419,7 @@ const Navbar = ({ list }) => {
                       Hotel and Parking
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          nav2 ? "d-block" : "d-none"
+                          seacrhLoc === "hotelAndParking" ? "d-block" : "d-none"
                         }`}
                       />
                     </NavLink>

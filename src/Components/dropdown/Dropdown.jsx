@@ -17,7 +17,7 @@ const Dropdown = (props) => {
     <Select
       showSearch
       style={{ width: "100%" }}
-      placeholder="City"
+      placeholder="city"
       value={
         name === "cityHotel"
           ? city
@@ -26,7 +26,10 @@ const Dropdown = (props) => {
           : cityHotelAndParking
       }
       optionFilterProp="children"
-      filterOption={(input, option) => (option?.label ?? "").includes(input)}
+      // filterOption={(input, option) => (option?.label ?? "").includes(input)}
+      filterOption={(input, option) =>
+        option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
+      }
       filterSort={(optionA, optionB) =>
         (optionA?.label ?? "")
           .toLowerCase()
