@@ -63,7 +63,7 @@ const List = () => {
 
   return (
     <div className="w-100">
-      <Navbar list={false} />
+      <Navbar list={false} className="w-100" />
       <div className={`${style.listContainer}`}>
         <div className={`row justify-content-around ${style.listWrapper}`}>
           <div className={`col-3 ${style.listSearch}`}>
