@@ -55,7 +55,6 @@ const Navbar = ({ list }) => {
   const dispatch = useDispatch();
   const { city } = useSelector((state) => state.searchCity);
   const { cityParking } = useSelector((state) => state.searchParkingCity);
-  // const { searchLoc } = useSelector((state) => state.getSearchLocation);
   const { cityHotelAndParking } = useSelector(
     (state) => state.searchHotelAndParkingCity
   );
@@ -88,23 +87,6 @@ const Navbar = ({ list }) => {
     });
   };
   const navigate = useNavigate();
-
-  // if (navSearch) {
-  //   dispatch({
-  //     type: "setUserLocation",
-  //     payload: "hotel",
-  //   });
-  // } else if (nav2) {
-  //   dispatch({
-  //     type: "setUserLocation",
-  //     payload: "hotelAndParking",
-  //   });
-  // } else {
-  //   dispatch({
-  //     type: "setUserLocation",
-  //     payload: "parking",
-  //   });
-  // }
 
   const validRoom = () => {
     const numOfPerson = options.adult + option.children;
@@ -253,30 +235,39 @@ const Navbar = ({ list }) => {
     navSearch
       ? navigate(`/listHotel`)
       : nav2
-      ? navigate("/listHotel")
+      ? navigate("/HotelAndParkingList")
       : navigate(`/ParkingList`);
   };
 
   useEffect(() => {
-    if (path === "/") {
-      setNavSearch(true);
+    if (path === "/" || path === "/listHotel" || path === "/singleHotel") {
       dispatch({
-        type: "setUserLocation",
+        type: "activePath",
         payload: "hotel",
       });
-    } else if (path === "/HotelAndParking") {
-      setNav2(true);
+    } else if (path === "/parking" || path === "/ParkingList") {
       dispatch({
-        type: "setUserLocation",
+        type: "activePath",
+        payload: "parking",
+      });
+    } else if (
+      path === "/HotelAndParking" ||
+      path === "/HotelAndParkingList" ||
+      path === "/singleHotelAndParking"
+    ) {
+      dispatch({
+        type: "activePath",
         payload: "hotelAndParking",
       });
+    }
+
+    if (path === "/") {
+      setNavSearch(true);
+    } else if (path === "/HotelAndParking") {
+      setNav2(true);
     } else if (path === "/parking") {
       setNav2(false);
       setNavSearch(false);
-      dispatch({
-        type: "setUserLocation",
-        payload: "parking",
-      });
     }
 
     if (path === "/" || path === "/HotelAndParking" || path === "/parking") {
@@ -412,11 +403,7 @@ const Navbar = ({ list }) => {
                       Hotels
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          (activePath === "hotel" || path === "/") &&
-                          path !== "/HotelAndParking" &&
-                          path !== "/parking"
-                            ? "d-block"
-                            : "d-none"
+                          activePath === "hotel" ? "d-block" : "d-none"
                         }`}
                       />
                     </NavLink>
@@ -435,11 +422,7 @@ const Navbar = ({ list }) => {
                       Parkings
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          (activePath === "parking" || path === "/parking") &&
-                          path !== "/" &&
-                          path !== "/HotelAndParking"
-                            ? "d-block"
-                            : "d-none"
+                          activePath === "parking" ? "d-block" : "d-none"
                         }`}
                       />
                     </NavLink>
@@ -458,10 +441,7 @@ const Navbar = ({ list }) => {
                       Hotel and Parking
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          (activePath === "hotelAndParking" ||
-                            path === "/HotelAndParking") &&
-                          (path !== "/" &&
-                          path !== "/parking")
+                          activePath === "hotelAndParking"
                             ? "d-block"
                             : "d-none"
                         }`}

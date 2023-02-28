@@ -25,6 +25,7 @@ const Card = (props) => {
     hotel_city,
     hotel_country,
   } = props.item;
+  const {activePath} = useSelector((state) => state.activePath);
   const { cardData } = useSelector((state) => state.setCardData);
   const { options } = useSelector((state) => state.searchOption);
   const { city } = useSelector((state) => state.searchCity);
@@ -60,7 +61,7 @@ const Card = (props) => {
       payload: props.item,
     });
     // console.log(props.item);
-    navigate("/singleHotel");
+    activePath==="hotel"?navigate("/singleHotel"):navigate("/singleHotelAndParking")
   };
   // const [card, setCard] = useState({
   //   name: "",

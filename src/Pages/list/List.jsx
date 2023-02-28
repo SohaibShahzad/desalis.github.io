@@ -13,8 +13,7 @@ const List = () => {
   const { options } = useSelector((state) => state.searchOption);
   const { hotel_data } = useSelector((state) => state.getStaticHotels);
 
-  // Getting Search Location e.g Hotel or Hotel+Prking
-  const { searchLoc } = useSelector((state) => state.getSearchLocation);
+  const { activePath } = useSelector((state) => state.activePath);
 
   // For Hotel and parking
   // Getting City For Hotel and Parking
@@ -78,7 +77,10 @@ const List = () => {
             </div>
             <div className={style.lsItem}>
               <label>Check-in Date</label>
-              <span style={{fontSize:"15px"}} onClick={() => setOpenDate(!openDate)}>
+              <span
+                style={{ fontSize: "15px" }}
+                onClick={() => setOpenDate(!openDate)}
+              >
                 {dates[0] ? `${dates[0]} to ${dates[1]}` : null}
               </span>
               {openDate && <Dates />}
@@ -182,11 +184,11 @@ const List = () => {
                 {/* {hotel_data.map((item) => (
                   <Card item={item} key={item._id} />
                 ))} */}
-                {searchLoc === "hotel" &&
+                {activePath === "hotel" &&
                   filtered_data.map((item) => (
                     <Card item={item} key={item._id} />
                   ))}
-                {searchLoc === "hotelAndParking" &&
+                {activePath === "hotelAndParking" &&
                   filtered_hotel_parking.map((item) => (
                     <Card item={item} key={item._id} />
                   ))}
