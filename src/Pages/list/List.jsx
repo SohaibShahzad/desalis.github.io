@@ -15,7 +15,7 @@ const List = () => {
 
   const { activePath } = useSelector((state) => state.activePath);
 
-  console.log("From List", seacrhLoc);
+  // console.log("From List", seacrhLoc);
 
   // For Hotel and parking
   // Getting City For Hotel and Parking
