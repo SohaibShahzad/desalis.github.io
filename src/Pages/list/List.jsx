@@ -15,6 +15,11 @@ const List = () => {
 
   const { activePath } = useSelector((state) => state.activePath);
 
+  // console.log("From List", seacrhLoc);
+
+  if (window.scroll(0, 0)) {
+    document.body.style.width = "100vw";
+  }
   // For Hotel and parking
   // Getting City For Hotel and Parking
   const { cityHotelAndParking } = useSelector(
@@ -62,11 +67,11 @@ const List = () => {
   };
 
   return (
-    <div className="w-100">
+    <div className="w-100" style={{overflowX:'hidden' }}>
       <Navbar list={false} className="w-100" />
       <div className={`${style.listContainer}`}>
         <div className={`row justify-content-around ${style.listWrapper}`}>
-          <div className={`col-3 ${style.listSearch}`}>
+          <div className={`col-3 ${style.listSearch}` }>
             <h1 className={style.lsTitle}>Search</h1>
             <div className={style.lsItem}>
               <label>Destination</label>
