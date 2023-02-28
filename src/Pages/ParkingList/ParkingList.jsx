@@ -56,7 +56,7 @@ const ParkingList = () => {
   //   },
   // ];
   return (
-    <div>
+    <div style={{overflowX:'hidden'}}>
       <Navbar list={false} />
       <div className="mt-3 row">
         {filtered_data === [] ? (

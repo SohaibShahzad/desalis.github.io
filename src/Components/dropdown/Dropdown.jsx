@@ -28,8 +28,10 @@ const Dropdown = (props) => {
       // }
       optionFilterProp="children"
       // filterOption={(input, option) => (option?.label ?? "").includes(input)}
+      // option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
       filterOption={(input, option) =>
-        option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
+        option?.label.toLowerCase().slice(0, input.length) ===
+        input.toLowerCase()
       }
       filterSort={(optionA, optionB) =>
         (optionA?.label ?? "")

@@ -52,7 +52,7 @@
 }
 
 .options {
-  z-index: 2;
+  /* z-index: 10; */
   position: absolute;
   top: 50px;
   background-color: white;
@@ -63,11 +63,22 @@
 }
 
 .optionItem {
-  width: 300px;
+  width: 370px;
+  /* width:max-content; */
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* justify-content: space-between; */
+  /* align-items: center; */
   margin: 10px;
+}
+
+@media (max-width: 400px) {
+  .optionItem {
+    width: 250px;
+    /* width:max-content; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+  }
+
 }
 
 .optionCounter {
@@ -79,8 +90,9 @@
 }
 
 .optionCounterButton {
-  width: 20px !important;
-  height: 20px !important;
+  /* margin-left: 10px; */
+  width: 5px !important;
+  height: 5px !important;
   border: 1px solid #0071c2 !important;
   color: #0071c2 !important;
   cursor: pointer;
