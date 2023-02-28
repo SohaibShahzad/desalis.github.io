@@ -24,6 +24,7 @@ import { alertCity } from "./reducer/alertCity";
 import { alertVehicle } from "./reducer/alertVehicle";
 import { alertDate } from "./reducer/alertDate";
 import { alertDateTime } from "./reducer/alertDateTime";
+import { activePath } from "./reducer/activePath";
 
 const store = configureStore({
   reducer: {
@@ -50,6 +51,7 @@ const store = configureStore({
     vehicleAlert: alertVehicle,
     dateAlert: alertDate,
     dateTimeAlert: alertDateTime,
+    activePath: activePath,
     getStaticParking: Parking_Static_Data,
     getStaicHotalParking: Hotel_Parking_Static_Data,
     getSearchLocation: setSearchLoaction,

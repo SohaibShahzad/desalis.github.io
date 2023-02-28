@@ -1,11 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
-  seacrhLoc: ''
+  searchLoc: "",
 };
 
 export const setSearchLoaction = createReducer(initialState, {
   setUserLocation: (state, action) => {
-    state.seacrhLoc = action.payload;
+    state.searchLoc = action.payload;
   },
 });

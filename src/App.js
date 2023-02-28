@@ -31,6 +31,8 @@ function App() {
         <Route path="/parking" element={<Parking />} />
         <Route path="/ParkingList" element={<ParkingList />} />
         <Route path="/HotelAndParking" element={<HotelAndParking />} />
+        <Route path="/HotelAndParkingList" element={<List />} />
+        <Route path="/singleHotelAndParking" element={<Hotel />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/listproperty" element={<Listing />} />
         <Route path="/roomcard" element={<Roomcard />} />

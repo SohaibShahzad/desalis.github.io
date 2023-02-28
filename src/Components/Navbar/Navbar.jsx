@@ -55,7 +55,6 @@ const Navbar = ({ list }) => {
   const dispatch = useDispatch();
   const { city } = useSelector((state) => state.searchCity);
   const { cityParking } = useSelector((state) => state.searchParkingCity);
-  // const { seacrhLoc } = useSelector((state) => state.getSearchLocation);
   const { cityHotelAndParking } = useSelector(
     (state) => state.searchHotelAndParkingCity
   );
@@ -67,6 +66,7 @@ const Navbar = ({ list }) => {
   const { resultDate } = useSelector((state) => state.dateAlert);
   const { resultDateTime } = useSelector((state) => state.dateTimeAlert);
   const { c } = useSelector((state) => state.searchVehicle);
+  const { activePath } = useSelector((state) => state.activePath);
   const location = useLocation();
   const path = location.pathname;
   const [navSearch, setNavSearch] = useState(false);
@@ -75,6 +75,8 @@ const Navbar = ({ list }) => {
   const [openOptions, setOpenOptions] = useState(false);
   const { options } = useSelector((state) => state.searchOption);
   const [option, setOption] = useState(options);
+  // get location of user
+  const { user } = useSelector((state) => state.user);
 
   const handleOption = (name, operation) => {
     setOption((prev) => {
@@ -85,25 +87,6 @@ const Navbar = ({ list }) => {
     });
   };
   const navigate = useNavigate();
-
-  // get location of user
-  const { user } = useSelector((state) => state.user);
-  if (navSearch) {
-    dispatch({
-      type: "setUserLocation",
-      payload: "hotel",
-    });
-  } else if (nav2) {
-    dispatch({
-      type: "setUserLocation",
-      payload: "hotelAndParking",
-    });
-  } else {
-    dispatch({
-      type: "setUserLocation",
-      payload: "parking",
-    });
-  }
 
   const validRoom = () => {
     const numOfPerson = options.adult + option.children;
@@ -252,16 +235,37 @@ const Navbar = ({ list }) => {
     navSearch
       ? navigate(`/listHotel`)
       : nav2
-      ? navigate("/listHotel")
+      ? navigate("/HotelAndParkingList")
       : navigate(`/ParkingList`);
   };
 
   useEffect(() => {
+    if (path === "/" || path === "/listHotel" || path === "/singleHotel") {
+      dispatch({
+        type: "activePath",
+        payload: "hotel",
+      });
+    } else if (path === "/parking" || path === "/ParkingList") {
+      dispatch({
+        type: "activePath",
+        payload: "parking",
+      });
+    } else if (
+      path === "/HotelAndParking" ||
+      path === "/HotelAndParkingList" ||
+      path === "/singleHotelAndParking"
+    ) {
+      dispatch({
+        type: "activePath",
+        payload: "hotelAndParking",
+      });
+    }
+
     if (path === "/") {
       setNavSearch(true);
     } else if (path === "/HotelAndParking") {
       setNav2(true);
-    } else {
+    } else if (path === "/parking") {
       setNav2(false);
       setNavSearch(false);
     }
@@ -386,21 +390,39 @@ const Navbar = ({ list }) => {
                 </Link>
                 <ul className={style.nav}>
                   <li>
-                    <NavLink to="/" className={`${style.text_shadow}`}>
+                    <NavLink
+                      to="/"
+                      className={`${style.text_shadow}`}
+                      onClick={() => {
+                        dispatch({
+                          type: "activePath",
+                          payload: "hotel",
+                        });
+                      }}
+                    >
                       Hotels
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          navSearch ? "d-block" : "d-none"
+                          activePath === "hotel" ? "d-block" : "d-none"
                         }`}
                       />
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/parking" className={style.text_shadow}>
+                    <NavLink
+                      to="/parking"
+                      className={style.text_shadow}
+                      onClick={() => {
+                        dispatch({
+                          type: "activePath",
+                          payload: "parking",
+                        });
+                      }}
+                    >
                       Parkings
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          !navSearch && !nav2 ? "d-block" : "d-none"
+                          activePath === "parking" ? "d-block" : "d-none"
                         }`}
                       />
                     </NavLink>
@@ -409,11 +431,19 @@ const Navbar = ({ list }) => {
                     <NavLink
                       to="/HotelAndParking"
                       className={style.text_shadow}
+                      onClick={() => {
+                        dispatch({
+                          type: "activePath",
+                          payload: "hotelAndParking",
+                        });
+                      }}
                     >
                       Hotel and Parking
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          nav2 ? "d-block" : "d-none"
+                          activePath === "hotelAndParking"
+                            ? "d-block"
+                            : "d-none"
                         }`}
                       />
                     </NavLink>
