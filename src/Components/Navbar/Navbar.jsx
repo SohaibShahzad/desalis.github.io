@@ -412,7 +412,11 @@ const Navbar = ({ list }) => {
                       Hotels
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          activePath === "hotel" ? "d-block" : "d-none"
+                          (activePath === "hotel" || path === "/") &&
+                          path !== "/HotelAndParking" &&
+                          path !== "/parking"
+                            ? "d-block"
+                            : "d-none"
                         }`}
                       />
                     </NavLink>
@@ -431,7 +435,11 @@ const Navbar = ({ list }) => {
                       Parkings
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          activePath === "parking" ? "d-block" : "d-none"
+                          (activePath === "parking" || path === "/parking") &&
+                          path !== "/" &&
+                          path !== "/HotelAndParking"
+                            ? "d-block"
+                            : "d-none"
                         }`}
                       />
                     </NavLink>
@@ -450,7 +458,10 @@ const Navbar = ({ list }) => {
                       Hotel and Parking
                       <hr
                         className={`mt-0 ${style.activeTab} ${
-                          activePath === "hotelAndParking"
+                          (activePath === "hotelAndParking" ||
+                            path === "/HotelAndParking") &&
+                          (path !== "/" &&
+                          path !== "/parking")
                             ? "d-block"
                             : "d-none"
                         }`}
