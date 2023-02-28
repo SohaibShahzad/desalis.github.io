@@ -17,7 +17,8 @@ const Dropdown = (props) => {
     <Select
       showSearch
       style={{ width: "100%" }}
-      placeholder="city"
+      
+      placeholder="City"
       value={
         name === "cityHotel"
           ? city
