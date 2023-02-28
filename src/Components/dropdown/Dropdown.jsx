@@ -16,16 +16,16 @@ const Dropdown = (props) => {
   return (
     <Select
       showSearch
+      bordered={false}
       style={{ width: "100%" }}
-      
-      placeholder="City"
-      value={
-        name === "cityHotel"
-          ? city
-          : name === "cityParking"
-          ? cityParking
-          : cityHotelAndParking
-      }
+      placeholder={"Select the city"}
+      // value={
+      //   name === "cityHotel"
+      //     ? city
+      //     : name === "cityParking"
+      //     ? cityParking
+      //     : cityHotelAndParking
+      // }
       optionFilterProp="children"
       // filterOption={(input, option) => (option?.label ?? "").includes(input)}
       filterOption={(input, option) =>
