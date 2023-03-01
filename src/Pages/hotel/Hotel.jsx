@@ -61,7 +61,6 @@ const Hotel = () => {
   let availableParkingSlots =
     selected_hotel.parking_total_slots - selected_hotel.parking_booked_slots;
 
-  
   const handleOpen = (i) => {
     setSlideNumber(i);
     setOpen(true);
@@ -165,7 +164,7 @@ const Hotel = () => {
   }, [open]);
 
   return (
-    <div>
+    <div style={{ overflow: "hidden" }}>
       <Navbar list={false} />
       {false ? (
         "loading"
@@ -355,27 +354,27 @@ const Hotel = () => {
                   </div>
                 </div>
               </div> */}
-              <div class="row">
-                <div class="col-12 mb-2 pb-2 border-bottom">
+              <div className="row">
+                <div className="col-12 mb-2 pb-2 border-bottom">
                   <h5>Enjoy some extra spaces</h5>
                 </div>
-                <div class="col-md-6 mb-3 border-end">
-                  <div class="row">
-                    <div class="col-12 mb-3">
-                      <div class="fw-bold">
+                <div className="col-md-6 mb-3 border-end">
+                  <div className="row">
+                    <div className="col-12 mb-3">
+                      <div className="fw-bold">
                         8 ×{" "}
-                        <a href="/" class="fw-bold">
+                        <a href="/" className="fw-bold">
                           King Room
                         </a>
                       </div>
-                      <div class="d-flex align-items-center">
+                      <div className="d-flex align-items-center">
                         <div>
                           Price for:{" "}
-                          <span class="mx-1">
-                            <i class="fas fa-user"></i>
+                          <span className="mx-1">
+                            <i className="fas fa-user"></i>
                           </span>
-                          <span class="mx-1">
-                            <i class="fas fa-user"></i>
+                          <span className="mx-1">
+                            <i className="fas fa-user"></i>
                           </span>
                         </div>
                       </div>
@@ -384,61 +383,61 @@ const Hotel = () => {
                         <br />
                         Bed: 1 king bed
                       </div>
-                      <div class="text-success mt-3">
+                      <div className="text-success mt-3">
                         Free cancellation until 2:00 PM on Feb 15, 2023
                       </div>
-                      <div class="text-success">
+                      <div className="text-success">
                         NO PREPAYMENT NEEDED – pay at the property
                       </div>
-                      <div class="mt-3">
-                        <i class="fas fa-utensils"></i>
-                        <span class="ms-2">Breakfast PKR 5,513 (optional)</span>
+                      <div className="mt-3">
+                        <i className="fas fa-utensils"></i>
+                        <span className="ms-2">Breakfast PKR 5,513 (optional)</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  class={`col-md-2 border-end ${
+                  className={`col-md-2 border-end ${
                     isXtraSmallScreen ? "d-none" : ""
                   }`}
                 >
-                  <div class="d-flex flex-column align-items-start">
-                    <div class="fw-bold fs-5">
+                  <div className="d-flex flex-column align-items-start">
+                    <div className="fw-bold fs-5">
                       $
                       {selected_hotel.price
                         ? selected_hotel.price + 20
                         : data.price}
                     </div>
-                    <div class="mt-2" style={{ fontSize: "12px" }}>
+                    <div className="mt-2" style={{ fontSize: "12px" }}>
                       Includes taxes and fees
                     </div>
                   </div>
                 </div>
-                <div class={`col-md-4 ${isXtraSmallScreen ? "mt-0" : ""}`}>
-                  <div class="d-flex flex-column align-items-start">
-                    <div class="mt-3" style={{ fontSize: "12px" }}>
+                <div className={`col-md-4 ${isXtraSmallScreen ? "mt-0" : ""}`}>
+                  <div className="d-flex flex-column align-items-start">
+                    <div className="mt-3" style={{ fontSize: "12px" }}>
                       8 nights, 13 adults, 3 children
                     </div>
-                    <div class="fw-bold fs-5">
+                    <div className="fw-bold fs-5">
                       $
                       {selected_hotel.price
                         ? selected_hotel.price + 20
                         : data.price}
                     </div>
-                    <div class="mt-2" style={{ fontSize: "12px" }}>
+                    <div className="mt-2" style={{ fontSize: "12px" }}>
                       Includes taxes and fees
                     </div>
                     {availableParkingSlots ? (
-                      <div class="mt-2" style={{ fontSize: "12px" }}>
+                      <div className="mt-2" style={{ fontSize: "12px" }}>
                         Extra 5$ for parking
                       </div>
                     ) : (
                       ""
                     )}
-                    <button class="btn btn-primary btn-block mt-3 mb-2">
+                    <button className="btn btn-primary btn-block mt-3 mb-2">
                       Reserve your selection
                     </button>
-                    <div class="mt-2" style={{ fontSize: "12px" }}>
+                    <div className="mt-2" style={{ fontSize: "12px" }}>
                       Don't worry – clicking this button won't charge you
                       anything!
                     </div>
