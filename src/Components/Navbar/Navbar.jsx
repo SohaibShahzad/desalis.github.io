@@ -607,7 +607,7 @@ const Navbar = ({ list }) => {
           <div
             className={style.main_banner}
             style={{
-              backgroundImage: `linear-gradient(0deg, rgba(239, 243, 247,0.1), rgb(239, 243, 247,0.2)),url(${
+              backgroundImage: `linear-gradient(0deg, rgba(33, 33, 33,0.4), rgb(33, 33, 33,0.5)),url(${
                 navSearch ? hotel : nav2 ? hotelparking : parking
               })`,
             }}
