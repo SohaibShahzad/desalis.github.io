@@ -386,7 +386,7 @@ const Navbar = ({ list }) => {
           <div className="row">
             <div className="col-12">
               <nav className={style.main_nav}>
-                <Link to="/" className={style.logo}>
+                <Link to="/" className={`${style.logo} ms-4`}>
                   <img
                     alt="logo"
                     style={{ width: "100%", height: "100%" }}
