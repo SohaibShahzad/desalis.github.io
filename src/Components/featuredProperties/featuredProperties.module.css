@@ -33,11 +33,11 @@
 }
 
 .fpRating > button {
-  background-color: #003580;
+  /* background-color: #003580; */
   color: white;
-  border: none;
-  padding: 3px;
-  margin-right: 10px;
+  /* border: none; */
+  /* padding: 3px; */
+  /* margin-right: 10px; */
   font-weight: bold;
 }
 
