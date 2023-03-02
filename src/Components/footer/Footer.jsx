@@ -4,7 +4,7 @@ import MailList from "../mailList/MailList";
 import { useMediaQuery } from "@mui/material";
 
 const Footer = () => {
-  const isXtraSmallScreen = useMediaQuery("(max-width:400px)");
+  const isXtraSmallScreen = useMediaQuery("(max-width:450px)");
 
   return (
     <footer
@@ -14,78 +14,68 @@ const Footer = () => {
       <div className="container text-md-left">
         <div
           className={`row  ${
-            isXtraSmallScreen ? "text-center" : "text-start"
+            isXtraSmallScreen ? "text-start" : "text-start"
           } text-md-left justify-content-center`}
         >
-          <div className="col-lg-3 my-1 col-md-6 col-sm-4 col-4">
+          <div
+            className={`col-lg-3 ${
+              isXtraSmallScreen ? "ps-4" : ""
+            } my-1 col-md-6 col-sm-4 col-4`}
+          >
             <ul className={style.fList}>
               <li className={style.fListItem}>
-                <Link to="/">Countries</Link>
+                <Link to="/" className="d-block">
+                  Home
+                </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Regions</Link>
+                <Link to="/parking">Parking</Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Cities</Link>
-              </li>
-              <li className={style.fListItem}>
-                <Link to="/">Districts</Link>
-              </li>
-              <li className={style.fListItem}>
-                <Link to="/">Airports</Link>
-              </li>
-              <li className={style.fListItem}>
-                <Link to="/">Hotels</Link>
+                <Link to="/">Properties</Link>
               </li>
             </ul>
           </div>
-          <div className="col-lg-3 my-1 col-md-6 col-sm-4 col-4">
+          <div
+            className={`col-lg-3 ${
+              isXtraSmallScreen ? "ps-4" : ""
+            } my-1 col-md-6 col-sm-4 col-4`}
+          >
             <ul className={style.fList}>
               <li className={style.fListItem}>
-                <Link to="/">Home</Link>
-              </li>
-              <li className={style.fListItem}>
-                <Link to="/">Apartments</Link>
+                <Link to="/">Hotels</Link>
               </li>
               <li className={style.fListItem}>
                 <Link to="/">Resorts</Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Villas</Link>
-              </li>
-              <li className={style.fListItem}>
-                <Link to="/">Hostels</Link>
-              </li>
-              <li className={style.fListItem}>
-                <Link to="/">Guest houses</Link>
+                <Link to="/">Cities</Link>
               </li>
             </ul>
           </div>
-          <div className="col-lg-3 my-1 col-md-6 col-sm-4 col-4">
+          <div
+            className={`col-lg-3 ${
+              isXtraSmallScreen ? "ps-4" : ""
+            } my-1 col-md-6 col-sm-4 col-4`}
+          >
             <ul className={style.fList}>
               <li className={style.fListItem}>
-                <Link to="/">Unique places</Link>
+                <Link to="/">About </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Reviews</Link>
+                <Link to="/">Contact </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Travel articles </Link>
-              </li>
-              <li className={style.fListItem}>
-                <Link to="/">Travel Communities</Link>
-              </li>
-              <li className={style.fListItem}>
-                <Link to="/">Deals</Link>
+                <Link to="/signin">Login</Link>
               </li>
             </ul>
           </div>
           <div className="col-lg-3 my-1 text-center col-md-6 col-sm-12 col-12">
             <MailList />
           </div>
-          <hr className="mt-1" />
-          <div className="row align-items-center">
-            <div className="text-center">Copyright © 2022 Lamabooking.</div>
+          <hr className="mt-1 " />
+          <div className="row m-0">
+            <div className="text-center ">Copyright © 2022 Lamabooking.</div>
           </div>
         </div>
       </div>
@@ -227,3 +217,89 @@ export default Footer;
 //     "(min-width:601px) and (max-width:960px)"
 //   );
 //   const isLargeScreen = useMediaQuery("(min-width:961px)");
+
+{
+  /* <footer
+      className="pt-4 pb-4 text-white custom-footer"
+      style={{ backgroundColor: "#003580", marginTop: "25px" }}
+    >
+      <div className="container text-md-left">
+        <div
+          className={`row  ${
+            isXtraSmallScreen ? "text-center" : "text-start"
+          } text-md-left justify-content-center`}
+        >
+          <div className="col-lg-3 my-1 col-md-6 col-sm-4 col-4">
+            <ul className={style.fList}>
+              <li className={style.fListItem}>
+                <Link to="/">Countries</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Regions</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Cities</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Districts</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Airports</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Hotels</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="col-lg-3 my-1 col-md-6 col-sm-4 col-4">
+            <ul className={style.fList}>
+              <li className={style.fListItem}>
+                <Link to="/">Home</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Apartments</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Resorts</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Villas</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Hostels</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Guest houses</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="col-lg-3 my-1 col-md-6 col-sm-4 col-4">
+            <ul className={style.fList}>
+              <li className={style.fListItem}>
+                <Link to="/">Unique places</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Reviews</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Travel articles </Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Travel Communities</Link>
+              </li>
+              <li className={style.fListItem}>
+                <Link to="/">Deals</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="col-lg-3 my-1 text-center col-md-6 col-sm-12 col-12">
+            <MailList />
+          </div>
+          <hr className="mt-1" />
+          <div className="row align-items-center">
+            <div className="text-center">Copyright © 2022 Lamabooking.</div>
+          </div>
+        </div>
+      </div>
+    </footer> */
+}
