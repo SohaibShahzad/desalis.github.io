@@ -332,8 +332,6 @@ const Navbar = ({ list }) => {
       type: "ALERTDATETIME",
       payload: false,
     });
-
-    window.scrollTo(0, 0);
   }, [path]);
 
   useEffect(() => {
@@ -357,6 +355,10 @@ const Navbar = ({ list }) => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   // const location = window.location.pathname;
   // const dispatch = useDispatch();
@@ -386,7 +388,7 @@ const Navbar = ({ list }) => {
           <div className="row">
             <div className="col-12">
               <nav className={style.main_nav}>
-                <Link to="/" className={style.logo}>
+                <Link to="/" className={`${style.logo} ms-4`}>
                   <img
                     alt="logo"
                     style={{ width: "100%", height: "100%" }}
