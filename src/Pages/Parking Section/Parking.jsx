@@ -24,9 +24,12 @@ import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { pink } from "@mui/material/colors";
+import { useMediaQuery } from "@mui/material";
 
 const Parking = () => {
   const [age, setAge] = useState("");
+
+  const isXtraSmallScreen = useMediaQuery("(max-width:450px)");
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -144,43 +147,53 @@ const Parking = () => {
 
       {/* <!-- about section --> */}
 
-      <section className={`${style.about_section} ${style.layout_padding}`}>
+      <section
+        className={`${style.about_section} ${
+          isXtraSmallScreen ? "" : style.layout_padding
+        } ${isXtraSmallScreen ? "pt-3" : ""}`}
+      >
         <div className={` container `}>
-          <div className={`${style.heading_container}`}>
-            <h2>About Us</h2>
-            <p>
+          <div className={``}>
+            <h3 className="fw-bold ">About Us</h3>
+            <p className={`text-start ${isXtraSmallScreen ? "my-2" : "mb-2 mt-1"} `}>
               Magni quod blanditiis non minus sed aut voluptatum illum quisquam
               aspernatur ullam vel beatae rerum ipsum voluptatibus
             </p>
           </div>
           <div className="row">
-            <div className="col-lg-6 ">
+            <div className={`col-lg-6 ${isXtraSmallScreen ? "pt-0 mt-0" : ""}`}>
               <div className={`${style.img_box}`}>
                 <img
                   src={about}
                   style={{ boxShadow: "-2px 12px 22px -5px rgba(0,0,0,0.31)" }}
-                  className="rounded-1"
+                  className="rounded-1 mt-0 pt-0"
                   alt=""
                 />
               </div>
             </div>
-            <div className="col-lg-6">
-              <div className={`${style.detail_box}`}>
-                <h3>We Are Here For Help</h3>
-                <p>
+            <div className={`col-lg-6 ${isXtraSmallScreen ? "pt-3" : ""}`}>
+              <div className={``}>
+                <h3 className={`fw-bold ${isXtraSmallScreen ? "my-1" : "mb-2"}`}>
+                  We Are Here For Help
+                </h3>
+                <p className="text-start">
                   There are many variations of passages of Lorem Ipsum
                   available, but the majority have suffered alteration in some
                   form, by injected humour, or randomised words which don't look
                   even slightly believable. If you are going to use a passage to
                   be sure there isn't anything the middle of text.
                 </p>
-                <p>
+                <p className="text-start">
                   Molestiae odio earum non qui cumque provident voluptates,
                   repellendus exercitationem, possimus at iste corrupti officiis
                   unde alias eius ducimus reiciendis soluta eveniet. Nobis ullam
                   ab omnis quasi expedita.
                 </p>
-                <button className="btn btn-lg btn-primary mt-5">
+                <button
+                  className={`btn btn-lg btn-primary  ${
+                    isXtraSmallScreen ? "mt-3" : "mt-3"
+                  }`}
+                >
                   Read More
                 </button>
               </div>
@@ -194,13 +207,17 @@ const Parking = () => {
       {/* <!-- why section --> */}
 
       <section
-        className={`${style.why_section} ${style.layout_padding_bottom}`}
+        className={`${style.why_section} ${
+          isXtraSmallScreen ? "" : style.layout_padding_bottom
+        } ${isXtraSmallScreen ? "pt-1 mt-1" : ""}`}
       >
         <div className="container">
           <div className="col-md-10 px-0">
             <div className={`${style.heading_container}`}>
-              <h2>Why Choose Us</h2>
-              <p className="text-dark">
+              <h3 className={`fw-bold ${isXtraSmallScreen ? "mb-2" : ""}`}>
+                Why Choose Us
+              </h3>
+              <p className={`text-dark ${isXtraSmallScreen ? "" : "mt-1"}`}>
                 Eaque nostrum quis ad aliquam autem odio assumenda accusamus,
                 consequuntur, iste voluptate voluptates quia non dicta hic
                 repellendus similique a facere earum omnis? Repellendus nemo,
@@ -349,12 +366,16 @@ const Parking = () => {
 
       {/* <!-- client section --> */}
 
-      <section className={`${style.client_section} ${style.layout_padding}`}>
+      <section
+        className={`${style.client_section} ${
+          isXtraSmallScreen ? "" : style.layout_padding
+        }`}
+      >
         <div className="container">
           <div className={`${style.heading_container} col`}>
-            <h2 className="">
+            <h3 className="fw-bold">
               What Says Our <span>Client</span>
-            </h2>
+            </h3>
           </div>
           <div className={`${style.client_container}`}>
             <div className={`${style.carousel_wrap}`}>

@@ -6,8 +6,10 @@ import hotel4 from "../../images/hotelPic4.jpg";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
+import { useMediaQuery } from "@mui/material";
 
 const FeaturedProperties = () => {
+  const isXtraSmallScreen = useMediaQuery("(max-width: 450px)");
   const labels = {
     0.5: "Useless",
     1: "Useless+",
@@ -29,7 +31,7 @@ const FeaturedProperties = () => {
       <div className={style.fp}>
         <div className={style.fpItem}>
           <img src={hotel1} alt="" className={`${style.fpImg} rounded-2`} />
-          <span className={style.fpName}>Luxery Properties</span>
+          <h5 className={`${style.fpName} mt-2`}>Luxery Properties</h5>
           <Box
             className="justify-content-start m-0"
             sx={{
@@ -57,12 +59,17 @@ const FeaturedProperties = () => {
                 </Box>
               )} */}
           </Box>
-          <span className={style.fpCity}>Las Vegas</span>
-          <span className={`${style.fpPrice}`}>
+          <small className={`${style.fpCity} text-muted`}>Las Vegas</small>
+
+          <small className={`${style.fpPrice}`}>
             La Maison d'Eté is set in Poste Lafayette on the...
-          </span>
+          </small>
           <div className={style.fpRating}>
-            <button className="btn btn-primary btn-md btn-block">
+            <button
+              className={`btn btn-primary mt-2 ${
+                isXtraSmallScreen ? "btn-sm" : "btn-md"
+              } btn-block`}
+            >
               Explore Property
             </button>
           </div>
@@ -70,7 +77,7 @@ const FeaturedProperties = () => {
 
         <div className={style.fpItem}>
           <img src={hotel2} alt="" className={`${style.fpImg} rounded-2`} />
-          <span className={style.fpName}>Resorts</span>
+          <h5 className={`${style.fpName} mt-2`}>Resorts</h5>
           <Box
             className="justify-content-start m-0"
             sx={{
@@ -98,12 +105,16 @@ const FeaturedProperties = () => {
                 </Box>
               )} */}
           </Box>
-          <span className={style.fpCity}>California</span>
-          <span className={`${style.fpPrice}`}>
+          <small className={style.fpCity}>California</small>
+          <small className={`${style.fpPrice}`}>
             La Maison d'Eté is set in Poste Lafayette on the...
-          </span>
+          </small>
           <div className={style.fpRating}>
-            <button className="btn btn-primary btn-md btn-block">
+            <button
+              className={`btn btn-primary mt-2 ${
+                isXtraSmallScreen ? "btn-sm" : "btn-md"
+              } btn-block`}
+            >
               Explore Property
             </button>
           </div>
@@ -111,7 +122,7 @@ const FeaturedProperties = () => {
 
         <div className={style.fpItem}>
           <img src={hotel3} alt="" className={`${style.fpImg} rounded-2`} />
-          <span className={style.fpName}>Luxery Hotels</span>
+          <h5 className={`${style.fpName} mt-2`}>Luxery Hotels</h5>
           <Box
             className="justify-content-start m-0"
             sx={{
@@ -139,12 +150,16 @@ const FeaturedProperties = () => {
                 </Box>
               )} */}
           </Box>
-          <span className={style.fpCity}>Maldives</span>
-          <span className={`${style.fpPrice}`}>
+          <small className={style.fpCity}>Maldives</small>
+          <small className={`${style.fpPrice}`}>
             La Maison d'Eté is set in Poste Lafayette on the...
-          </span>
+          </small>
           <div className={style.fpRating}>
-            <button className="btn btn-primary btn-md btn-block">
+            <button
+              className={`btn btn-primary mt-2 ${
+                isXtraSmallScreen ? "btn-sm" : "btn-md"
+              } btn-block`}
+            >
               Explore Property
             </button>
           </div>
@@ -152,13 +167,8 @@ const FeaturedProperties = () => {
 
         <div className={style.fpItem}>
           <img src={hotel4} alt="" className={`${style.fpImg} rounded-2`} />
-          <span className={style.fpName}>Luxery Areas</span>
-          <Box
-            className="justify-content-start m-0"
-            sx={{
-              width: 200,
-            }}
-          >
+          <h5 className={`${style.fpName} mt-2`}>Luxery Areas</h5>
+          <small className="justify-content-start">
             <Rating
               name="hover-feedback"
               value={4}
@@ -179,13 +189,17 @@ const FeaturedProperties = () => {
                   {labels[rating ? rating : hotel_rating]}
                 </Box>
               )} */}
-          </Box>
-          <span className={style.fpCity}>Malaysia</span>
-          <span className={`${style.fpPrice}`}>
+          </small>
+          <small className={style.fpCity}>Malaysia</small>
+          <small className={`${style.fpPrice}`}>
             La Maison d'Eté is set in Poste Lafayette on the...
-          </span>
+          </small>
           <div className={style.fpRating}>
-            <button className="btn btn-primary btn-md btn-block">
+            <button
+              className={`btn btn-primary mt-2 ${
+                isXtraSmallScreen ? "btn-sm" : "btn-md"
+              } btn-block`}
+            >
               Explore Property
             </button>
           </div>
