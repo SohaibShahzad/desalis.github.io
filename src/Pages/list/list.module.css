@@ -6,7 +6,7 @@
 
 .listWrapper {
   width: 100%;
-  max-width: 85%;
+  max-width: 90%;
   gap: 20px;
 }
 
@@ -15,13 +15,13 @@
   padding: 10px;
   border-radius: 10px;
   position: sticky;
-  top: 100px;
+  top: 6vw;
   height: max-content;
 }
 
 .lsTitle {
   font-size: 20px;
-  color: #555;
+  color: white;
   margin-bottom: 10px;
 }
 
@@ -59,7 +59,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  color: #555;
+  color: white;
   font-size: 12px;
 }
 

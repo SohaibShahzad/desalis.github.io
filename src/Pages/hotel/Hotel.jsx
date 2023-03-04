@@ -517,11 +517,7 @@ const Hotel = () => {
                             <>
                               <div key={i}>
                                 <div
-                                  className={`bg-info text-light  py-1  mb-2 rounded-pill ${
-                                    isXtraSmallScreen
-                                      ? " fs-6 p-2 fw-lighter text-light"
-                                      : "me-3 px-2"
-                                  }`}
+                                  className={`bg-info text-light py-1 mb-2 rounded-pill me-3 px-2 fs-6`}
                                 >
                                   {item}
                                 </div>

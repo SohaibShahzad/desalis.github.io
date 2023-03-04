@@ -4,6 +4,7 @@ import { useState } from "react";
 import Card from "../../Components/Card/Card";
 // import useFetch from "../../hooks/useFetch";
 import Dates from "../../Components/date/Date";
+import Footer from "../../Components/footer/Footer";
 import { useSelector, useDispatch } from "react-redux";
 
 const List = () => {
@@ -67,21 +68,21 @@ const List = () => {
   };
 
   return (
-    <div className="w-100" style={{overflowX:'hidden' }}>
+    <div className="container-fluid w-100">
       <Navbar list={false} className="w-100" />
       <div className={`${style.listContainer}`}>
         <div className={`row justify-content-around ${style.listWrapper}`}>
-          <div className={`col-3 ${style.listSearch}` }>
+          <div className={`col-3 ${style.listSearch}`}>
             <h1 className={style.lsTitle}>Search</h1>
             <div className={style.lsItem}>
-              <label>Destination</label>
+              <label style={{ color: "white" }}>Destination</label>
               <input
                 placeholder={city === "" ? cityHotelAndParking : city}
                 type="text"
               />
             </div>
             <div className={style.lsItem}>
-              <label>Check-in Date</label>
+              <label style={{ color: "white" }}>Check-in Date</label>
               <span
                 style={{ fontSize: "15px" }}
                 onClick={() => setOpenDate(!openDate)}
@@ -91,7 +92,7 @@ const List = () => {
               {openDate && <Dates />}
             </div>
             <div className={style.lsItem}>
-              <label>Options</label>
+              <label style={{ color: "white" }}>Options</label>
               <div className={style.lsOptions}>
                 {/* <div className={style.lsOptionItem}>
                   <span className={style.lsOptionText}>
@@ -202,6 +203,7 @@ const List = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

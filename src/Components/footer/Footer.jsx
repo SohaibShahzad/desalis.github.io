@@ -10,24 +10,24 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Footer = () => {
-  const isXtraSmallScreen = useMediaQuery("(max-width:450px)");
-  const isTabletScreen = useMediaQuery("(max-width:768px)");
+  const isXtraSmallScreen = useMediaQuery("(max-width:576px)");
+  // const isTabletScreen = useMediaQuery("(max-width:768px)");
 
   return (
     <footer
-      className="pt-4 pb-4 text-white custom-footer"
+      className="pt-4 pb-4 text-white position-absolute end-0 container-fluid"
       style={{ backgroundColor: "#003580", marginTop: "25px" }}
     >
       <div className="container text-md-left">
         <div
           className={`row  ${
-            isXtraSmallScreen ? "text-start" : "text-start"
-          } text-md-left justify-content-center`}
+            isXtraSmallScreen ? "text-start ms-2" : "text-start"
+          } text-md-left justify-content-between`}
         >
           <div
-            className={`col-lg-3 ${
+            className={`col-lg-5 ${
               isXtraSmallScreen ? "ps-4" : ""
-            } my-1 col-xl-3 col-md-4 col-sm-4 col-12`}
+            } my-1 col-xl-3 col-md-5 col-sm-5 col-7`}
           >
             <h4 className="text-uppercase" style={{ fontSize: "25px" }}>
               Quick Links
@@ -48,9 +48,9 @@ const Footer = () => {
             </ul>
           </div>
           <div
-            className={`col-lg-3 ${
+            className={`col-lg-5 ${
               isXtraSmallScreen ? "ps-4" : ""
-            } my-1 col-xl-3 col-md-4 col-sm-4 col-12`}
+            } my-1 col-xl-3 col-md-5 col-sm-5 col-7`}
           >
             <h4 className="text-uppercase" style={{ fontSize: "25px" }}>
               Company
@@ -69,9 +69,9 @@ const Footer = () => {
             </ul>
           </div>
           <div
-            className={`col-lg-3 ${
+            className={`col-lg-5 ${
               isXtraSmallScreen ? "ps-4" : ""
-            } my-1 col-xl-3 col-md-4 col-sm-4 col-12`}
+            } my-1 col-xl-3 col-md-5 col-sm-5 col-7`}
           >
             <h4 className="text-uppercase" style={{ fontSize: "25px" }}>
               Contact Us
@@ -97,22 +97,28 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="col-lg-12 my-1 col-xl-3 text-center col-md-12 col-sm-12 col-12">
+          <div className="col-lg-5 my-1 col-xl-3 col-md-5 col-sm-5 col-7">
             <MailList />
           </div>
           <hr className="mt-3 " />
           <div className="row m-0">
-            <div className={`${isXtraSmallScreen?'text-center':'text-start'}  col-xl-6 col-md-6 col-12`}>
+            <div
+              className={`${
+                isXtraSmallScreen ? "text-center" : "text-start"
+              }  col-xl-6 col-md-6 col-12`}
+            >
               <InstagramIcon className={`mx-1 fs-1  ${style.insta} `} />
               <FacebookIcon className={`mx-1 fs-1 ${style.facebook}`} />
               <TwitterIcon className={`mx-1 fs-1 ${style.tweeter}`} />
               <LinkedInIcon className={`mx-1 fs-1 ${style.linkedin}`} />
             </div>
             <div
-              className={`${isXtraSmallScreen?'text-center':'text-end'}  col-xl-6 col-md-6 col-12`}
+              className={`${
+                isXtraSmallScreen ? "text-center" : "text-end"
+              }  col-xl-6 col-md-6 col-12`}
               style={{ fontSize: "20px" }}
             >
-              Copyright © 2022 Lamabooking.
+              Copyright © 2022 DESALIS.
             </div>
           </div>
         </div>

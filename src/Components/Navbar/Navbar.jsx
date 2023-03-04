@@ -380,7 +380,7 @@ const Navbar = ({ list }) => {
       <header
         className={`${style.header_area} ${style.header_sticky} ${style.wow} ${
           style.slideInDown
-        } ${!list ? "bg-primary position-static" : ""}`}
+        } ${!list ? "bg-light position-static border-bottom" : ""}`}
         data-wow-duration="0.75s"
         data-wow-delay="0s"
       >
@@ -399,7 +399,7 @@ const Navbar = ({ list }) => {
                   <li>
                     <NavLink
                       to="/"
-                      className={`${style.text_shadow}`}
+                      className={`${!list ? "text-dark" : ""}`}
                       onClick={() => {
                         dispatch({
                           type: "activePath",
@@ -418,7 +418,7 @@ const Navbar = ({ list }) => {
                   <li>
                     <NavLink
                       to="/parking"
-                      className={style.text_shadow}
+                      className={`${!list ? "text-dark" : ""}`}
                       onClick={() => {
                         dispatch({
                           type: "activePath",
@@ -437,7 +437,7 @@ const Navbar = ({ list }) => {
                   <li>
                     <NavLink
                       to="/HotelAndParking"
-                      className={style.text_shadow}
+                      className={`${!list ? "text-dark" : ""}`}
                       onClick={() => {
                         dispatch({
                           type: "activePath",
@@ -462,6 +462,7 @@ const Navbar = ({ list }) => {
                           <span className={style.iconShow}>
                             <Badge color="primary" badgeContent={100} max={999}>
                               <MailIcon
+                                className={`${!list ? "text-dark" : ""}`}
                                 aria-describedby={id}
                                 variant="contained"
                                 onClick={handleClick}
@@ -497,6 +498,7 @@ const Navbar = ({ list }) => {
                           </span>
                         </NavLink>
                       </li>
+
                       <li>
                         <NavLink to="/">
                           <span className={style.iconShow}>
@@ -506,6 +508,7 @@ const Navbar = ({ list }) => {
                               max={999}
                             >
                               <NotificationsIcon
+                                className={`${!list ? "text-dark" : ""}`}
                                 aria-describedby={id1}
                                 variant="contained"
                                 onClick={handleClick1}
