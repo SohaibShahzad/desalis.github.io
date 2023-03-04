@@ -68,7 +68,7 @@ const List = () => {
   };
 
   return (
-    <div className="w-100" style={{ overflowX: "hidden" }}>
+    <div className="container-fluid w-100">
       <Navbar list={false} className="w-100" />
       <div className={`${style.listContainer}`}>
         <div className={`row justify-content-around ${style.listWrapper}`}>

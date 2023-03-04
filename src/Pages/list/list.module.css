@@ -14,8 +14,8 @@
   background-color: #55A7F1;
   padding: 10px;
   border-radius: 10px;
-  /* position: sticky;
-  top: 100px !important; */
+  position: sticky;
+  top: 6vw;
   height: max-content;
 }
 
