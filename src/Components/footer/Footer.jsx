@@ -2,9 +2,16 @@ import style from "./footer.module.css";
 import { Link } from "react-router-dom";
 import MailList from "../mailList/MailList";
 import { useMediaQuery } from "@mui/material";
+import CallIcon from "@mui/icons-material/Call";
+import EmailIcon from "@mui/icons-material/Email";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Footer = () => {
   const isXtraSmallScreen = useMediaQuery("(max-width:450px)");
+  const isTabletScreen = useMediaQuery("(max-width:768px)");
 
   return (
     <footer
@@ -20,9 +27,13 @@ const Footer = () => {
           <div
             className={`col-lg-3 ${
               isXtraSmallScreen ? "ps-4" : ""
-            } my-1 col-md-6 col-sm-4 col-4`}
+            } my-1 col-xl-3 col-md-4 col-sm-4 col-12`}
           >
-            <ul className={style.fList}>
+            <h4 className="text-uppercase" style={{ fontSize: "25px" }}>
+              Quick Links
+            </h4>
+
+            <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
                 <Link to="/" className="d-block">
                   Home
@@ -32,50 +43,77 @@ const Footer = () => {
                 <Link to="/parking">Parking</Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Properties</Link>
+                <Link to="/">Hotel And Parking</Link>
               </li>
             </ul>
           </div>
           <div
             className={`col-lg-3 ${
               isXtraSmallScreen ? "ps-4" : ""
-            } my-1 col-md-6 col-sm-4 col-4`}
+            } my-1 col-xl-3 col-md-4 col-sm-4 col-12`}
           >
-            <ul className={style.fList}>
+            <h4 className="text-uppercase" style={{ fontSize: "25px" }}>
+              Company
+            </h4>
+
+            <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
-                <Link to="/">Hotels</Link>
+                <Link to="/">About Us</Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Resorts</Link>
+                <Link to="/">Our Partners</Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Cities</Link>
+                <Link to="/">Our Clients</Link>
               </li>
             </ul>
           </div>
           <div
             className={`col-lg-3 ${
               isXtraSmallScreen ? "ps-4" : ""
-            } my-1 col-md-6 col-sm-4 col-4`}
+            } my-1 col-xl-3 col-md-4 col-sm-4 col-12`}
           >
-            <ul className={style.fList}>
+            <h4 className="text-uppercase" style={{ fontSize: "25px" }}>
+              Contact Us
+            </h4>
+
+            <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
-                <Link to="/">About </Link>
+                <Link to="/">
+                  <CallIcon /> +92 (233) 5263282
+                </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Contact </Link>
+                <Link to="/">
+                  <CallIcon />
+                  +92 (303) 1233980
+                </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/signin">Login</Link>
+                <Link to="/signin">
+                  <EmailIcon className="me-2" />
+                  info@desalis.com
+                </Link>
               </li>
             </ul>
           </div>
-          <div className="col-lg-3 my-1 text-center col-md-6 col-sm-12 col-12">
+          <div className="col-lg-12 my-1 col-xl-3 text-center col-md-12 col-sm-12 col-12">
             <MailList />
           </div>
-          <hr className="mt-1 " />
+          <hr className="mt-3 " />
           <div className="row m-0">
-            <div className="text-center ">Copyright © 2022 Lamabooking.</div>
+            <div className={`${isXtraSmallScreen?'text-center':'text-start'}  col-xl-6 col-md-6 col-12`}>
+              <InstagramIcon className={`mx-1 fs-1  ${style.insta} `} />
+              <FacebookIcon className={`mx-1 fs-1 ${style.facebook}`} />
+              <TwitterIcon className={`mx-1 fs-1 ${style.tweeter}`} />
+              <LinkedInIcon className={`mx-1 fs-1 ${style.linkedin}`} />
+            </div>
+            <div
+              className={`${isXtraSmallScreen?'text-center':'text-end'}  col-xl-6 col-md-6 col-12`}
+              style={{ fontSize: "20px" }}
+            >
+              Copyright © 2022 Lamabooking.
+            </div>
           </div>
         </div>
       </div>
@@ -90,7 +128,7 @@ export default Footer;
       <div className={`pt-5 ${style.footer}`}>
         <div className={`row  ${style.fLists}`}>
           <div className="col-lg-3 my-2 col-md-6 col-sm-4 ">
-            <ul className={style.fList}>
+            <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
                 <Link to="/">Countries</Link>
               </li>
@@ -112,7 +150,7 @@ export default Footer;
             </ul>
           </div>
           <div className="col-lg-3 my-2 col-md-6 col-sm-4 ">
-            <ul className={style.fList}>
+            <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
                 <Link to="/">Home</Link>
               </li>
@@ -134,7 +172,7 @@ export default Footer;
             </ul>
           </div>
           <div className="col-lg-3 my-2 col-md-6 col-sm-4 ">
-            <ul className={style.fList}>
+            <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
                 <Link to="/">Unique places to stay</Link>
               </li>
@@ -166,7 +204,7 @@ export default Footer;
 //   return (
 //     <div className={`container ${style.footer}`}>
 //       <div className={style.fLists}>
-//         <ul className={style.fList}>
+//         <ul className={`${style.fList} mt-4`}>
 //           <li className={style.fListItem}> <Link to='/'  to='/'>Countries</Link></li>
 //           <li className={style.fListItem}>Regions</li>
 //           <li className={style.fListItem}>Cities</li>
@@ -174,7 +212,7 @@ export default Footer;
 //           <li className={style.fListItem}>Airports</li>
 //           <li className={style.fListItem}>Hotels</li>
 //         </ul>
-//         <ul className={style.fList}>
+//         <ul className={`${style.fList} mt-4`}>
 //           <li className={style.fListItem}>Homes </li>
 //           <li className={style.fListItem}>Apartments </li>
 //           <li className={style.fListItem}>Resorts </li>
@@ -182,20 +220,20 @@ export default Footer;
 //           <li className={style.fListItem}>Hostels</li>
 //           <li className={style.fListItem}>Guest houses</li>
 //         </ul>
-//         <ul className={style.fList}>
+//         <ul className={`${style.fList} mt-4`}>
 //           <li className={style.fListItem}>Unique places to stay </li>
 //           <li className={style.fListItem}>Reviews</li>
 //           <li className={style.fListItem}>Unpacked: Travel articles </li>
 //           <li className={style.fListItem}>Travel communities </li>
 //           <li className={style.fListItem}>Seasonal and holiday deals </li>
 //         </ul>
-//         <ul className={style.fList}>
+//         <ul className={`${style.fList} mt-4`}>
 //           <li className={style.fListItem}>Car rental </li>
 //           <li className={style.fListItem}>Flight Finder</li>
 //           <li className={style.fListItem}>Restaurant reservations </li>
 //           <li className={style.fListItem}>Travel Agents </li>
 //         </ul>
-//         <ul className={style.fList}>
+//         <ul className={`${style.fList} mt-4`}>
 //           <li className={style.fListItem}>Curtomer Service</li>
 //           <li className={style.fListItem}>Partner Help</li>
 //           <li className={style.fListItem}>Careers</li>
@@ -230,7 +268,7 @@ export default Footer;
           } text-md-left justify-content-center`}
         >
           <div className="col-lg-3 my-1 col-md-6 col-sm-4 col-4">
-            <ul className={style.fList}>
+            <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
                 <Link to="/">Countries</Link>
               </li>
@@ -252,7 +290,7 @@ export default Footer;
             </ul>
           </div>
           <div className="col-lg-3 my-1 col-md-6 col-sm-4 col-4">
-            <ul className={style.fList}>
+            <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
                 <Link to="/">Home</Link>
               </li>
@@ -274,7 +312,7 @@ export default Footer;
             </ul>
           </div>
           <div className="col-lg-3 my-1 col-md-6 col-sm-4 col-4">
-            <ul className={style.fList}>
+            <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
                 <Link to="/">Unique places</Link>
               </li>
