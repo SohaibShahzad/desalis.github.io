@@ -75,14 +75,14 @@ const List = () => {
           <div className={`col-3 ${style.listSearch}`}>
             <h1 className={style.lsTitle}>Search</h1>
             <div className={style.lsItem}>
-              <label>Destination</label>
+              <label style={{ color: "white" }}>Destination</label>
               <input
                 placeholder={city === "" ? cityHotelAndParking : city}
                 type="text"
               />
             </div>
             <div className={style.lsItem}>
-              <label>Check-in Date</label>
+              <label style={{ color: "white" }}>Check-in Date</label>
               <span
                 style={{ fontSize: "15px" }}
                 onClick={() => setOpenDate(!openDate)}
@@ -92,7 +92,7 @@ const List = () => {
               {openDate && <Dates />}
             </div>
             <div className={style.lsItem}>
-              <label>Options</label>
+              <label style={{ color: "white" }}>Options</label>
               <div className={style.lsOptions}>
                 {/* <div className={style.lsOptionItem}>
                   <span className={style.lsOptionText}>
