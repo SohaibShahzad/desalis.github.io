@@ -4,6 +4,7 @@ import { useState } from "react";
 import Card from "../../Components/Card/Card";
 // import useFetch from "../../hooks/useFetch";
 import Dates from "../../Components/date/Date";
+import Footer from "../../Components/footer/Footer";
 import { useSelector, useDispatch } from "react-redux";
 
 const List = () => {
@@ -67,11 +68,11 @@ const List = () => {
   };
 
   return (
-    <div className="w-100" style={{overflowX:'hidden' }}>
+    <div className="w-100" style={{ overflowX: "hidden" }}>
       <Navbar list={false} className="w-100" />
       <div className={`${style.listContainer}`}>
         <div className={`row justify-content-around ${style.listWrapper}`}>
-          <div className={`col-3 ${style.listSearch}` }>
+          <div className={`col-3 ${style.listSearch}`}>
             <h1 className={style.lsTitle}>Search</h1>
             <div className={style.lsItem}>
               <label>Destination</label>
@@ -202,6 +203,7 @@ const List = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

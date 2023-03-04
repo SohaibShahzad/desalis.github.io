@@ -11,11 +11,11 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Footer = () => {
   const isXtraSmallScreen = useMediaQuery("(max-width:576px)");
-  const isTabletScreen = useMediaQuery("(max-width:768px)");
+  // const isTabletScreen = useMediaQuery("(max-width:768px)");
 
   return (
     <footer
-      className="pt-4 pb-4 text-white custom-footer"
+      className="pt-4 pb-4 text-white position-absolute end-0 container-fluid"
       style={{ backgroundColor: "#003580", marginTop: "25px" }}
     >
       <div className="container text-md-left">
