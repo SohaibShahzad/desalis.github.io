@@ -196,7 +196,7 @@ const Hotel = () => {
               </div>
             </div>
           )}
-          <div className="hotelWrapper">
+          <div className="hotelWrapper px-3">
             <div className="row p-1">
               <div className="col-md-9">
                 <h1 className="hotelTitle">
@@ -209,8 +209,8 @@ const Hotel = () => {
                 ? selected_hotel.hotel_name
                 : data.name} */}
                 </h1>
-                <div className="hotelAddress">
-                  <LocationOnIcon />
+                <div className="hotelAddress my-1">
+                  <LocationOnIcon className="fs-6" />
                   <span className="">
                     {selected_hotel.country
                       ? selected_hotel.country
@@ -218,7 +218,7 @@ const Hotel = () => {
                       ? selected_hotel.hotel_country
                       : data.address}
                   </span>
-                  <span className="">
+                  <span className="text-primary fw-bold">
                     {selected_hotel.city
                       ? selected_hotel.city
                       : selected_hotel.hotel_city
@@ -226,16 +226,20 @@ const Hotel = () => {
                       : ""}
                   </span>
                 </div>
-                <span className="hotelDistance">
+                <span className="hotelDistance my-1">
                   Excellent location – {data.distance}m from center
                 </span>
-                <span className="hotelPriceHighlight d-block">
+                <span className="hotelPriceHighlight d-block my-1">
                   Book a stay over ${data.cheapestPrice} at this property and
                   get a free airport taxi
                 </span>
               </div>
               <div className="col-md-3 col-sm-6 col-12 text-start mt-1">
-                <button className="btn btn-primary">
+                <button
+                  className={`btn btn-primary ${
+                    isXtraSmallScreen ? "my-1" : ""
+                  }`}
+                >
                   Reserve or Book Now!
                 </button>
               </div>
@@ -391,7 +395,9 @@ const Hotel = () => {
                       </div>
                       <div className="mt-3">
                         <i className="fas fa-utensils"></i>
-                        <span className="ms-2">Breakfast PKR 5,513 (optional)</span>
+                        <span className="ms-2">
+                          Breakfast PKR 5,513 (optional)
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -511,7 +517,11 @@ const Hotel = () => {
                             <>
                               <div key={i}>
                                 <div
-                                  className={`bg-info text-light px-2 py-1 me-3 mb-2 rounded-pill`}
+                                  className={`bg-info text-light  py-1  mb-2 rounded-pill ${
+                                    isXtraSmallScreen
+                                      ? " fs-6 p-2 fw-lighter text-light"
+                                      : "me-3 px-2"
+                                  }`}
                                 >
                                   {item}
                                 </div>
