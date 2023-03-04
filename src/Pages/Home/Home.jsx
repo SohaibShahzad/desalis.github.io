@@ -17,7 +17,7 @@ const Home = () => {
         <h1
           className={`text-end  fw-bold ${isXtraSmallScreen ? "fs-3" : "fs-2"}`}
         >
-          Luxery Properties Guests love
+          Luxury Properties Guests love
         </h1>
 
         <Featured />

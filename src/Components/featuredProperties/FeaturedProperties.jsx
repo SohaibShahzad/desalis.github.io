@@ -31,7 +31,7 @@ const FeaturedProperties = () => {
       <div className={style.fp}>
         <div className={style.fpItem}>
           <img src={hotel1} alt="" className={`${style.fpImg} rounded-2`} />
-          <h5 className={`${style.fpName} mt-2`}>Luxery Properties</h5>
+          <h5 className={`${style.fpName} mt-2`}>Luxury Properties</h5>
           <Box
             className="justify-content-start m-0"
             sx={{
@@ -122,7 +122,7 @@ const FeaturedProperties = () => {
 
         <div className={style.fpItem}>
           <img src={hotel3} alt="" className={`${style.fpImg} rounded-2`} />
-          <h5 className={`${style.fpName} mt-2`}>Luxery Hotels</h5>
+          <h5 className={`${style.fpName} mt-2`}>Luxury Hotels</h5>
           <Box
             className="justify-content-start m-0"
             sx={{
@@ -167,7 +167,7 @@ const FeaturedProperties = () => {
 
         <div className={style.fpItem}>
           <img src={hotel4} alt="" className={`${style.fpImg} rounded-2`} />
-          <h5 className={`${style.fpName} mt-2`}>Luxery Areas</h5>
+          <h5 className={`${style.fpName} mt-2`}>Luxury Areas</h5>
           <small className="justify-content-start">
             <Rating
               name="hover-feedback"

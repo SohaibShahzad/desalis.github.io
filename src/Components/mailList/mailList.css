@@ -11,13 +11,12 @@
   width: 300px;
   height: 33px;
   padding: 10px;
+  padding-right: 10px;
   border: none;
-  margin-right: 10px;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .mailInputContainer>button {
-  /* height: 30px; */
   margin-top: 8px;
   font-weight: 500;
   cursor: pointer;

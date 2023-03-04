@@ -15,6 +15,7 @@
 }
 
 .fListItem {
+  font-size: 18px;
   margin-bottom: 10px;
   cursor: pointer;
 }
@@ -27,6 +28,60 @@
   text-align: center;
   color: white;
   /* padding-bottom: 4px; */
+}
+.insta {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+
+  padding: 5px;
+}
+.tweeter {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+  padding: 5px;
+}
+.facebook {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+  padding: 5px;
+}
+.linkedin {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+  padding: 5px;
+}
+.custom {
+  padding: 1px;
+}
+.insta:hover {
+  background-color: white;
+  cursor: pointer;
+  color: #c32aa3;
+}
+.linkedin:hover {
+  background-color: white;
+  cursor: pointer;
+  color: #0077b5;
+}
+.facebook:hover {
+  background-color: white;
+  cursor: pointer;
+  color: #1877f2;
+}
+.tweeter:hover {
+  font-size: larger;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #1da1f2;
 }
 
 /* @media screen and (max-width: 768px) {
