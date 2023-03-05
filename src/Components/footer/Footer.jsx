@@ -8,6 +8,11 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InfoIcon from "@mui/icons-material/Info";
+import Hotel from "@mui/icons-material/Hotel";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import PeopleIcon from "@mui/icons-material/People";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 const Footer = () => {
   const isXtraSmallScreen = useMediaQuery("(max-width:576px)");
@@ -27,77 +32,94 @@ const Footer = () => {
           <div
             className={`col-lg-5 ${
               isXtraSmallScreen ? "ps-4" : ""
-            } my-1 col-xl-3 col-md-5 col-sm-5 col-7`}
+            } my-1 col-xl-3 col-md-5 col-sm-5 col-8`}
           >
-            <h4 className="text-uppercase" style={{ fontSize: "25px" }}>
+            <h5 className="text-uppercase" style={{ fontSize: "20px" }}>
               Quick Links
-            </h4>
+            </h5>
 
             <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
-                <Link to="/" className="d-block">
-                  Home
+                <Link to="/" className="d-flex justify-content-start">
+                  <Hotel className="me-2" />
+                  <span className="fs-6">Hotel</span>
                 </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/parking">Parking</Link>
+                <Link to="/parking" className="d-flex justify-content-start">
+                  <DirectionsCarIcon className="me-2" />
+                  <span className="fs-6">Parking</span>
+                </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Hotel And Parking</Link>
+                <Link to="/" className="d-flex justify-content-start">
+                  <Hotel className="me-2" />
+                  <span className="fs-6">Hotel And Parking</span>
+                </Link>
               </li>
             </ul>
           </div>
           <div
             className={`col-lg-5 ${
               isXtraSmallScreen ? "ps-4" : ""
-            } my-1 col-xl-3 col-md-5 col-sm-5 col-7`}
+            } my-1 col-xl-3 col-md-5 col-sm-5 col-8`}
           >
-            <h4 className="text-uppercase" style={{ fontSize: "25px" }}>
+            <h4 className="text-uppercase" style={{ fontSize: "20px" }}>
               Company
             </h4>
 
             <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
-                <Link to="/">About Us</Link>
+                <Link to="/" className="d-flex justify-content-start">
+                  <InfoIcon className="me-2" />
+                  <span className="fs-6">About Us</span>
+                </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Our Partners</Link>
+                <Link to="/" className="d-flex justify-content-start">
+                  <PeopleIcon className="me-2" />
+                  <span className="fs-6">Our Partners</span>
+                </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">Our Clients</Link>
+                <Link to="/" className="d-flex justify-content-start">
+                  <PersonOutlineIcon className="me-2" />
+                  <span className="fs-6">Our Clients</span>
+                </Link>
               </li>
             </ul>
           </div>
           <div
             className={`col-lg-5 ${
               isXtraSmallScreen ? "ps-4" : ""
-            } my-1 col-xl-3 col-md-5 col-sm-5 col-7`}
+            } my-1 col-xl-3 col-md-5 col-sm-5 col-8`}
           >
-            <h4 className="text-uppercase" style={{ fontSize: "25px" }}>
+            <h4 className="text-uppercase" style={{ fontSize: "20px" }}>
               Contact Us
             </h4>
 
             <ul className={`${style.fList} mt-4`}>
               <li className={style.fListItem}>
-                <Link to="/">
-                  <CallIcon /> +92 (233) 5263282
+                <Link to="/" className="d-flex justify-content-start">
+                  <CallIcon className="me-2" />{" "}
+                  <span className=" fs-6">+92 (233) 5263282</span>
                 </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/">
-                  <CallIcon />
-                  +92 (303) 1233980
+                <Link to="/" className="d-flex justify-content-start">
+                  <CallIcon className="me-2" />
+                  <span className="fs-6">+92 (303) 1233980</span>
                 </Link>
               </li>
               <li className={style.fListItem}>
-                <Link to="/signin">
-                  <EmailIcon className="me-2" />
-                  info@desalis.com
+                <Link to="/signin" className="d-flex justify-content-start">
+                  <EmailIcon className="me-2"/>
+                  <span className="fs-6">info@desalis.com</span>
                 </Link>
               </li>
             </ul>
           </div>
-          <div className="col-lg-5 my-1 col-xl-3 col-md-5 col-sm-5 col-7">
+          <div className="col-lg-5 my-1 col-xl-3 col-md-5 col-sm-5 col-8">
             <MailList />
           </div>
           <hr className="mt-3 " />

@@ -28,7 +28,7 @@ const FeaturedProperties = () => {
   }
   return (
     <>
-      <div className={style.fp}>
+      <div className={`${style.fp}`}>
         <div className={style.fpItem}>
           <img src={hotel1} alt="" className={`${style.fpImg} rounded-2`} />
           <h5 className={`${style.fpName} mt-2`}>Luxury Properties</h5>

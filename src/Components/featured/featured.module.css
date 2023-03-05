@@ -43,7 +43,11 @@ h1 {
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.text_shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 992px) {
@@ -66,11 +70,16 @@ h2 {
   }
 
   h1{
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   h2{
     font-size: 1rem;
+  }
+  .featuredTitles {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
   }
 }
 
@@ -88,7 +97,12 @@ h2 {
   }
 
   h2{
-    font-size: 1rem;
+    font-size: 0.8rem;
+  }
+  .featuredTitles {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
   }
 }
 
@@ -106,6 +120,28 @@ h2 {
   }
 
   h2{
-    font-size: 1rem;
+    font-size: 0.8rem;
+  }
+  .featuredTitles {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+@media screen and (max-width: 340px) {
+  .featuredItem {
+    height: 80px;
+  }
+
+  .featuredItems {
+    height: 80px;
+  }
+
+  h1{
+    font-size: 0.8rem;
+  }
+
+  h2{
+    font-size: 0.6rem;
   }
 }
