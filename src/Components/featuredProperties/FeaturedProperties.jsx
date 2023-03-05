@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 import { useMediaQuery } from "@mui/material";
-
 const FeaturedProperties = () => {
   const isXtraSmallScreen = useMediaQuery("(max-width: 450px)");
   const labels = {
@@ -22,210 +21,149 @@ const FeaturedProperties = () => {
     4.5: "Excellent",
     5: "Excellent+",
   };
-
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
   }
   return (
     <>
-      <div className={`${style.fp}`}>
-        <div className={style.fpItem}>
-          <img src={hotel1} alt="" className={`${style.fpImg} rounded-2`} />
-          <h5 className={`${style.fpName} mt-2`}>Luxury Properties</h5>
-          <Box
-            className="justify-content-start m-0"
-            sx={{
-              width: 200,
-            }}
-          >
-            <Rating
-              name="hover-feedback"
-              value={4}
-              precision={0.5}
-              getLabelText={getLabelText}
-              // onChange={(event, newValue) => {
-              //   setValue(newValue);
-              // }}
-              // onChangeActive={(event, newHover) => {
-              //   setHover(newHover);
-              // }}
-              emptyIcon={
-                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-              }
+      <div className={`container-fluid ${style.fp}`}>
+        <div className="row">
+          <div className={`col-sm-12 col-lg-3 col-12 my-2 ${style.fpItem}`}>
+            <img
+              src={hotel1}
+              alt=""
+              className={` ${style.fpImg} rounded-2`}
             />
-            {/* {rating !== null && (
-                <Box sx={{ mb: 1, fontSize: 17 }}>
-                  {labels[rating ? rating : hotel_rating]}
-                </Box>
-              )} */}
-          </Box>
-          <small className={`${style.fpCity} text-muted`}>Las Vegas</small>
+            <h5 className={`${style.fpName} mt-2`}>Luxury Properties</h5>
+            <div className="d-flex justify-content-start align-items-center">
+              <Rating
+                name="hover-feedback"
+                value={4}
+                precision={0.5}
+                emptyIcon={
+                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                }
+              />
+              <small className={`${style.fpCity} ms-2 mb-2 text-muted`}>
+                Las Vegas
+              </small>
+            </div>
 
-          <small className={`${style.fpPrice}`}>
-            La Maison d'Eté is set in Poste Lafayette on the...
-          </small>
-          <div className={style.fpRating}>
-            <button
-              className={`btn btn-primary mt-2 ${
-                isXtraSmallScreen ? "btn-sm" : "btn-md"
-              } btn-block`}
-            >
-              Explore Property
-            </button>
+            <small className={`${style.fpPrice}`}>
+              La Maison d'Eté is set in Poste Lafayette on the...
+            </small>
+            <div className={style.fpRating}>
+              <button
+                className={`btn btn-primary mt-2 ${
+                  isXtraSmallScreen ? "btn-sm" : "btn-md"
+                } btn-block`}
+              >
+                Explore Property
+              </button>
+            </div>
           </div>
-        </div>
-
-        <div className={style.fpItem}>
-          <img src={hotel2} alt="" className={`${style.fpImg} rounded-2`} />
-          <h5 className={`${style.fpName} mt-2`}>Resorts</h5>
-          <Box
-            className="justify-content-start m-0"
-            sx={{
-              width: 200,
-            }}
-          >
-            <Rating
-              name="hover-feedback"
-              value={4}
-              precision={0.5}
-              getLabelText={getLabelText}
-              // onChange={(event, newValue) => {
-              //   setValue(newValue);
-              // }}
-              // onChangeActive={(event, newHover) => {
-              //   setHover(newHover);
-              // }}
-              emptyIcon={
-                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-              }
+          <div className={`col-sm-12 col-lg-3 col-12 my-2 ${style.fpItem}`}>
+            <img
+              src={hotel2}
+              alt=""
+              className={` ${style.fpImg} rounded-2`}
             />
-            {/* {rating !== null && (
-                <Box sx={{ mb: 1, fontSize: 17 }}>
-                  {labels[rating ? rating : hotel_rating]}
-                </Box>
-              )} */}
-          </Box>
-          <small className={style.fpCity}>California</small>
-          <small className={`${style.fpPrice}`}>
-            La Maison d'Eté is set in Poste Lafayette on the...
-          </small>
-          <div className={style.fpRating}>
-            <button
-              className={`btn btn-primary mt-2 ${
-                isXtraSmallScreen ? "btn-sm" : "btn-md"
-              } btn-block`}
-            >
-              Explore Property
-            </button>
+            <h5 className={`${style.fpName} mt-2`}>Resorts</h5>
+            <div className="d-flex justify-content-start align-items-center">
+              <Rating
+                name="hover-feedback"
+                value={4}
+                precision={0.5}
+                emptyIcon={
+                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                }
+              />
+              <small className={`${style.fpCity} ms-2 mb-2 text-muted`}>
+                California
+              </small>
+            </div>
+            <small className={`${style.fpPrice}`}>
+              La Maison d'Eté is set in Poste Lafayette on the...
+            </small>
+            <div className={style.fpRating}>
+              <button
+                className={`btn btn-primary mt-2 ${
+                  isXtraSmallScreen ? "btn-sm" : "btn-md"
+                } btn-block`}
+              >
+                Explore Property
+              </button>
+            </div>
           </div>
-        </div>
-
-        <div className={style.fpItem}>
-          <img src={hotel3} alt="" className={`${style.fpImg} rounded-2`} />
-          <h5 className={`${style.fpName} mt-2`}>Luxury Hotels</h5>
-          <Box
-            className="justify-content-start m-0"
-            sx={{
-              width: 200,
-            }}
-          >
-            <Rating
-              name="hover-feedback"
-              value={4}
-              precision={0.5}
-              getLabelText={getLabelText}
-              // onChange={(event, newValue) => {
-              //   setValue(newValue);
-              // }}
-              // onChangeActive={(event, newHover) => {
-              //   setHover(newHover);
-              // }}
-              emptyIcon={
-                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-              }
+          <div className={`col-sm-12 col-lg-3 col-12  my-2 ${style.fpItem}`}>
+            <img
+              src={hotel3}
+              alt=""
+              className={` ${style.fpImg} rounded-2`}
             />
-            {/* {rating !== null && (
-                <Box sx={{ mb: 1, fontSize: 17 }}>
-                  {labels[rating ? rating : hotel_rating]}
-                </Box>
-              )} */}
-          </Box>
-          <small className={style.fpCity}>Maldives</small>
-          <small className={`${style.fpPrice}`}>
-            La Maison d'Eté is set in Poste Lafayette on the...
-          </small>
-          <div className={style.fpRating}>
-            <button
-              className={`btn btn-primary mt-2 ${
-                isXtraSmallScreen ? "btn-sm" : "btn-md"
-              } btn-block`}
-            >
-              Explore Property
-            </button>
+            <h5 className={`${style.fpName} mt-2`}>Luxury Hotels</h5>
+            <div className="d-flex justify-content-start align-items-center">
+              <Rating
+                name="hover-feedback"
+                value={4}
+                precision={0.5}
+                emptyIcon={
+                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                }
+              />
+              <small className={`${style.fpCity} ms-2 mb-2 text-muted`}>
+                Maldives
+              </small>
+            </div>
+            <small className={`${style.fpPrice}`}>
+              La Maison d'Eté is set in Poste Lafayette on the...
+            </small>
+            <div className={style.fpRating}>
+              <button
+                className={`btn btn-primary mt-2 ${
+                  isXtraSmallScreen ? "btn-sm" : "btn-md"
+                } btn-block`}
+              >
+                Explore Property
+              </button>
+            </div>
           </div>
-        </div>
-
-        <div className={style.fpItem}>
-          <img src={hotel4} alt="" className={`${style.fpImg} rounded-2`} />
-          <h5 className={`${style.fpName} mt-2`}>Luxury Areas</h5>
-          <small className="justify-content-start">
-            <Rating
-              name="hover-feedback"
-              value={4}
-              precision={0.5}
-              getLabelText={getLabelText}
-              // onChange={(event, newValue) => {
-              //   setValue(newValue);
-              // }}
-              // onChangeActive={(event, newHover) => {
-              //   setHover(newHover);
-              // }}
-              emptyIcon={
-                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-              }
+          <div className={`col-sm-12 col-lg-3 col-12 my-2 ${style.fpItem}`}>
+            <img
+              src={hotel4}
+              alt=""
+              className={` ${style.fpImg} rounded-2`}
             />
-            {/* {rating !== null && (
-                <Box sx={{ mb: 1, fontSize: 17 }}>
-                  {labels[rating ? rating : hotel_rating]}
-                </Box>
-              )} */}
-          </small>
-          <small className={style.fpCity}>Malaysia</small>
-          <small className={`${style.fpPrice}`}>
-            La Maison d'Eté is set in Poste Lafayette on the...
-          </small>
-          <div className={style.fpRating}>
-            <button
-              className={`btn btn-primary mt-2 ${
-                isXtraSmallScreen ? "btn-sm" : "btn-md"
-              } btn-block`}
-            >
-              Explore Property
-            </button>
+            <h5 className={`${style.fpName} mt-2`}>Elite Places</h5>
+            <div className="d-flex justify-content-start align-items-center">
+              <Rating
+                name="hover-feedback"
+                value={4}
+                precision={0.5}
+                emptyIcon={
+                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                }
+              />
+              <small className={`${style.fpCity} ms-2 mb-2 text-muted`}>
+                Malaysia
+              </small>
+            </div>
+            <small className={`${style.fpPrice}`}>
+              La Maison d'Eté is set in Poste Lafayette on the...
+            </small>
+            <div className={style.fpRating}>
+              <button
+                className={`btn btn-primary mt-2 ${
+                  isXtraSmallScreen ? "btn-sm" : "btn-md"
+                } btn-block`}
+              >
+                Explore Property
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </>
   );
 };
-
 export default FeaturedProperties;
-
-// import useFetch from "../../hooks/useFetch";
-// const { data, loading, error } = useFetch("/hotels?featured=true&limit=4");
-// {loading ? (
-//   "Loading"
-// ) : (
-
-{
-  /* <div className={style.fpItem}>
-          <img src={hotel2} alt="" className={`${style.fpImg} rounded-2`} />
-          <span className={style.fpName}>My name</span>
-          <span className={style.fpCity}>Las Vegas</span>
-          <span className={style.fpPrice}>Starting from 12</span>
-          <div className={style.fpRating}>
-            <button>Hello World</button>
-            <span>Excellent</span>
-          </div>
-        </div> */
-}
