@@ -28,7 +28,7 @@ const FeaturedProperties = () => {
     <>
       <div className={`container-fluid ${style.fp}`}>
         <div className="row">
-          <div className={`col-sm-12 col-lg-3 col-12 my-2 ${style.fpItem}`}>
+          <div className={`col-lg-3 col-md-6 col-sm-6 col-12 my-2 `}>
             <img
               src={hotel1}
               alt=""
@@ -62,7 +62,7 @@ const FeaturedProperties = () => {
               </button>
             </div>
           </div>
-          <div className={`col-sm-12 col-lg-3 col-12 my-2 ${style.fpItem}`}>
+          <div className={`col-lg-3 col-md-6 col-sm-6 col-12 my-2 `}>
             <img
               src={hotel2}
               alt=""
@@ -95,7 +95,7 @@ const FeaturedProperties = () => {
               </button>
             </div>
           </div>
-          <div className={`col-sm-12 col-lg-3 col-12  my-2 ${style.fpItem}`}>
+          <div className={`col-lg-3 col-md-6 col-sm-6 col-12  my-2`}>
             <img
               src={hotel3}
               alt=""
@@ -128,7 +128,7 @@ const FeaturedProperties = () => {
               </button>
             </div>
           </div>
-          <div className={`col-sm-12 col-lg-3 col-12 my-2 ${style.fpItem}`}>
+          <div className={`col-lg-3 col-md-6 col-sm-6 col-12 my-2 `}>
             <img
               src={hotel4}
               alt=""
