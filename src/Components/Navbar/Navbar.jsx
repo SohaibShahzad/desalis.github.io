@@ -108,6 +108,38 @@ const Navbar = ({ list }) => {
     return false;
   };
 
+  // Hidding Alerts After Two Seconds
+  if (
+    resultPerson ||
+    resultCity ||
+    resultVehicle ||
+    resultDate ||
+    resultDateTime
+  ) {
+    setTimeout(() => {
+      dispatch({
+        type: "ALERTPERSON",
+        payload: false,
+      });
+      dispatch({
+        type: "ALERTCITY",
+        payload: false,
+      });
+      dispatch({
+        type: "ALERTVEHICLE",
+        payload: false,
+      });
+      dispatch({
+        type: "ALERTDATE",
+        payload: false,
+      });
+      dispatch({
+        type: "ALERTDATETIME",
+        payload: false,
+      });
+    }, 2000);
+  }
+
   const handleOnSearch = () => {
     setOpenOptions(false);
     if (path === "/") {
