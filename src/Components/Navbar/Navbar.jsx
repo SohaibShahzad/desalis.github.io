@@ -29,7 +29,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import bgrmvblk from "../../images/bgrmvblk.png";
 import { useMediaQuery } from "@mui/material";
-import { width } from "@mui/system";
 
 const Navbar = ({ list }) => {
   // Popover Material UI Code
@@ -69,13 +68,14 @@ const Navbar = ({ list }) => {
   const { resultDateTime } = useSelector((state) => state.dateTimeAlert);
   const { c } = useSelector((state) => state.searchVehicle);
   const { activePath } = useSelector((state) => state.activePath);
+  const { options } = useSelector((state) => state.searchOption);
   const location = useLocation();
   const path = location.pathname;
   const [navSearch, setNavSearch] = useState(false);
   const [nav2, setNav2] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
-  const { options } = useSelector((state) => state.searchOption);
+  const [alertShow, setAlertShow] = useState(false);
   const [option, setOption] = useState(options);
   // get location of user
   const { user } = useSelector((state) => state.user);
@@ -92,6 +92,8 @@ const Navbar = ({ list }) => {
 
   //For Mobile Rsponsive of Navbar Search Bar
   const isMobile = useMediaQuery("(max-width: 400px)");
+  const isDesktop = useMediaQuery("(max-width: 992px)");
+  const isTablet = useMediaQuery("(max-width: 768px)");
 
   const validRoom = () => {
     const numOfPerson = options.adult + option.children;
@@ -107,6 +109,7 @@ const Navbar = ({ list }) => {
   };
 
   const handleOnSearch = () => {
+    setOpenOptions(false);
     if (path === "/") {
       dispatch({
         type: "ALERTPERSON",
@@ -614,6 +617,7 @@ const Navbar = ({ list }) => {
                 navSearch ? hotel : nav2 ? hotelparking : parking
               })`,
             }}
+            // onClick={() => setOpenOptions(false)}
           >
             <div className="container">
               <div className="row">
@@ -632,7 +636,7 @@ const Navbar = ({ list }) => {
                     <div className="row position-relative">
                       <div className={`col-lg-2 align-self-center`}>
                         {navSearch ? (
-                          <fieldset className="d-flex align-items-center">
+                          <fieldset className={`d-flex align-items-center`}>
                             <HotelIcon className=" me-2" />
                             <Dropdown
                               name="cityHotel"
@@ -710,7 +714,9 @@ const Navbar = ({ list }) => {
                               </div>
                             </span>
                             {openOptions && (
-                              <div className={`shadow-lg  ${style.options}`}>
+                              <div
+                                className={`shadow-lg w-100 ${style.options}`}
+                              >
                                 <div className="row">
                                   <div className="ms-1 me-5 ms-2 col-md-4 ">
                                     <h5 className="text-start my-1">
@@ -781,7 +787,16 @@ const Navbar = ({ list }) => {
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="border-start ms-1 col-md-4">
+                                  <hr
+                                    className={`my-2 ${
+                                      isTablet ? "" : "d-none"
+                                    }`}
+                                  />
+                                  <div
+                                    className={`${
+                                      !isTablet ? "border-start" : ""
+                                    } ms-1 col-md-4`}
+                                  >
                                     <h5 className="text-start my-1">
                                       Set Rooms
                                     </h5>
@@ -1300,7 +1315,7 @@ const Navbar = ({ list }) => {
                         )}
                       </div>
                       <div
-                        className={`${
+                        className={`${isDesktop ? "mt-3" : ""} ${
                           nav2 || navSearch ? "col-lg-2" : "col-lg-3"
                         }`}
                       >
@@ -1323,7 +1338,8 @@ const Navbar = ({ list }) => {
                                 <strong>Error! </strong>
                                 {resultPerson && (
                                   <div>
-                                    Total number of persons l capacity of rooms
+                                    Total number of persons is more than
+                                    capacity of rooms
                                   </div>
                                 )}
                                 {resultCity && <div>Enter city</div>}

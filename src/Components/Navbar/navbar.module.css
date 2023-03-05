@@ -486,6 +486,10 @@ input[type="number"]::-webkit-inner-spin-button {
   .background_header .main_nav .nav li:nth-child(6) {
     padding-right: 0px;
   }
+
+  .options {
+    top: 40px
+  }
 }
 
 @media (max-width: 767px) {

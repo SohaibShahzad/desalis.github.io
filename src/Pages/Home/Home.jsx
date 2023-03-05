@@ -15,9 +15,11 @@ const Home = () => {
       <Navbar list={true} />
       <div className={`${style.homeContainer} container`}>
         <h1
-          className={`text-end  fw-bold ${isXtraSmallScreen ? "fs-3" : "fs-2"}`}
+          className={`${style.homeTitle} fw-bold ${
+            isXtraSmallScreen ? "fs-4" : "fs-3"
+          }`}
         >
-          Luxury Properties Guests love
+          Find your perfect stay
         </h1>
 
         <Featured />
@@ -26,7 +28,9 @@ const Home = () => {
         </h1>
         <PropertyList /> */}
         <h1
-          className={`text-end  fw-bold ${isXtraSmallScreen ? "fs-3" : "fs-2"}`}
+          className={`${style.homeTitle}  fw-bold ${
+            isXtraSmallScreen ? "fs-4" : "fs-3"
+          }`}
         >
           Hotels Guests love
         </h1>

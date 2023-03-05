@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 import { useMediaQuery } from "@mui/material";
-
 const FeaturedProperties = () => {
   const isXtraSmallScreen = useMediaQuery("(max-width: 450px)");
   const labels = {
@@ -22,7 +21,6 @@ const FeaturedProperties = () => {
     4.5: "Excellent",
     5: "Excellent+",
   };
-
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
   }
@@ -30,7 +28,7 @@ const FeaturedProperties = () => {
     <>
       <div className={`container-fluid ${style.fp}`}>
         <div className="row">
-          <div className={`col-sm-12 col-lg-3 col-12 my-2 ${style.fpItem}`}>
+          <div className={`col-lg-3 col-md-6 col-sm-6 col-12 my-2 `}>
             <img
               src={hotel1}
               alt=""
@@ -64,7 +62,7 @@ const FeaturedProperties = () => {
               </button>
             </div>
           </div>
-          <div className={`col-sm-12 col-lg-3 col-12 my-2 ${style.fpItem}`}>
+          <div className={`col-lg-3 col-md-6 col-sm-6 col-12 my-2 `}>
             <img
               src={hotel2}
               alt=""
@@ -97,7 +95,7 @@ const FeaturedProperties = () => {
               </button>
             </div>
           </div>
-          <div className={`col-sm-12 col-lg-3 col-12  my-2 ${style.fpItem}`}>
+          <div className={`col-lg-3 col-md-6 col-sm-6 col-12  my-2`}>
             <img
               src={hotel3}
               alt=""
@@ -130,7 +128,7 @@ const FeaturedProperties = () => {
               </button>
             </div>
           </div>
-          <div className={`col-sm-12 col-lg-3 col-12 my-2 ${style.fpItem}`}>
+          <div className={`col-lg-3 col-md-6 col-sm-6 col-12 my-2 `}>
             <img
               src={hotel4}
               alt=""
@@ -168,24 +166,4 @@ const FeaturedProperties = () => {
     </>
   );
 };
-
 export default FeaturedProperties;
-
-// import useFetch from "../../hooks/useFetch";
-// const { data, loading, error } = useFetch("/hotels?featured=true&limit=4");
-// {loading ? (
-//   "Loading"
-// ) : (
-
-{
-  /* <div className={style.fpItem}>
-          <img src={hotel2} alt="" className={`${style.fpImg} rounded-2`} />
-          <span className={style.fpName}>My name</span>
-          <span className={style.fpCity}>Las Vegas</span>
-          <span className={style.fpPrice}>Starting from 12</span>
-          <div className={style.fpRating}>
-            <button>Hello World</button>
-            <span>Excellent</span>
-          </div>
-        </div> */
-}
