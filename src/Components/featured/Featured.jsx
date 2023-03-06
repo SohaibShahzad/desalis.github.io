@@ -11,8 +11,8 @@ const Featured = () => {
             className={style.featuredImg}
           />
           <div className={style.featuredTitles}>
-            <h1>Berlin</h1>
-            <h2>properties</h2>
+            <h1 className={style.text_shadow}>Berlin</h1>
+            <h2 className={style.text_shadow}>properties</h2>
           </div>
         </div>
         <div className={style.featuredItem}>
@@ -22,8 +22,8 @@ const Featured = () => {
             className={style.featuredImg}
           />
           <div className={style.featuredTitles}>
-            <h1>Berlin</h1>
-            <h2>properties</h2>
+            <h1 className={style.text_shadow}>Madrid</h1>
+            <h2 className={style.text_shadow}>properties</h2>
           </div>
         </div>
       </div>
@@ -36,8 +36,8 @@ const Featured = () => {
               className={style.featuredImg}
             />
             <div className={style.featuredTitles}>
-              <h1>Berlin</h1>
-              <h2>properties</h2>
+              <h1 className={style.text_shadow}>London</h1>
+              <h2 className={style.text_shadow}>properties</h2>
             </div>
           </div>
 
@@ -48,8 +48,8 @@ const Featured = () => {
               className="featuredImg"
             />
             <div className={style.featuredTitles}>
-              <h1>Madrid</h1>
-              <h2>properties</h2>
+              <h1 className={style.text_shadow}>Sydney</h1>
+              <h2 className={style.text_shadow}>properties</h2>
             </div>
           </div>
           <div className={style.featuredItem}>
@@ -59,8 +59,8 @@ const Featured = () => {
               className="featuredImg"
             />
             <div className={style.featuredTitles}>
-              <h1>London</h1>
-              <h2>123 properties</h2>
+              <h1 className={style.text_shadow}>Japan</h1>
+              <h2 className={style.text_shadow}>123 properties</h2>
             </div>
           </div>
         </>

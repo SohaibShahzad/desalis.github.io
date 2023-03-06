@@ -159,9 +159,9 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.text_shadow {
+/* .text_shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
+} */
 
 .text_shadow:hover {
   text-shadow: none;
@@ -485,6 +485,10 @@ input[type="number"]::-webkit-inner-spin-button {
   .header_area .main_nav .nav li:nth-child(6),
   .background_header .main_nav .nav li:nth-child(6) {
     padding-right: 0px;
+  }
+
+  .options {
+    top: 40px
   }
 }
 

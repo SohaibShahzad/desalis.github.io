@@ -1,8 +1,4 @@
-.date {
-  border: none;
-}
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 576px) {
   .popup {
     width: 300px;
   }

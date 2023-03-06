@@ -20,7 +20,6 @@ const Dates = () => {
         format="DD-MM-YYYY"
         disabledDate={disabledDate}
         popupClassName={style.popup}
-        className={style.date}
         placeholder={["Check In", "Check Out"]}
         onChange={(val) => {
           dispatch({
