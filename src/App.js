@@ -14,6 +14,8 @@ import Parking from "./Pages/Parking Section/Parking";
 import Roomcard from "./Components/RoomCard/Roomcard";
 import ParkingList from "./Pages/ParkingList/ParkingList";
 import HotelAndParking from "./Pages/HotelAndParking/HotelAndParking";
+import Dashboard from "./Components/Admin/Components/Dashboard";
+
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/listproperty" element={<Listing />} />
         <Route path="/roomcard" element={<Roomcard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+
       </Routes>
     </>
   );
