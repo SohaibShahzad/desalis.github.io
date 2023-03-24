@@ -17,7 +17,7 @@ export default function Navbar() {
             className={`navbar-brand fs-2 mx-3`}
             to="/"
           >
-            Navbar
+            Desalis Admin
           </Link>
 
           <div

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/sidebar.css";
+import style from "../css/sidebar.module.css";
 import {
   SidebarDataAdminProfile,
   SidebarDataWholesellerProfile,
@@ -17,12 +17,6 @@ export default function Sidebar() {
   const mode = useSelector((state) => state.mode);
   const view = useSelector((state) => state.view);
   const [confirmMessage, setConfirmMessage] = useState(false);
-  // const [logState, setLogState] = useState(isLogin());
-
-  // const handleLogout = () => {
-  //   logout();
-  //   setLogState(false);
-  // };
 
   const sidebarProfile = (argument) => {
     return argument.map((element) => {
@@ -30,10 +24,10 @@ export default function Sidebar() {
         <div key={element.key}>
           <Link
             to={element.link}
-            className={`nav__link text-${mode === "dark" ? "light" : "dark"}`}
+            className={`${style.nav_link} text-${mode === "dark" ? "light" : "dark"}`}
           >
-            <span className={`nav__icon`}>{element.icon}</span>
-            <span className={`nav__name`}>{element.title}</span>
+            <span className={`${style.nav_icon}`}>{element.icon}</span>
+            <span className={`${style.nav_name}`}>{element.title}</span>
           </Link>
         </div>
       );
@@ -46,10 +40,10 @@ export default function Sidebar() {
         <div key={element.key}>
           <Link
             to={element.link}
-            className={`nav__link text-${mode === "dark" ? "light" : "dark"}`}
+            className={`${style.nav_link} text-${mode === "dark" ? "light" : "dark"}`}
           >
-            <span className={`nav__icon`}>{element.icon}</span>
-            <span className={`nav__name`}>{element.title}</span>
+            <span className={`${style.nav_icon}`}>{element.icon}</span>
+            <span className={`${style.nav_name}`}>{element.title}</span>
           </Link>
         </div>
       );
@@ -58,7 +52,6 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* {!logState ? <Navigate to="/login" replace="true" /> : null} */}
 
       {confirmMessage ? (
         <div
@@ -91,7 +84,7 @@ export default function Sidebar() {
               <div className="col-md-4 mx-2">
                 <button
                   className="btn btn-outline-danger"
-                  
+
                 >
                   Logout
                 </button>
@@ -100,47 +93,44 @@ export default function Sidebar() {
           </div>
         </div>
       ) : null}
-      <header className="header">
+      <header className={`${style.header}`}>
         <Navbar />
       </header>
       <div
-        className={`nav bg-${mode === "dark" ? "dark" : "light"}`}
+        className={`${style.nav} bg-${mode === "dark" ? "dark" : "light"}`}
         id="navbar"
       >
-        <nav className="nav__container">
+        <nav className={`${style.nav_container}`}>
           <div>
             <Link
               to="/"
-              className={`nav__link nav__logo text-${
-                mode === "dark" ? "light" : "dark"
-              }`}
+              className={`${style.nav_link} ${style.nav_logo} text-${mode === "dark" ? "light" : "dark"
+                }`}
             >
-              <i className={`bx bxs-disc nav__icon`}></i>
-              <span className={`nav__logo-name`}>MIOS</span>
+              <i className={`bx bxs-disc ${style.nav_icon}`}></i>
+              <span className={`${style.nav_logo_name}`}>MIOS</span>
             </Link>
 
-            <div className="nav__list">
-              <div className="nav__items">
+            <div className={`${style.nav_list}`}>
+              <div className={`${style.nav_items}`}>
                 <h3
-                  className={`nav__subtitle text-${
-                    mode === "dark" ? "light" : "dark"
-                  }`}
+                  className={`${style.nav_subtitle} text-${mode === "dark" ? "light" : "dark"
+                    }`}
                 >
                   Profile
                 </h3>
                 {view === "admin"
                   ? sidebarProfile(SidebarDataAdminProfile)
                   : view === "wholeseller"
-                  ? sidebarProfile(SidebarDataWholesellerProfile)
-                  : sidebarProfile(SidebarDataRetailerProfile)}
+                    ? sidebarProfile(SidebarDataWholesellerProfile)
+                    : sidebarProfile(SidebarDataRetailerProfile)}
               </div>
 
-              <div className="nav__items">
+              <div className={`${style.nav_items}`}>
                 {view === "admin" ? null : (
                   <h3
-                    className={`nav__subtitle text-${
-                      mode === "dark" ? "light" : "dark"
-                    }`}
+                    className={`${style.nav_subtitle} text-${mode === "dark" ? "light" : "dark"
+                      }`}
                   >
                     Orders
                   </h3>
@@ -148,16 +138,15 @@ export default function Sidebar() {
                 {view === "admin"
                   ? null
                   : view === "wholeseller"
-                  ? sidebarOrder(SidebarDataWholesellerOrders)
-                  : sidebarOrder(SidebarDataRetailerOrders)}
+                    ? sidebarOrder(SidebarDataWholesellerOrders)
+                    : sidebarOrder(SidebarDataRetailerOrders)}
               </div>
             </div>
           </div>
 
           <div
-            className={`nav__link nav__logout text-${
-              mode === "dark" ? "light" : "dark"
-            }`}
+            className={`${style.nav_link} ${style.nav_logout} text-${mode === "dark" ? "light" : "dark"
+              }`}
             onClick={() => {
               setConfirmMessage(true);
             }}
@@ -165,15 +154,14 @@ export default function Sidebar() {
             {SidebarDataLogout.map((element) => {
               return (
                 <div key={element.title}>
-                  <span className={`nav__icon`}>{element.icon}</span>
-                  <span className={`nav__name`}>{element.title}</span>
+                  <span className={`${style.nav_icon}`}>{element.icon}</span>
+                  <span className={`${style.nav_name}`}>{element.title}</span>
                 </div>
               );
             })}
           </div>
         </nav>
       </div>
-      <Outlet />
     </>
   );
 }
