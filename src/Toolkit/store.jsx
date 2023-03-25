@@ -25,6 +25,8 @@ import { alertVehicle } from "./reducer/alertVehicle";
 import { alertDate } from "./reducer/alertDate";
 import { alertDateTime } from "./reducer/alertDateTime";
 import { activePath } from "./reducer/activePath";
+import { mode } from "./reducer/mode";
+import { view } from "./reducer/view";
 
 const store = configureStore({
   reducer: {
@@ -55,6 +57,8 @@ const store = configureStore({
     getStaticParking: Parking_Static_Data,
     getStaicHotalParking: Hotel_Parking_Static_Data,
     getSearchLocation: setSearchLoaction,
+    mode: mode,
+    view: view,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
