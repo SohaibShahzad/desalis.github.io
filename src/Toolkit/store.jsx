@@ -27,6 +27,7 @@ import { alertDateTime } from "./reducer/alertDateTime";
 import { activePath } from "./reducer/activePath";
 import { mode } from "./reducer/mode";
 import { view } from "./reducer/view";
+import { dataProfile } from "./reducer/dataProfile";
 
 const store = configureStore({
   reducer: {
@@ -59,6 +60,7 @@ const store = configureStore({
     getSearchLocation: setSearchLoaction,
     mode: mode,
     view: view,
+    dataProfile: dataProfile,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

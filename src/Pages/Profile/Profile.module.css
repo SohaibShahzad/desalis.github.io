@@ -1,0 +1,21 @@
+.imge-size {
+    width: 20vw;
+    margin-left: auto;
+}
+
+.text {
+    word-wrap: break-word;
+}
+
+.portion:hover {
+    cursor: pointer;
+    color: #6923d0;
+}
+
+.hr {
+    border-top: 2px solid blue;
+}
+
+.bg{
+    background-color: #f6f9ff;
+}

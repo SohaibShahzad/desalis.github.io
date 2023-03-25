@@ -16,6 +16,9 @@ import ParkingList from "./Pages/ParkingList/ParkingList";
 import HotelAndParking from "./Pages/HotelAndParking/HotelAndParking";
 import Sidebar from "./Components/adminSidebar/Sidebar";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Profile from "./Pages/Profile/Profile";
+import ImageUpload from "./Components/ImageUpload/ImageUpload";
+import EditProfile from "./Components/EditProfile/EditProfile";
 
 function App() {
   return (
@@ -42,7 +45,9 @@ function App() {
 
       <Routes>
         <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
+      
     </>
   );
 }
