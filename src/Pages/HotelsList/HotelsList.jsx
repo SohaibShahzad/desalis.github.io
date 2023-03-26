@@ -12,11 +12,15 @@ const HotelsList = () => {
       <Sidebar />
       <div className="row justify-content-center">
         <div className="col-md-11">
-          {path === "HotelsList" ? (
+          {path === "hotels" ? (
             <h2 className="fs-1 mb-2 mt-4">Hotels</h2>
-          ) : path === "UsersList" ? (
+          ) : path === "users" ? (
             <h2 className="fs-1 mb-2 mt-4">Users</h2>
-          ) : null}
+          ) : path === "booking" ? (
+            <h2 className="fs-1 mb-2 mt-4">Bookings</h2>
+          ) : (
+            <h2 className="fs-1 mb-2 mt-4">Pending Requests</h2>
+          )}
         </div>
         {/* filters */}
         <div className="col-md-11 row justify-content-around my-3">

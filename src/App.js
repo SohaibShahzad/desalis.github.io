@@ -21,8 +21,6 @@ import HotelsList from "./Pages/HotelsList/HotelsList";
 function App() {
   return (
     <>
-      {/* <Dropdown /> */}
-      {/* <Map /> */}
       {/* <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
@@ -42,10 +40,12 @@ function App() {
       </Routes> */}
 
       <Routes>
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/Profile" element={<Profile />} />
-        <Route path="/HotelsList" element={<HotelsList />} />
-        <Route path="/UsersList" element={<HotelsList />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/hotels" element={<HotelsList />} />
+        <Route path="/users" element={<HotelsList />} />
+        <Route path="/booking" element={<HotelsList />} />
+        <Route path="/hotelRequests" element={<HotelsList />} />
       </Routes>
 
     </>

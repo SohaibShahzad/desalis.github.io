@@ -32,7 +32,7 @@ export default function Sidebar() {
           <Link
             to={element.link}
             className={`${style.nav__link} ${
-              loc.split("/")[1] === element.title
+              loc === element.link
                 ? "text-success"
                 : mode === "dark"
                 ? "text-light"
