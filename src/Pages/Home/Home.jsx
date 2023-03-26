@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Featured from "../../Components/featured/Featured";
 import FeaturedProperties from "../../Components/featuredProperties/FeaturedProperties";
@@ -8,8 +9,31 @@ import MailList from "../../Components/mailList/MailList";
 import style from "./home.module.css";
 import { useMediaQuery } from "@mui/material";
 
-const Home = () => {
+const Home = (props) => {
   const isXtraSmallScreen = useMediaQuery("(max-width: 450px)");
+  const logout = () => {
+    window.open(`http://localhost:5000/user/logout`, "_self");
+  };
+
+  // State For Logged In User
+  const [user, setUser] = useState(null);
+
+  // Api Request To Get Logged In User
+  const getUser = async () => {
+    try {
+      const url = `http://localhost:5000/user/login`;
+      const response = await fetch(url, {
+        method: "GET",
+        credentials: "include", 
+      });
+      const data = await response.json(); 
+      console.log(data.user);
+      setUser(data.user);
+    } catch (error) {
+      console.log("You get The Error ", error);
+    }
+  };
+
   return (
     <div>
       <Navbar list={true} />
@@ -19,8 +43,10 @@ const Home = () => {
             isXtraSmallScreen ? "fs-4" : "fs-3"
           }`}
         >
-          Find your perfect stay
+          {user ? user.displayName : ""} Find your perfect stay
         </h1>
+        <button onClick={getUser}>GetUser</button>
+        {/* <button onClick={logout}>Logout</button> */}
 
         <Featured />
         {/* <h1 className={`${style.homeTitle} container`}>
