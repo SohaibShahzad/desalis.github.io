@@ -20,14 +20,12 @@ const DataTable = () => {
       width: 100,
       renderCell: (params) => {
         return (
-          <div className="cellAction">
-            <button
-              className="btn btn-danger"
-              onClick={() => handleDelete(params.row._id)}
-            >
-              Delete
-            </button>
-          </div>
+          <button
+            className="btn btn-danger"
+            onClick={() => handleDelete(params.row._id)}
+          >
+            Delete
+          </button>
         );
       },
     },
@@ -39,14 +37,12 @@ const DataTable = () => {
       width: 100,
       renderCell: (params) => {
         return (
-          <div className="cellAction">
-            <button
-              className="btn btn-primary"
-              onClick={() => handleView(params.row._id)}
-            >
-              View
-            </button>
-          </div>
+          <button
+            className="btn btn-primary"
+            onClick={() => handleView(params.row._id)}
+          >
+            View
+          </button>
         );
       },
     },
