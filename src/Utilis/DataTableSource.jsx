@@ -7,6 +7,4 @@ export const hotelsHeader = [
   { field: "postalCode", headerName: "Postal Code", width: 130 },
   { field: "area", headerName: "Area", width: 130 },
   { field: "country", headerName: "Country", width: 130 },
-  { field: "view", headerName: "View", width: 130 },
-  { field: "delete", headerName: "Delete", width: 130 },
 ];
