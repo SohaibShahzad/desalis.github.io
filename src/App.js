@@ -14,11 +14,9 @@ import Parking from "./Pages/Parking Section/Parking";
 import Roomcard from "./Components/RoomCard/Roomcard";
 import ParkingList from "./Pages/ParkingList/ParkingList";
 import HotelAndParking from "./Pages/HotelAndParking/HotelAndParking";
-import Sidebar from "./Components/adminSidebar/Sidebar";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Profile from "./Pages/Profile/Profile";
-import ImageUpload from "./Components/ImageUpload/ImageUpload";
-import EditProfile from "./Components/EditProfile/EditProfile";
+import HotelsList from "./Pages/HotelsList/HotelsList";
 
 function App() {
   return (
@@ -46,8 +44,10 @@ function App() {
       <Routes>
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="/HotelsList" element={<HotelsList />} />
+        <Route path="/UsersList" element={<HotelsList />} />
       </Routes>
-      
+
     </>
   );
 }

@@ -27,7 +27,6 @@ export default function Sidebar() {
   const sidebarProfile = (argument) => {
     return argument.map((element) => {
       const loc = location.pathname;
-      console.log(loc.split("/")[1]);
       return (
         <div key={element.key}>
           <Link
