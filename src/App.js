@@ -18,7 +18,7 @@ import HotelAndParking from "./Pages/HotelAndParking/HotelAndParking";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Profile from "./Pages/Profile/Profile";
 import HotelsList from "./Pages/HotelsList/HotelsList";
-
+import ProfileDataForm from "./Components/Forms/profileDataForm";
 
 function App() {
 
@@ -51,6 +51,7 @@ function App() {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/HotelsList" element={<HotelsList />} />
         <Route path="/UsersList" element={<HotelsList />} />
+        <Route path="/profiledata" element={<ProfileDataForm />} />
       </Routes>
 
     </>
