@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import GoogleIcon from "@mui/icons-material/Google";
 
 function Copyright(props) {
   return (
@@ -41,6 +42,10 @@ export default function SignUp() {
       email: data.get("email"),
       password: data.get("password"),
     });
+  };
+
+  const googleAuth = () => {
+    window.open(`http://localhost:5000/user/google`);
   };
 
   return (
@@ -134,6 +139,18 @@ export default function SignUp() {
                 </Link>
               </Grid>
             </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              size="large"
+              color="success"
+              onClick={googleAuth}
+              sx={{ mt: 3, mb: 2, pt: 1, pb: 1 }}
+            >
+              <GoogleIcon className="text-start" sx={{ me: 4 }} />
+              Continue with Google
+            </Button>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />

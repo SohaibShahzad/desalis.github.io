@@ -1,0 +1,58 @@
+.image-selector {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-preview {
+  position: relative;
+  height: 100px;
+  width: 100px;
+}
+
+.preview-image {
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.2s ease-in-out;
+}
+
+.image-preview:hover .image-overlay {
+  opacity: 1;
+}
+
+.image-number {
+  font-size: 12px;
+}
+
+.delete-button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #343a40;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-button:hover {
+  background-color: #212529;
+}
